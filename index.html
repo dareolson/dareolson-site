@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dare Olson — Filmmaker / Cinematographer / Creative Director</title>
+
+  <!-- Global styles: layout, typography, colors, nav -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Frog-specific styles: layer stacking, eye animation, fly cursor -->
+  <link rel="stylesheet" href="css/frog.css">
+</head>
+<body>
+
+  <!-- =============================================
+       FLY CURSOR
+       Replaces the default mouse pointer.
+       Split into two halves so the wings (bottom)
+       can flap independently of the body (top).
+  ============================================= -->
+  <div id="fly-cursor">
+    <!-- Top half: head/body — clipped, no animation -->
+    <span id="fly-top">🪰</span>
+    <!-- Bottom half: wings — clipped, flaps via CSS animation -->
+    <span id="fly-bottom">🪰</span>
+  </div>
+
+  <!-- =============================================
+       NAVIGATION
+       Fixed top-right. Links to main sections.
+  ============================================= -->
+  <nav id="main-nav">
+    <a href="pages/work/index.html">WORK</a>
+    <a href="pages/about.html">ABOUT</a>
+    <a href="pages/contact.html">CONTACT</a>
+  </nav>
+
+  <!-- =============================================
+       HOMEPAGE HERO
+       Full-viewport area that holds the frog and
+       the site identity text.
+  ============================================= -->
+  <main id="hero">
+
+    <!-- =============================================
+         FROG CHARACTER
+         10 SVG layers stacked in the same position.
+         Each SVG covers the full viewport but only
+         its relevant body part is visible inside it.
+         Order matters — layers lower in the list
+         appear on top.
+    ============================================= -->
+    <div id="frog">
+      <!-- Static body parts — no animation -->
+      <img class="frog-layer" id="layer-body"      src="frog-assets/Body.svg"      alt="">
+      <img class="frog-layer" id="layer-l-leg"     src="frog-assets/L-Leg.svg"     alt="">
+      <img class="frog-layer" id="layer-r-leg"     src="frog-assets/R-Leg.svg"     alt="">
+      <img class="frog-layer" id="layer-mouth"     src="frog-assets/Mouth-1.svg"   alt="">
+      <img class="frog-layer" id="layer-nose"      src="frog-assets/Nose.svg"      alt="">
+
+      <!-- Eyeballs — sit BELOW eyelids so they don't show through -->
+      <!-- Moved by JS (frog.js) to track the fly cursor -->
+      <img class="frog-layer" id="layer-l-eyeball" src="frog-assets/L-eyeball.svg" alt="" data-eyeball="true">
+      <img class="frog-layer" id="layer-r-eyeball" src="frog-assets/R-eyeball.svg" alt="" data-eyeball="true">
+
+      <!-- Eyelids + eye sockets — on top of eyeballs -->
+      <!-- Note: eyelid and socket are baked into the same SVG export.
+           To animate blink independently, re-export them as separate files. -->
+      <img class="frog-layer" id="layer-l-eyelid"  src="frog-assets/L-eyelids.svg" alt="">
+      <img class="frog-layer" id="layer-r-eyelid"  src="frog-assets/R-eye-1.svg"   alt="">
+    </div>
+
+    <!-- =============================================
+         SITE IDENTITY
+         Name and title, pinned bottom-left.
+    ============================================= -->
+    <div id="identity">
+      <h1>Dare Olson</h1>
+      <p>Filmmaker &nbsp;/&nbsp; Cinematographer &nbsp;/&nbsp; Creative Director</p>
+    </div>
+
+  </main>
+
+  <!-- Frog eye tracking + fly cursor movement -->
+  <script src="js/frog.js"></script>
+
+  <!-- General page behaviour (empty for now) -->
+  <script src="js/main.js"></script>
+</body>
+</html>

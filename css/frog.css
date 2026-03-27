@@ -1,0 +1,98 @@
+/* ==============================================
+   FROG CHARACTER CONTAINER
+   Fills the full viewport. All layer images
+   are positioned inside this absolutely.
+============================================== */
+#frog {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform: scale(0.8);          /* 20% smaller than original */
+  transform-origin: center center; /* shrinks from the center outward */
+}
+
+/* ==============================================
+   FROG LAYERS
+   Every body part SVG shares this base style.
+   They all occupy the same space and stack via
+   DOM order — elements lower in the HTML appear
+   on top.
+============================================== */
+.frog-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;  /* keeps the 1920x1080 art centered without stretching */
+  pointer-events: none; /* clicks pass through to the page */
+  user-select: none;
+  filter: invert(1);    /* flips black art to white so it shows on dark background */
+}
+
+/* ==============================================
+   EYEBALLS
+   Eyeball layers get a smooth transform transition
+   so the eye-tracking movement feels fluid rather
+   than jittery. JS writes translate() to these.
+============================================== */
+#layer-l-eyeball,
+#layer-r-eyeball {
+  transition: transform 0.08s linear;
+  will-change: transform; /* tells the browser to prep these for frequent updates */
+}
+
+/* ==============================================
+   FLY CURSOR
+   Replaces the default mouse pointer.
+   Positioned via JS (left/top), centered on
+   the pointer tip via translate(-50%, -50%).
+============================================== */
+#fly-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none; /* never blocks clicks */
+  z-index: 9999;        /* always on top of everything */
+  transform: translate(-50%, -50%);
+  will-change: left, top;
+  font-size: 1.4rem;
+  line-height: 1;
+  width: 1.4rem;
+  height: 1.4rem;
+}
+
+/* Both emoji spans overlap exactly */
+#fly-top,
+#fly-bottom {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* ==============================================
+   FLY — TOP HALF
+   Shows only the upper portion of the emoji
+   (head and body). No animation — stays still.
+============================================== */
+#fly-top {
+  clip-path: inset(0 0 50% 0); /* hides everything below the midpoint */
+}
+
+/* ==============================================
+   FLY — BOTTOM HALF + WING FLAP
+   Shows only the lower portion (wings).
+   Scales on Y axis from the top edge (where
+   wings meet the body) to simulate flapping.
+============================================== */
+@keyframes flap {
+  0%, 100% { transform: scaleY(1); }   /* wings fully open */
+  50%       { transform: scaleY(0.15); } /* wings nearly closed */
+}
+
+#fly-bottom {
+  clip-path: inset(50% 0 0 0);  /* hides everything above the midpoint */
+  transform-origin: top center;  /* flap hinges from where wings meet body */
+  animation: flap 0.15s ease-in-out infinite;
+}

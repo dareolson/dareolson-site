@@ -1,0 +1,101 @@
+/* ==============================================
+   RESET
+   Remove default browser spacing and sizing quirks
+============================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ==============================================
+   DESIGN TOKENS
+   Site-wide color and font variables.
+   Change these to retheme the whole site.
+============================================== */
+:root {
+  --bg: #0a0a0a;          /* Near-black background */
+  --accent: #f5820d;      /* Amber orange — matches Grain & Thunder brand */
+  --text: #f0ece4;        /* Warm off-white for headings */
+  --text-dim: #888;       /* Muted grey for nav links at rest */
+}
+
+/* ==============================================
+   BASE
+   Full-viewport dark canvas. Cursor hidden
+   because the fly emoji takes over as the pointer.
+============================================== */
+html, body {
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Georgia', serif;
+  cursor: none; /* fly cursor in frog.css replaces this */
+  overflow: hidden;
+}
+
+/* ==============================================
+   NAVIGATION
+   Fixed to top-right corner, always visible.
+============================================== */
+#main-nav {
+  position: fixed;
+  top: 2rem;
+  right: 2.5rem;
+  z-index: 100; /* sits above the frog layers */
+  display: flex;
+  gap: 2.5rem;
+}
+
+#main-nav a {
+  color: var(--text-dim);
+  text-decoration: none;
+  font-family: 'Courier New', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  transition: color 0.2s;
+}
+
+#main-nav a:hover {
+  color: var(--accent); /* amber on hover */
+}
+
+/* ==============================================
+   HERO
+   Full-viewport container for the frog and
+   identity text.
+============================================== */
+#hero {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* ==============================================
+   IDENTITY TEXT
+   Name and title, anchored to bottom-left.
+============================================== */
+#identity {
+  position: absolute;
+  bottom: 3rem;
+  left: 3rem;
+  z-index: 10; /* above frog layers */
+}
+
+#identity h1 {
+  font-size: clamp(2.5rem, 5vw, 4.5rem); /* scales fluidly with viewport */
+  font-weight: normal;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  color: var(--text);
+}
+
+#identity p {
+  margin-top: 0.6rem;
+  font-family: 'Courier New', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  color: var(--accent); /* amber accent for the role line */
+  text-transform: uppercase;
+}

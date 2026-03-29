@@ -43,22 +43,60 @@ html, body {
   position: fixed;
   top: 2rem;
   right: 2.5rem;
-  z-index: 100; /* sits above the frog layers */
+  z-index: 100;
   display: flex;
   gap: 2.5rem;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.75rem 1.5rem;
 }
 
 #main-nav a {
-  color: var(--text-dim);
+  color: var(--text);
   text-decoration: none;
   font-family: 'Courier New', monospace;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   letter-spacing: 0.2em;
   transition: color 0.2s;
 }
 
 #main-nav a:hover {
-  color: var(--accent); /* amber on hover */
+  color: var(--accent);
+}
+
+#main-nav a.nav-active {
+  color: var(--accent);
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  #main-nav {
+    top: 1.25rem;
+    right: 1.25rem;
+    gap: 1.5rem;
+  }
+}
+
+/* Mobile — full-width bar */
+@media (max-width: 480px) {
+  #main-nav {
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    justify-content: center;
+    background: rgba(10, 10, 10, 0.95);
+    padding: 1rem 0;
+    gap: 1.5rem;
+    font-size: 0.65rem;
+  }
+
+  #identity {
+    bottom: 2rem;
+    left: 1.5rem;
+  }
 }
 
 /* ==============================================
@@ -96,6 +134,25 @@ html, body {
   font-family: 'Courier New', monospace;
   font-size: 0.75rem;
   letter-spacing: 0.2em;
-  color: var(--accent); /* amber accent for the role line */
+  color: var(--accent);
   text-transform: uppercase;
+}
+
+#cta {
+  display: inline-block;
+  margin-top: 1.5rem;
+  font-family: 'Courier New', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text);
+  text-decoration: none;
+  border-bottom: 1px solid var(--text-dim);
+  padding-bottom: 0.15rem;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+#cta:hover {
+  color: var(--accent);
+  border-color: var(--accent);
 }

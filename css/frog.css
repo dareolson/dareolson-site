@@ -55,8 +55,8 @@
   left: 0;
   pointer-events: none; /* never blocks clicks */
   z-index: 9999;        /* always on top of everything */
-  transform: translate(-50%, -50%);
-  will-change: left, top;
+  will-change: transform;
+  contain: strict;      /* isolates layout/paint — browser skips recalc */
   font-size: 1.4rem;
   line-height: 1;
   width: 1.4rem;

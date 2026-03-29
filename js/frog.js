@@ -11,45 +11,33 @@ const fly      = document.getElementById('fly-cursor');
 const lEyeball = document.getElementById('layer-l-eyeball');
 const rEyeball = document.getElementById('layer-r-eyeball');
 
+// Pre-compute centering offset once so it's not recalculated on every move
+const flyOffsetX = fly.offsetWidth  / 2;
+const flyOffsetY = fly.offsetHeight / 2;
+
 // ==============================================
 // EYE TRACKING SETTINGS
-// EYE_RANGE — max px the eyeballs shift toward
-//   the cursor from their resting position.
-//   Keep small: the SVGs are full-viewport so
-//   even 8px moves the art noticeably.
-//
-// L_EYE_OFFSET / R_EYE_OFFSET — fine-tune each
-//   eye's resting position independently.
-//   x: positive moves right, negative moves left
-//   y: positive moves down, negative moves up
 // ==============================================
 const EYE_RANGE    = 8;
-const L_EYE_OFFSET = { x: -10, y: 6 };  // left eye: nudged inward and slightly down
-const R_EYE_OFFSET = { x: 22,  y: 6 };  // right eye: nudged inward and slightly down
+const L_EYE_OFFSET = { x: -10, y: 6 };
+const R_EYE_OFFSET = { x: 22,  y: 6 };
 
 // ==============================================
 // MOUSEMOVE HANDLER
-// Fires every time the mouse moves.
-// Updates the fly position and both eyeballs.
 // ==============================================
 document.addEventListener('mousemove', (e) => {
-  const mx = e.clientX; // mouse X position in the viewport
-  const my = e.clientY; // mouse Y position in the viewport
+  const mx = e.clientX;
+  const my = e.clientY;
 
   // -- Fly cursor --
-  // Set left/top directly so the CSS flap animation
-  // (which uses transform) isn't overwritten.
-  fly.style.left = `${mx}px`;
-  fly.style.top  = `${my}px`;
+  // translate3d forces a dedicated GPU compositing layer.
+  // Direct pixel values avoid any runtime calc() overhead.
+  fly.style.transform = `translate3d(${mx - flyOffsetX}px, ${my - flyOffsetY}px, 0)`;
 
   // -- Eye tracking --
-  // Convert mouse position (0 to viewport width/height)
-  // into a -EYE_RANGE to +EYE_RANGE offset.
-  // When mouse is dead center, offset is 0 (eyes look straight ahead).
   const offsetX = ((mx / window.innerWidth)  - 0.5) * 2 * EYE_RANGE;
   const offsetY = ((my / window.innerHeight) - 0.5) * 2 * EYE_RANGE;
 
-  // Apply tracking offset + the per-eye resting position nudge
-  lEyeball.style.transform = `translate(${offsetX + L_EYE_OFFSET.x}px, ${offsetY + L_EYE_OFFSET.y}px)`;
-  rEyeball.style.transform = `translate(${offsetX + R_EYE_OFFSET.x}px, ${offsetY + R_EYE_OFFSET.y}px)`;
+  lEyeball.style.transform = `translate3d(${offsetX + L_EYE_OFFSET.x}px, ${offsetY + L_EYE_OFFSET.y}px, 0)`;
+  rEyeball.style.transform = `translate3d(${offsetX + R_EYE_OFFSET.x}px, ${offsetY + R_EYE_OFFSET.y}px, 0)`;
 });

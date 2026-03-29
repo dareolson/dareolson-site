@@ -1,0 +1,273 @@
+/* ==============================================
+   INTERIOR PAGE BASE
+   Overrides homepage-specific styles that don't
+   apply to content pages.
+============================================== */
+html:has(body.interior),
+body.interior {
+  overflow-y: auto;  /* homepage locks scroll; content pages need it */
+  overflow-x: hidden;
+  cursor: auto;      /* restore default cursor on interior pages */
+  min-height: 100%;
+  height: auto;
+}
+
+/* ==============================================
+   WORK PAGE LAYOUT
+   Padded content area, pushed below the fixed nav.
+============================================== */
+#work-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 8rem 2rem 6rem; /* top clears the fixed nav */
+}
+
+/* ==============================================
+   PAGE TITLE
+============================================== */
+.page-title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: normal;
+  letter-spacing: 0.02em;
+  color: var(--text);
+  margin-bottom: 4rem;
+}
+
+/* ==============================================
+   SECTION
+============================================== */
+.work-section {
+  margin-bottom: 5rem;
+}
+
+.section-label {
+  font-family: 'Courier New', monospace;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: normal;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.section-note {
+  color: var(--text-dim);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+}
+
+/* ==============================================
+   FILTER TABS
+============================================== */
+#filter-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 3.5rem;
+  flex-wrap: wrap;
+}
+
+.filter-tab {
+  background: none;
+  border: 1px solid #333;
+  color: var(--text-dim);
+  font-family: 'Courier New', monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.55rem 1.2rem;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.filter-tab:hover {
+  color: var(--text);
+  border-color: var(--text-dim);
+}
+
+.filter-tab.is-active {
+  color: var(--bg);
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ==============================================
+   VIDEO GRID
+   Mobile-first: 1 column → 2 → 3
+============================================== */
+.video-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .video-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .video-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ==============================================
+   VIDEO CARD
+============================================== */
+.video-card {
+  cursor: pointer;
+}
+
+.thumb-wrap {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #111;
+}
+
+.thumb-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: filter 0.25s, transform 0.25s;
+  filter: brightness(0.85);
+}
+
+.play-btn {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  color: var(--text);
+  opacity: 0;
+  transition: opacity 0.2s;
+  text-shadow: 0 0 20px rgba(0,0,0,0.8);
+}
+
+.video-card:hover .thumb-wrap img {
+  filter: brightness(0.5);
+  transform: scale(1.02);
+}
+
+.video-card:hover .play-btn {
+  opacity: 1;
+}
+
+.video-title {
+  margin-top: 0.6rem;
+  font-family: 'Courier New', monospace;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+  transition: color 0.2s;
+}
+
+.video-card:hover .video-title {
+  color: var(--text);
+}
+
+.video-note {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--accent);
+  letter-spacing: 0.12em;
+  margin-top: 0.2rem;
+}
+
+/* ==============================================
+   SEE MORE LINK
+============================================== */
+.see-more {
+  display: inline-block;
+  margin-top: 1.5rem;
+  font-family: 'Courier New', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  text-decoration: none;
+  border-bottom: 1px solid var(--text-dim);
+  padding-bottom: 0.1rem;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.see-more:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ==============================================
+   LIGHTBOX
+============================================== */
+#lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+
+#lightbox.is-open {
+  display: flex;
+}
+
+#lightbox-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  cursor: pointer;
+}
+
+#lightbox-content {
+  position: relative;
+  z-index: 1;
+  width: 90vw;
+  max-width: 1000px;
+}
+
+#lightbox-video {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+
+#lightbox-video iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+#lightbox-close {
+  position: absolute;
+  top: -2.5rem;
+  right: 0;
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  transition: color 0.2s;
+  font-family: 'Courier New', monospace;
+}
+
+#lightbox-close:hover {
+  color: var(--accent);
+}
+
+/* Mobile — push work page below full-width nav */
+@media (max-width: 480px) {
+  #work-page {
+    padding-top: 6rem;
+  }
+}

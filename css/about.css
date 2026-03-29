@@ -1,0 +1,71 @@
+/* ==============================================
+   ABOUT PAGE
+============================================== */
+#about-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 8rem 2rem 6rem;
+}
+
+#about-body {
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+}
+
+/* Bio paragraphs */
+#about-bio p {
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  line-height: 1.8;
+  color: var(--text);
+  margin-bottom: 1.2rem;
+}
+
+#about-bio p:last-child {
+  margin-bottom: 0;
+}
+
+#about-bio em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+/* Client list */
+.client-list {
+  font-family: 'Courier New', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+  line-height: 2;
+  margin-top: 1rem;
+}
+
+/* Recognition list */
+.recognition-list {
+  list-style: none;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.recognition-list li {
+  font-family: 'Courier New', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+  padding-left: 1rem;
+  border-left: 2px solid var(--accent);
+  line-height: 1.6;
+}
+
+.recognition-list em {
+  font-style: italic;
+  color: var(--text);
+}
+
+@media (max-width: 480px) {
+  #about-page {
+    padding-top: 6rem;
+  }
+}

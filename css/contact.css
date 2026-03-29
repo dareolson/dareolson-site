@@ -1,0 +1,63 @@
+/* ==============================================
+   CONTACT PAGE
+============================================== */
+#contact-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 8rem 2rem 6rem;
+}
+
+#contact-body {
+  margin-top: 2rem;
+}
+
+.contact-line {
+  font-family: 'Courier New', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: var(--text-dim);
+  margin-bottom: 1.5rem;
+}
+
+.contact-email {
+  display: block;
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  font-family: 'Georgia', serif;
+  color: var(--text);
+  text-decoration: none;
+  border-bottom: 1px solid #333;
+  padding-bottom: 1.5rem;
+  margin-bottom: 2rem;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.contact-email:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.contact-links {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.contact-links a {
+  font-family: 'Courier New', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.contact-links a:hover {
+  color: var(--accent);
+}
+
+@media (max-width: 480px) {
+  #contact-page {
+    padding-top: 6rem;
+  }
+}

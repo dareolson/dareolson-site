@@ -39,7 +39,9 @@ function applyFlyPosition(x, y) {
 // ==============================================
 // DESKTOP: follow the mouse
 // ==============================================
-if (!window.matchMedia('(pointer: coarse)').matches) {
+const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+if (!isTouchDevice) {
   document.addEventListener('mousemove', (e) => {
     applyFlyPosition(e.clientX, e.clientY);
   });
@@ -50,7 +52,7 @@ if (!window.matchMedia('(pointer: coarse)').matches) {
 // Lerps toward a random target. When close
 // enough, waits briefly then picks a new one.
 // ==============================================
-if (window.matchMedia('(pointer: coarse)').matches) {
+if (isTouchDevice) {
   const MARGIN  = 80;   // keep fly away from edges
   const SPEED   = 0.03; // lerp factor — lower = lazier
 

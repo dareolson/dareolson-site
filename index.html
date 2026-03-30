@@ -100,9 +100,6 @@
       <!-- Nose -->
       <img class="frog-layer" id="layer-nose"       src="FrogFix/Frogredo_0003s_0000_Nose.png"  alt="">
 
-      <!-- Tongue — hidden by default, shown during eat animation -->
-      <img class="frog-layer" id="layer-tongue"     src="FrogFix/Frogredo_0004s_0000_Tongue-1.png" alt="" style="opacity:0">
-
       <!-- Eyeballs — moved by JS to track fly cursor -->
       <img class="frog-layer" id="layer-r-eyeball"  src="FrogFix/Frogredo_0002s_0000_R-eyeball.png" alt="">
       <img class="frog-layer" id="layer-l-eyeball"  src="FrogFix/Frogredo_0008s_0000_L-eyeball.png" alt="">
@@ -110,6 +107,9 @@
       <!-- Eyelids — on top of eyeballs, swapped during blink -->
       <img class="frog-layer" id="layer-r-eyelid"   src="FrogFix/Frogredo_0001s_0000_R-eyelid-1.png" alt="">
       <img class="frog-layer" id="layer-l-eyelid"   src="FrogFix/Frogredo_0007s_0000_L-eyelid-1.png" alt="">
+
+      <!-- Tongue — topmost layer, hidden by default -->
+      <img class="frog-layer" id="layer-tongue"     src="FrogFix/Frogredo_0004s_0000_Tongue-1.png" alt="" style="opacity:0">
     </div>
 
     <!-- =============================================
@@ -125,7 +125,7 @@
   </main>
 
   <!-- Frog eye tracking + fly cursor movement -->
-  <script src="js/frog.js?v=18"></script>
+  <script src="js/frog.js?v=19"></script>
 
   <!-- General page behaviour (empty for now) -->
   <script src="js/main.js"></script>

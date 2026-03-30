@@ -55,39 +55,45 @@ function applyFlyPosition(x, y) {
 const MOUTH_FRAC       = { x: 0.5, y: 0.62 };
 const TONGUE_BASE_ANGLE = 0; // degrees; adjust if tongue art points a different direction
 
-function aimTongue() {
+// Compute and lock the tongue pivot point once on load.
+// Only the rotation angle changes after this.
+let mouthScreenX, mouthScreenY;
+
+function initTongueOrigin() {
   const rect = tongue.getBoundingClientRect();
   const svgAspect = 1920 / 1080;
   const elAspect  = rect.width / rect.height;
 
   let scale, offX, offY;
   if (elAspect > svgAspect) {
-    // letterboxed horizontally
     scale = rect.height / 1080;
     offX  = (rect.width - 1920 * scale) / 2;
     offY  = 0;
   } else {
-    // letterboxed vertically
     scale = rect.width / 1920;
     offX  = 0;
     offY  = (rect.height - 1080 * scale) / 2;
   }
 
-  // Origin within the element (px from top-left of element)
   const originX = offX + MOUTH_FRAC.x * 1920 * scale;
   const originY = offY + MOUTH_FRAC.y * 1080 * scale;
 
-  // Mouth screen position
-  const mouthScreenX = rect.left + originX;
-  const mouthScreenY = rect.top  + originY;
+  mouthScreenX = rect.left + originX;
+  mouthScreenY = rect.top  + originY;
 
+  tongue.style.transformOrigin = `${originX}px ${originY}px`;
+}
+
+function aimTongue() {
   const dx    = currentFlyX - mouthScreenX;
   const dy    = currentFlyY - mouthScreenY;
   const angle = Math.atan2(dy, dx) * 180 / Math.PI - TONGUE_BASE_ANGLE;
-
-  tongue.style.transformOrigin = `${originX}px ${originY}px`;
-  tongue.style.transform       = `rotate(${angle}deg)`;
+  tongue.style.transform = `rotate(${angle}deg)`;
 }
+
+// Set origin once on load, and again if window is resized
+initTongueOrigin();
+window.addEventListener('resize', initTongueOrigin);
 
 // ==============================================
 // BLINK ANIMATION

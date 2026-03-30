@@ -43,6 +43,10 @@
   will-change: transform; /* tells the browser to prep these for frequent updates */
 }
 
+#layer-tongue {
+  z-index: 10; /* ensure tongue is above all other frog layers */
+}
+
 /* ==============================================
    FLY CURSOR
    Replaces the default mouse pointer.

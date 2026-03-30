@@ -91,8 +91,8 @@ function aimTongue() {
   tongue.style.transform = `rotate(${angle}deg)`;
 }
 
-// Set origin once on load, and again if window is resized
-initTongueOrigin();
+// Set origin after full page load so layout is settled, and again on resize
+window.addEventListener('load', initTongueOrigin);
 window.addEventListener('resize', initTongueOrigin);
 
 // ==============================================

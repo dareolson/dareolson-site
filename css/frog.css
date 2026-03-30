@@ -44,7 +44,18 @@
 }
 
 #layer-tongue {
-  z-index: 10; /* ensure tongue is above all other frog layers */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+  filter: invert(1);
+  transform: scale(0.8); /* match #frog scale */
+  transform-origin: center center;
+  z-index: 10;
 }
 
 /* ==============================================

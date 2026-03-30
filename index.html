@@ -108,9 +108,10 @@
       <img class="frog-layer" id="layer-r-eyelid"   src="FrogFix/Frogredo_0001s_0000_R-eyelid-1.png" alt="">
       <img class="frog-layer" id="layer-l-eyelid"   src="FrogFix/Frogredo_0007s_0000_L-eyelid-1.png" alt="">
 
-      <!-- Tongue — topmost layer, hidden by default -->
-      <img class="frog-layer" id="layer-tongue"     src="FrogFix/Frogredo_0004s_0000_Tongue-1.png" alt="" style="opacity:0">
     </div>
+
+    <!-- Tongue — outside #frog so it's above all frog layers -->
+    <img id="layer-tongue" src="FrogFix/Frogredo_0004s_0000_Tongue-1.png" alt="" style="opacity:0">
 
     <!-- =============================================
          SITE IDENTITY
@@ -125,7 +126,7 @@
   </main>
 
   <!-- Frog eye tracking + fly cursor movement -->
-  <script src="js/frog.js?v=20"></script>
+  <script src="js/frog.js?v=21"></script>
 
   <!-- General page behaviour (empty for now) -->
   <script src="js/main.js"></script>

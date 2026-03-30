@@ -19,7 +19,7 @@ const flyOffsetY = fly.offsetHeight / 2;
 // ==============================================
 // EYE TRACKING SETTINGS
 // ==============================================
-const EYE_RANGE    = 8;
+const EYE_RANGE    = isTouchDevice ? 4 : 8;
 const L_EYE_OFFSET = { x: -10, y: 6 };
 const R_EYE_OFFSET = { x: 22,  y: 6 };
 

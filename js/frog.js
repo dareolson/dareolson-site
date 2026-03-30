@@ -142,14 +142,51 @@ if (isTouchDevice) {
     lastTap = now;
   }, { passive: true });
 
+  const mouth  = document.getElementById('layer-mouth');
+  const tongue = document.getElementById('layer-tongue');
+
+  const MOUTH = {
+    1: 'FrogFix/Frogredo_0005s_0000_Mouth-1.png',
+    2: 'FrogFix/Frogredo_0005s_0001_Mouth-2.png',
+    3: 'FrogFix/Frogredo_0005s_0002_Mouth-3.png',
+    4: 'FrogFix/Frogredo_0005s_0003_Mouth-4.png',
+  };
+
+  const TONGUE = {
+    1: 'FrogFix/Frogredo_0004s_0000_Tongue-1.png',
+    2: 'FrogFix/Frogredo_0004s_0001_Tongue-2.png',
+    3: 'FrogFix/Frogredo_0004s_0002_Tongue-3.png',
+    4: 'FrogFix/Frogredo_0004s_0003_Tongue-4.png',
+  };
+
   function eatFly() {
-    // Placeholder — swap this out when tongue SVG layers exist
     fly.style.opacity = '0';
+
+    // Mouth opens, tongue extends
+    mouth.src          = MOUTH[2];
     setTimeout(() => {
-      fly.style.opacity = '1';
-      chasing = false;
-      pickTarget(); // fly respawns and wanders again
-    }, 600);
+      mouth.src        = MOUTH[3];
+      tongue.style.opacity = '1';
+      tongue.src       = TONGUE[1];
+      setTimeout(() => {
+        tongue.src     = TONGUE[2];
+        setTimeout(() => {
+          // Tongue retracts, mouth closes
+          tongue.src   = TONGUE[3];
+          setTimeout(() => {
+            tongue.src = TONGUE[4];
+            mouth.src  = MOUTH[4];
+            setTimeout(() => {
+              tongue.style.opacity = '0';
+              mouth.src  = MOUTH[1];
+              fly.style.opacity = '1';
+              chasing = false;
+              pickTarget();
+            }, 80);
+          }, 80);
+        }, 120);
+      }, 80);
+    }, 60);
   }
 
   function tick() {

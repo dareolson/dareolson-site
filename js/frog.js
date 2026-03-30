@@ -28,7 +28,10 @@ const EYE_RANGE    = isTouchDevice ? 4 : 8;
 const spread = isTouchDevice ? window.innerWidth * 0.18 : 0;
 const L_EYE_OFFSET = isTouchDevice ? { x: -10 - spread - 35, y: -22 } : { x: -10, y: 6 };
 const R_EYE_OFFSET = isTouchDevice ? { x: 22  + spread - 15, y: -8 } : { x: 22,  y: 6 };
-console.log('isTouchDevice:', isTouchDevice, '| spread:', spread, '| L_EYE_OFFSET:', L_EYE_OFFSET, '| R_EYE_OFFSET:', R_EYE_OFFSET);
+const _dbg = document.createElement('div');
+_dbg.style.cssText = 'position:fixed;bottom:10px;left:10px;background:red;color:white;font-size:12px;padding:8px;z-index:99999;pointer-events:none';
+_dbg.textContent = `touch:${isTouchDevice} spread:${Math.round(spread)} L:(${Math.round(L_EYE_OFFSET.x)},${L_EYE_OFFSET.y}) R:(${Math.round(R_EYE_OFFSET.x)},${R_EYE_OFFSET.y})`;
+document.body.appendChild(_dbg);
 
 // ==============================================
 // SHARED: update fly position + eye tracking

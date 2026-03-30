@@ -83,23 +83,33 @@
          appear on top.
     ============================================= -->
     <div id="frog">
-      <!-- Static body parts — no animation -->
-      <img class="frog-layer" id="layer-body"      src="frog-assets/Body.svg"      alt="">
-      <img class="frog-layer" id="layer-l-leg"     src="frog-assets/L-Leg.svg"     alt="">
-      <img class="frog-layer" id="layer-r-leg"     src="frog-assets/R-Leg.svg"     alt="">
-      <img class="frog-layer" id="layer-mouth"     src="frog-assets/Mouth-1.svg"   alt="">
-      <img class="frog-layer" id="layer-nose"      src="frog-assets/Nose.svg"      alt="">
+      <!-- Back legs — behind body -->
+      <img class="frog-layer" id="layer-r-leg-back" src="FrogFix/Frogredo_0010s_0000_R-Leg.png" alt="">
+      <img class="frog-layer" id="layer-l-leg-back" src="FrogFix/Frogredo_0011s_0000_L-Leg.png" alt="">
 
-      <!-- Eyeballs — sit BELOW eyelids so they don't show through -->
-      <!-- Moved by JS (frog.js) to track the fly cursor -->
-      <img class="frog-layer" id="layer-l-eyeball" src="frog-assets/L-eyeball.svg" alt="" data-eyeball="true">
-      <img class="frog-layer" id="layer-r-eyeball" src="frog-assets/R-eyeball.svg" alt="" data-eyeball="true">
+      <!-- Body -->
+      <img class="frog-layer" id="layer-body"       src="FrogFix/Frogredo_0009s_0000_Body.png"  alt="">
 
-      <!-- Eyelids + eye sockets — on top of eyeballs -->
-      <!-- Note: eyelid and socket are baked into the same SVG export.
-           To animate blink independently, re-export them as separate files. -->
-      <img class="frog-layer" id="layer-l-eyelid"  src="frog-assets/L-eyelids.svg" alt="">
-      <img class="frog-layer" id="layer-r-eyelid"  src="frog-assets/R-eye-1.svg"   alt="">
+      <!-- Front legs — in front of body -->
+      <img class="frog-layer" id="layer-r-leg"      src="FrogFix/Frogredo_0000s_0000_R-Leg.png" alt="">
+      <img class="frog-layer" id="layer-l-leg"      src="FrogFix/Frogredo_0006s_0000_L-Leg.png" alt="">
+
+      <!-- Mouth — swapped during eat animation -->
+      <img class="frog-layer" id="layer-mouth"      src="FrogFix/Frogredo_0005s_0000_Mouth-1.png" alt="">
+
+      <!-- Nose -->
+      <img class="frog-layer" id="layer-nose"       src="FrogFix/Frogredo_0003s_0000_Nose.png"  alt="">
+
+      <!-- Tongue — hidden by default, shown during eat animation -->
+      <img class="frog-layer" id="layer-tongue"     src="FrogFix/Frogredo_0004s_0000_Tongue-1.png" alt="" style="opacity:0">
+
+      <!-- Eyeballs — moved by JS to track fly cursor -->
+      <img class="frog-layer" id="layer-r-eyeball"  src="FrogFix/Frogredo_0002s_0000_R-eyeball.png" alt="">
+      <img class="frog-layer" id="layer-l-eyeball"  src="FrogFix/Frogredo_0008s_0000_L-eyeball.png" alt="">
+
+      <!-- Eyelids — on top of eyeballs, swapped during blink -->
+      <img class="frog-layer" id="layer-r-eyelid"   src="FrogFix/Frogredo_0001s_0000_R-eyelid-1.png" alt="">
+      <img class="frog-layer" id="layer-l-eyelid"   src="FrogFix/Frogredo_0007s_0000_L-eyelid-1.png" alt="">
     </div>
 
     <!-- =============================================
@@ -115,7 +125,7 @@
   </main>
 
   <!-- Frog eye tracking + fly cursor movement -->
-  <script src="js/frog.js?v=13"></script>
+  <script src="js/frog.js?v=14"></script>
 
   <!-- General page behaviour (empty for now) -->
   <script src="js/main.js"></script>

@@ -25,8 +25,9 @@ const flyOffsetY = fly.offsetHeight / 2;
 // and wider x offsets to match the frog's scaled-down size.
 // ==============================================
 const EYE_RANGE    = isTouchDevice ? 4 : 8;
-const L_EYE_OFFSET = isTouchDevice ? { x: -70, y: 6 } : { x: -10, y: 6 };
-const R_EYE_OFFSET = isTouchDevice ? { x: 82,  y: 6 } : { x: 22,  y: 6 };
+const spread = isTouchDevice ? window.innerWidth * 0.18 : 0;
+const L_EYE_OFFSET = isTouchDevice ? { x: -10 - spread, y: 6 } : { x: -10, y: 6 };
+const R_EYE_OFFSET = isTouchDevice ? { x: 22  + spread, y: 6 } : { x: 22,  y: 6 };
 
 // ==============================================
 // SHARED: update fly position + eye tracking

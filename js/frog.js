@@ -27,10 +27,6 @@ const flyOffsetY = fly.offsetHeight / 2;
 const EYE_RANGE    = isTouchDevice ? 4 : 8;
 const L_EYE_OFFSET = { x: -10, y: 6 };
 const R_EYE_OFFSET = { x: 22,  y: 6 };
-const _dbg = document.createElement('div');
-_dbg.style.cssText = 'position:fixed;bottom:10px;left:10px;background:red;color:white;font-size:12px;padding:8px;z-index:99999;pointer-events:none';
-_dbg.textContent = `touch:${isTouchDevice} spread:${Math.round(spread)} L:(${Math.round(L_EYE_OFFSET.x)},${L_EYE_OFFSET.y}) R:(${Math.round(R_EYE_OFFSET.x)},${R_EYE_OFFSET.y})`;
-document.body.appendChild(_dbg);
 
 // ==============================================
 // SHARED: update fly position + eye tracking

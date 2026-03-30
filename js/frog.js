@@ -26,7 +26,7 @@ const flyOffsetY = fly.offsetHeight / 2;
 // ==============================================
 const EYE_RANGE    = isTouchDevice ? 4 : 8;
 const spread = isTouchDevice ? window.innerWidth * 0.18 : 0;
-const L_EYE_OFFSET = isTouchDevice ? { x: -10 - spread, y: 6 } : { x: -10, y: 6 };
+const L_EYE_OFFSET = isTouchDevice ? { x: -10 - spread - 15, y: -8 } : { x: -10, y: 6 };
 const R_EYE_OFFSET = isTouchDevice ? { x: 22  + spread - 15, y: -8 } : { x: 22,  y: 6 };
 
 // ==============================================

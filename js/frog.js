@@ -1,23 +1,43 @@
 // ==============================================
 // frog.js
-// Handles two things:
-//   1. Moving the fly cursor to follow the mouse
-//      (desktop) or autonomously wander (mobile)
-//   2. Translating the eyeball layers so the frog
-//      appears to look toward the fly at all times
+// 1. Fly cursor — follows mouse (desktop) or wanders (mobile)
+// 2. Eye tracking — frog looks toward fly
+// 3. Blink — random, every 2-6 seconds
+// 4. Eat — triggered by click/selection (desktop) or tap (mobile)
 // ==============================================
 
-// Detect touch device early — used by eye settings below
 const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+// DOM references
+const fly    = document.getElementById('fly-cursor');
+const lEyeball = document.getElementById('layer-l-eyeball');
+const rEyeball = document.getElementById('layer-r-eyeball');
+const lEyelid  = document.getElementById('layer-l-eyelid');
+const rEyelid  = document.getElementById('layer-r-eyelid');
+const mouth    = document.getElementById('layer-mouth');
+const tongue   = document.getElementById('layer-tongue');
+
+const flyOffsetX = fly.offsetWidth  / 2;
+const flyOffsetY = fly.offsetHeight / 2;
+
+// ==============================================
+// EYE TRACKING SETTINGS
+// ==============================================
+const EYE_RANGE    = isTouchDevice ? 4 : 8;
+const L_EYE_OFFSET = { x: -10 + (isTouchDevice ? 11 : 0), y: isTouchDevice ? 4 : 6 };
+const R_EYE_OFFSET = { x: 22  - (isTouchDevice ? 18 : 0), y: isTouchDevice ? 4 : 6 };
+
+function applyFlyPosition(x, y) {
+  fly.style.transform = `translate3d(${x - flyOffsetX}px, ${y - flyOffsetY}px, 0)`;
+  const offsetX = ((x / window.innerWidth)  - 0.5) * 2 * EYE_RANGE;
+  const offsetY = ((y / window.innerHeight) - 0.5) * 2 * EYE_RANGE;
+  lEyeball.style.transform = `translate3d(${offsetX + L_EYE_OFFSET.x}px, ${offsetY + L_EYE_OFFSET.y}px, 0)`;
+  rEyeball.style.transform = `translate3d(${offsetX + R_EYE_OFFSET.x}px, ${offsetY + R_EYE_OFFSET.y}px, 0)`;
+}
 
 // ==============================================
 // BLINK ANIMATION
-// Randomly blinks every 2-6 seconds.
-// Sequence: half-closed → fully-closed → half-closed → open
 // ==============================================
-const lEyelid = document.getElementById('layer-l-eyelid');
-const rEyelid = document.getElementById('layer-r-eyelid');
-
 const EYELID = {
   l: {
     open:   'FrogFix/Frogredo_0007s_0000_L-eyelid-1.png',
@@ -32,21 +52,13 @@ const EYELID = {
 };
 
 function blink() {
-  // half closed
-  lEyelid.src = EYELID.l.half;
-  rEyelid.src = EYELID.r.half;
+  lEyelid.src = EYELID.l.half;  rEyelid.src = EYELID.r.half;
   setTimeout(() => {
-    // fully closed
-    lEyelid.src = EYELID.l.closed;
-    rEyelid.src = EYELID.r.closed;
+    lEyelid.src = EYELID.l.closed; rEyelid.src = EYELID.r.closed;
     setTimeout(() => {
-      // half open
-      lEyelid.src = EYELID.l.half;
-      rEyelid.src = EYELID.r.half;
+      lEyelid.src = EYELID.l.half;  rEyelid.src = EYELID.r.half;
       setTimeout(() => {
-        // fully open
-        lEyelid.src = EYELID.l.open;
-        rEyelid.src = EYELID.r.open;
+        lEyelid.src = EYELID.l.open;  rEyelid.src = EYELID.r.open;
         scheduleBlink();
       }, 60);
     }, 80);
@@ -59,61 +71,88 @@ function scheduleBlink() {
 
 scheduleBlink();
 
-// DOM references
-const fly      = document.getElementById('fly-cursor');
-const lEyeball = document.getElementById('layer-l-eyeball');
-const rEyeball = document.getElementById('layer-r-eyeball');
-
-// Pre-compute centering offset once so it's not recalculated on every move
-const flyOffsetX = fly.offsetWidth  / 2;
-const flyOffsetY = fly.offsetHeight / 2;
-
 // ==============================================
-// EYE TRACKING SETTINGS
-// Mobile uses a smaller range to keep eyes in sockets,
-// and wider x offsets to match the frog's scaled-down size.
+// EAT ANIMATION
 // ==============================================
-const EYE_RANGE    = isTouchDevice ? 4 : 8;
-const L_EYE_OFFSET = { x: -10 + (isTouchDevice ? 11 : 0), y: isTouchDevice ? 4 : 6 };
-const R_EYE_OFFSET = { x: 22  - (isTouchDevice ? 18 : 0), y: isTouchDevice ? 4 : 6 };
+const MOUTH = {
+  1: 'FrogFix/Frogredo_0005s_0000_Mouth-1.png',
+  2: 'FrogFix/Frogredo_0005s_0001_Mouth-2.png',
+  3: 'FrogFix/Frogredo_0005s_0002_Mouth-3.png',
+  4: 'FrogFix/Frogredo_0005s_0003_Mouth-4.png',
+};
 
-// ==============================================
-// SHARED: update fly position + eye tracking
-// ==============================================
-function applyFlyPosition(x, y) {
-  fly.style.transform = `translate3d(${x - flyOffsetX}px, ${y - flyOffsetY}px, 0)`;
+const TONGUE = {
+  1: 'FrogFix/Frogredo_0004s_0000_Tongue-1.png',
+  2: 'FrogFix/Frogredo_0004s_0001_Tongue-2.png',
+  3: 'FrogFix/Frogredo_0004s_0002_Tongue-3.png',
+  4: 'FrogFix/Frogredo_0004s_0003_Tongue-4.png',
+};
 
-  const offsetX = ((x / window.innerWidth)  - 0.5) * 2 * EYE_RANGE;
-  const offsetY = ((y / window.innerHeight) - 0.5) * 2 * EYE_RANGE;
+let eating = false;
 
-  lEyeball.style.transform = `translate3d(${offsetX + L_EYE_OFFSET.x}px, ${offsetY + L_EYE_OFFSET.y}px, 0)`;
-  rEyeball.style.transform = `translate3d(${offsetX + R_EYE_OFFSET.x}px, ${offsetY + R_EYE_OFFSET.y}px, 0)`;
+function eatFly(onDone) {
+  if (eating) return;
+  eating = true;
+  fly.style.opacity = '0';
+
+  mouth.src = MOUTH[2];
+  setTimeout(() => {
+    mouth.src = MOUTH[3];
+    tongue.style.opacity = '1';
+    tongue.src = TONGUE[1];
+    setTimeout(() => {
+      tongue.src = TONGUE[2];
+      setTimeout(() => {
+        tongue.src = TONGUE[3];
+        mouth.src  = MOUTH[4];
+        setTimeout(() => {
+          tongue.src = TONGUE[4];
+          setTimeout(() => {
+            tongue.style.opacity = '0';
+            mouth.src = MOUTH[1];
+            fly.style.opacity = '1';
+            eating = false;
+            if (onDone) onDone();
+          }, 80);
+        }, 80);
+      }, 120);
+    }, 80);
+  }, 60);
 }
 
 // ==============================================
-// DESKTOP: follow the mouse
+// DESKTOP: mouse follow + click/selection to eat
 // ==============================================
 if (!isTouchDevice) {
   document.addEventListener('mousemove', (e) => {
     applyFlyPosition(e.clientX, e.clientY);
   });
+
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('a, button, input, textarea')) {
+      eatFly();
+    }
+  });
+
+  document.addEventListener('mouseup', () => {
+    if (window.getSelection().toString().length > 0) {
+      eatFly();
+    }
+  });
 }
 
 // ==============================================
-// MOBILE: autonomous fly wandering
-// Lerps toward a random target. When close
-// enough, waits briefly then picks a new one.
+// MOBILE: autonomous wandering + tap to eat
 // ==============================================
 if (isTouchDevice) {
-  const MARGIN  = 80;   // keep fly away from edges
-  const SPEED   = 0.03; // lerp factor — lower = lazier
+  const MARGIN = 80;
+  const SPEED  = 0.03;
 
-  let flyX = window.innerWidth  / 2;
-  let flyY = window.innerHeight / 2;
+  let flyX    = window.innerWidth  / 2;
+  let flyY    = window.innerHeight / 2;
   let targetX = flyX;
   let targetY = flyY;
   let waiting = false;
-  let chasing = false; // true when fly is heading toward a touch point
 
   function pickTarget() {
     targetX = MARGIN + Math.random() * (window.innerWidth  - MARGIN * 2);
@@ -122,72 +161,14 @@ if (isTouchDevice) {
 
   pickTarget();
 
-  // Single tap — fly runs to where you touched
-  document.addEventListener('touchstart', (e) => {
-    const t = e.touches[0];
-    targetX = t.clientX;
-    targetY = t.clientY;
-    chasing  = true;
-    waiting  = false;
-  }, { passive: true });
-
-  // Double tap — frog eats the fly
-  // TODO: swap in tongue/eat animation frames when artwork is ready
-  let lastTap = 0;
-  document.addEventListener('touchend', () => {
-    const now = Date.now();
-    if (now - lastTap < 300) {
-      eatFly();
+  document.addEventListener('touchend', (e) => {
+    if (!e.target.closest('a, button')) {
+      eatFly(() => {
+        waiting = false;
+        pickTarget();
+      });
     }
-    lastTap = now;
   }, { passive: true });
-
-  const mouth  = document.getElementById('layer-mouth');
-  const tongue = document.getElementById('layer-tongue');
-
-  const MOUTH = {
-    1: 'FrogFix/Frogredo_0005s_0000_Mouth-1.png',
-    2: 'FrogFix/Frogredo_0005s_0001_Mouth-2.png',
-    3: 'FrogFix/Frogredo_0005s_0002_Mouth-3.png',
-    4: 'FrogFix/Frogredo_0005s_0003_Mouth-4.png',
-  };
-
-  const TONGUE = {
-    1: 'FrogFix/Frogredo_0004s_0000_Tongue-1.png',
-    2: 'FrogFix/Frogredo_0004s_0001_Tongue-2.png',
-    3: 'FrogFix/Frogredo_0004s_0002_Tongue-3.png',
-    4: 'FrogFix/Frogredo_0004s_0003_Tongue-4.png',
-  };
-
-  function eatFly() {
-    fly.style.opacity = '0';
-
-    // Mouth opens, tongue extends
-    mouth.src          = MOUTH[2];
-    setTimeout(() => {
-      mouth.src        = MOUTH[3];
-      tongue.style.opacity = '1';
-      tongue.src       = TONGUE[1];
-      setTimeout(() => {
-        tongue.src     = TONGUE[2];
-        setTimeout(() => {
-          // Tongue retracts, mouth closes
-          tongue.src   = TONGUE[3];
-          setTimeout(() => {
-            tongue.src = TONGUE[4];
-            mouth.src  = MOUTH[4];
-            setTimeout(() => {
-              tongue.style.opacity = '0';
-              mouth.src  = MOUTH[1];
-              fly.style.opacity = '1';
-              chasing = false;
-              pickTarget();
-            }, 80);
-          }, 80);
-        }, 120);
-      }, 80);
-    }, 60);
-  }
 
   function tick() {
     flyX += (targetX - flyX) * SPEED;
@@ -196,22 +177,12 @@ if (isTouchDevice) {
     applyFlyPosition(flyX, flyY);
 
     const dist = Math.hypot(targetX - flyX, targetY - flyY);
-
-    if (chasing) {
-      // Arrived at touch point — resume wandering
-      if (dist < 6) {
-        chasing = false;
+    if (dist < 6 && !waiting) {
+      waiting = true;
+      setTimeout(() => {
         pickTarget();
-      }
-    } else {
-      // Autonomous wandering — pause at each waypoint
-      if (dist < 6 && !waiting) {
-        waiting = true;
-        setTimeout(() => {
-          pickTarget();
-          waiting = false;
-        }, 400 + Math.random() * 800);
-      }
+        waiting = false;
+      }, 400 + Math.random() * 800);
     }
 
     requestAnimationFrame(tick);

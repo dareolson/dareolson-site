@@ -61,6 +61,7 @@ if (isTouchDevice) {
   let targetX = flyX;
   let targetY = flyY;
   let waiting = false;
+  let chasing = false; // true when fly is heading toward a touch point
 
   function pickTarget() {
     targetX = MARGIN + Math.random() * (window.innerWidth  - MARGIN * 2);
@@ -69,20 +70,59 @@ if (isTouchDevice) {
 
   pickTarget();
 
+  // Single tap — fly runs to where you touched
+  document.addEventListener('touchstart', (e) => {
+    const t = e.touches[0];
+    targetX = t.clientX;
+    targetY = t.clientY;
+    chasing  = true;
+    waiting  = false;
+  }, { passive: true });
+
+  // Double tap — frog eats the fly
+  // TODO: swap in tongue/eat animation frames when artwork is ready
+  let lastTap = 0;
+  document.addEventListener('touchend', () => {
+    const now = Date.now();
+    if (now - lastTap < 300) {
+      eatFly();
+    }
+    lastTap = now;
+  }, { passive: true });
+
+  function eatFly() {
+    // Placeholder — swap this out when tongue SVG layers exist
+    fly.style.opacity = '0';
+    setTimeout(() => {
+      fly.style.opacity = '1';
+      chasing = false;
+      pickTarget(); // fly respawns and wanders again
+    }, 600);
+  }
+
   function tick() {
     flyX += (targetX - flyX) * SPEED;
     flyY += (targetY - flyY) * SPEED;
 
     applyFlyPosition(flyX, flyY);
 
-    // When close enough to target, pause then pick a new one
     const dist = Math.hypot(targetX - flyX, targetY - flyY);
-    if (dist < 6 && !waiting) {
-      waiting = true;
-      setTimeout(() => {
+
+    if (chasing) {
+      // Arrived at touch point — resume wandering
+      if (dist < 6) {
+        chasing = false;
         pickTarget();
-        waiting = false;
-      }, 400 + Math.random() * 800); // pause 400–1200ms like a real fly
+      }
+    } else {
+      // Autonomous wandering — pause at each waypoint
+      if (dist < 6 && !waiting) {
+        waiting = true;
+        setTimeout(() => {
+          pickTarget();
+          waiting = false;
+        }, 400 + Math.random() * 800);
+      }
     }
 
     requestAnimationFrame(tick);

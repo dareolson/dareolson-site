@@ -7,6 +7,9 @@
 //      appears to look toward the fly at all times
 // ==============================================
 
+// Detect touch device early — used by eye settings below
+const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
 // DOM references
 const fly      = document.getElementById('fly-cursor');
 const lEyeball = document.getElementById('layer-l-eyeball');
@@ -18,10 +21,12 @@ const flyOffsetY = fly.offsetHeight / 2;
 
 // ==============================================
 // EYE TRACKING SETTINGS
+// Mobile uses a smaller range to keep eyes in sockets,
+// and wider x offsets to match the frog's scaled-down size.
 // ==============================================
 const EYE_RANGE    = isTouchDevice ? 4 : 8;
-const L_EYE_OFFSET = { x: -10, y: 6 };
-const R_EYE_OFFSET = { x: 22,  y: 6 };
+const L_EYE_OFFSET = isTouchDevice ? { x: -18, y: 6 } : { x: -10, y: 6 };
+const R_EYE_OFFSET = isTouchDevice ? { x: 30,  y: 6 } : { x: 22,  y: 6 };
 
 // ==============================================
 // SHARED: update fly position + eye tracking
@@ -39,8 +44,6 @@ function applyFlyPosition(x, y) {
 // ==============================================
 // DESKTOP: follow the mouse
 // ==============================================
-const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-
 if (!isTouchDevice) {
   document.addEventListener('mousemove', (e) => {
     applyFlyPosition(e.clientX, e.clientY);

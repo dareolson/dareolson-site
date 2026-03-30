@@ -88,8 +88,7 @@ function aimTongue() {
   const dx    = currentFlyX - mouthScreenX;
   const dy    = currentFlyY - mouthScreenY;
   const angle = Math.atan2(dy, dx) * 180 / Math.PI - TONGUE_BASE_ANGLE;
-  // scale(0.8) matches #frog — must be included since tongue is now outside #frog
-  tongue.style.transform = `scale(0.8) rotate(${angle}deg)`;
+  tongue.style.transform = `rotate(${angle}deg)`;
 }
 
 // Set origin after full page load so layout is settled, and again on resize

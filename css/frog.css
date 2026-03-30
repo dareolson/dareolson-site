@@ -44,7 +44,7 @@
 }
 
 #layer-tongue {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -53,9 +53,7 @@
   pointer-events: none;
   user-select: none;
   filter: invert(1);
-  transform: scale(0.8); /* match #frog scale */
-  transform-origin: center center;
-  z-index: 10;
+  z-index: 9998; /* just below fly cursor (9999), above everything else */
 }
 
 /* ==============================================

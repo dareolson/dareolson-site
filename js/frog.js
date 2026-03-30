@@ -10,6 +10,55 @@
 // Detect touch device early — used by eye settings below
 const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
+// ==============================================
+// BLINK ANIMATION
+// Randomly blinks every 2-6 seconds.
+// Sequence: half-closed → fully-closed → half-closed → open
+// ==============================================
+const lEyelid = document.getElementById('layer-l-eyelid');
+const rEyelid = document.getElementById('layer-r-eyelid');
+
+const EYELID = {
+  l: {
+    open:   'FrogFix/Frogredo_0007s_0000_L-eyelid-1.png',
+    half:   'FrogFix/Frogredo_0007s_0001_L-eyelid-blink-1.png',
+    closed: 'FrogFix/Frogredo_0007s_0002_L-eyelid-blink-2.png',
+  },
+  r: {
+    open:   'FrogFix/Frogredo_0001s_0000_R-eyelid-1.png',
+    half:   'FrogFix/Frogredo_0001s_0001_R-eyelid-blink-1.png',
+    closed: 'FrogFix/Frogredo_0001s_0002_R-eyelid-blink-2.png',
+  }
+};
+
+function blink() {
+  // half closed
+  lEyelid.src = EYELID.l.half;
+  rEyelid.src = EYELID.r.half;
+  setTimeout(() => {
+    // fully closed
+    lEyelid.src = EYELID.l.closed;
+    rEyelid.src = EYELID.r.closed;
+    setTimeout(() => {
+      // half open
+      lEyelid.src = EYELID.l.half;
+      rEyelid.src = EYELID.r.half;
+      setTimeout(() => {
+        // fully open
+        lEyelid.src = EYELID.l.open;
+        rEyelid.src = EYELID.r.open;
+        scheduleBlink();
+      }, 60);
+    }, 80);
+  }, 60);
+}
+
+function scheduleBlink() {
+  setTimeout(blink, 2000 + Math.random() * 4000);
+}
+
+scheduleBlink();
+
 // DOM references
 const fly      = document.getElementById('fly-cursor');
 const lEyeball = document.getElementById('layer-l-eyeball');

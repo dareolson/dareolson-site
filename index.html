@@ -46,15 +46,26 @@
 
   <!-- =============================================
        FLY CURSOR
-       Replaces the default mouse pointer.
-       Split into two halves so the wings (bottom)
-       can flap independently of the body (top).
+       Custom SVG so it renders consistently on all
+       platforms — no emoji font dependency.
+       Wings and body are separate SVG groups so
+       wings can animate without distorting the body.
   ============================================= -->
   <div id="fly-cursor">
-    <!-- Top half: head/body — clipped, no animation -->
-    <span id="fly-top">🪰</span>
-    <!-- Bottom half: wings — clipped, flaps via CSS animation -->
-    <span id="fly-bottom">🪰</span>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 36" width="44" height="36" aria-hidden="true">
+      <!-- Wings — amber tinted, animated independently -->
+      <g id="fly-wings-svg">
+        <ellipse cx="9"  cy="14" rx="11" ry="5.5" fill="rgba(245,130,13,0.45)"/>
+        <ellipse cx="35" cy="14" rx="11" ry="5.5" fill="rgba(245,130,13,0.45)"/>
+      </g>
+      <!-- Body -->
+      <ellipse cx="22" cy="25" rx="4.5" ry="7" fill="#1a1208"/>
+      <!-- Head -->
+      <circle  cx="22" cy="13" r="5.5"          fill="#1a1208"/>
+      <!-- Compound eyes — red like a real fly -->
+      <circle  cx="19" cy="11" r="2"            fill="#cc2200"/>
+      <circle  cx="25" cy="11" r="2"            fill="#cc2200"/>
+    </svg>
   </div>
 
   <!-- =============================================
@@ -128,7 +139,7 @@
   </main>
 
   <!-- Frog eye tracking + fly cursor movement -->
-  <script src="js/frog.js?v=39"></script>
+  <script src="js/frog.js?v=40"></script>
 
   <!-- General page behaviour (empty for now) -->
   <script src="js/main.js"></script>

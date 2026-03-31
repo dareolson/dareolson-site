@@ -78,36 +78,19 @@
   height: 1.4rem;
 }
 
-/* Both emoji spans overlap exactly */
-#fly-top,
-#fly-bottom {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
 /* ==============================================
-   FLY — TOP HALF
-   Shows only the upper portion of the emoji
-   (head and body). No animation — stays still.
-============================================== */
-#fly-top {
-  clip-path: inset(0 0 50% 0); /* hides everything below the midpoint */
-}
-
-/* ==============================================
-   FLY — BOTTOM HALF + WING FLAP
-   Shows only the lower portion (wings).
-   Scales on Y axis from the top edge (where
-   wings meet the body) to simulate flapping.
+   FLY WINGS
+   Only the wings group animates — body and head
+   are separate SVG elements and stay still.
+   transform-origin anchored at the point where
+   wings meet the body (center, y=19 in SVG space).
 ============================================== */
 @keyframes flap {
-  0%, 100% { transform: scaleY(1); }   /* wings fully open */
-  50%       { transform: scaleY(0.15); } /* wings nearly closed */
+  0%, 100% { transform: scaleY(1); }
+  50%       { transform: scaleY(0.15); }
 }
 
-#fly-bottom {
-  clip-path: inset(50% 0 0 0);  /* hides everything above the midpoint */
-  transform-origin: top center;  /* flap hinges from where wings meet body */
+#fly-wings-svg {
+  transform-origin: 22px 19px; /* center x, wing-to-body junction y */
   animation: flap 0.15s ease-in-out infinite;
 }

@@ -68,26 +68,23 @@
   position: fixed;
   top: 0;
   left: 0;
-  pointer-events: none; /* never blocks clicks */
-  z-index: 9999;        /* always on top of everything */
+  pointer-events: none;
+  z-index: 9999;
   will-change: transform;
-  width: 40px;
-  height: 40px;
+  width: 28px;
+  height: 28px;
 }
 
 /* ==============================================
    FLY CURSOR — PNG HALVES
-   Two overlapping images of the fly emoji PNG.
-   Clipped at the midpoint so top is static and
-   bottom (wings) can flap independently.
 ============================================== */
 #fly-top,
 #fly-bottom {
   position: absolute;
   top: 0;
   left: 0;
-  width: 40px;
-  height: 40px;
+  width: 28px;
+  height: 28px;
 }
 
 /* Smaller fly on mobile */

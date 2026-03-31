@@ -43,8 +43,10 @@
   will-change: transform; /* tells the browser to prep these for frequent updates */
 }
 
+/* Tongue is now inside #frog so it inherits scale(0.8) — same coordinate
+   space as all other frog layers. No more mismatch between tongue and body. */
 #layer-tongue {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -53,7 +55,7 @@
   pointer-events: none;
   user-select: none;
   filter: invert(1);
-  z-index: 9998;
+  z-index: 10; /* above all other frog layers */
 }
 
 /* ==============================================

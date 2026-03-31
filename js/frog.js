@@ -52,36 +52,55 @@ function applyFlyPosition(x, y) {
 // TONGUE_BASE_ANGLE = direction the tongue points
 // at rest in the artwork (0 = right, -90 = up).
 // ==============================================
-const MOUTH_FRAC       = { x: 0.482, y: 0.296 };
-const TONGUE_BASE_ANGLE = 0; // degrees; adjust if tongue art points a different direction
+const MOUTH_FRAC       = { x: 0.328, y: 0.296 };
+const TONGUE_BASE_ANGLE = 180; // tongue art points LEFT, so offset by 180 to flip direction
 
 // Compute and lock the tongue pivot point once on load.
 // Only the rotation angle changes after this.
 let mouthScreenX, mouthScreenY;
 
 function initTongueOrigin() {
-  const rect = tongue.getBoundingClientRect();
-  const svgAspect = 1920 / 1080;
-  const elAspect  = rect.width / rect.height;
+  // The tongue is now inside #frog, sharing the same coordinate space.
+  // The tongue element's layout size = viewport size (position:absolute; inset:0).
+  // object-fit:contain letterboxes the 1920x1080 PNG within the viewport.
+  //
+  // transformOrigin is expressed in the element's OWN layout space (pre-scale).
+  // mouthScreenX/Y is the visual screen position after #frog's scale(0.8) is applied.
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
 
-  let scale, offX, offY;
-  if (elAspect > svgAspect) {
-    scale = rect.height / 1080;
-    offX  = (rect.width - 1920 * scale) / 2;
-    offY  = 0;
-  } else {
-    scale = rect.width / 1920;
-    offX  = 0;
-    offY  = (rect.height - 1080 * scale) / 2;
+  // Letterbox 1920x1080 within the layout container (viewport size, pre-scale)
+  const scale = Math.min(vw / 1920, vh / 1080);
+  const offX  = (vw - 1920 * scale) / 2;
+  const offY  = (vh - 1080 * scale) / 2;
+
+  // Mouth position in the element's own layout coordinates (pre-scale)
+  const localX = offX + MOUTH_FRAC.x * 1920 * scale;
+  const localY = offY + MOUTH_FRAC.y * 1080 * scale;
+
+  // Set the rotation pivot in local coordinates — this never drifts
+  tongue.style.transformOrigin = `${localX}px ${localY}px`;
+
+  // Visual screen position: apply #frog's scale(0.8) from viewport center.
+  // FROG_SCALE must match the transform: scale() value in frog.css.
+  const FROG_SCALE = 0.8;
+  const cx = vw / 2;
+  const cy = vh / 2;
+  mouthScreenX = cx + (localX - cx) * FROG_SCALE;
+  mouthScreenY = cy + (localY - cy) * FROG_SCALE;
+
+  // DEBUG — shows a red dot at the computed mouth position.
+  // Remove once tongue pivot is confirmed correct.
+  let dot = document.getElementById('debug-mouth');
+  if (!dot) {
+    dot = document.createElement('div');
+    dot.id = 'debug-mouth';
+    dot.style.cssText = 'position:fixed;width:10px;height:10px;background:red;border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%)';
+    document.body.appendChild(dot);
   }
-
-  const originX = offX + MOUTH_FRAC.x * 1920 * scale;
-  const originY = offY + MOUTH_FRAC.y * 1080 * scale;
-
-  mouthScreenX = rect.left + originX;
-  mouthScreenY = rect.top  + originY;
-
-  tongue.style.transformOrigin = `${originX}px ${originY}px`;
+  dot.style.left = mouthScreenX + 'px';
+  dot.style.top  = mouthScreenY + 'px';
+  console.log('mouth screen pos:', mouthScreenX, mouthScreenY);
 }
 
 function aimTongue() {

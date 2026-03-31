@@ -108,6 +108,10 @@
       <img class="frog-layer" id="layer-r-eyelid"   src="FrogFix/Frogredo_0001s_0000_R-eyelid-1.png" alt="">
       <img class="frog-layer" id="layer-l-eyelid"   src="FrogFix/Frogredo_0007s_0000_L-eyelid-1.png" alt="">
 
+      <!-- Tongue — inside #frog so it shares the same scale(0.8) coordinate space.
+           Must be last so it renders on top of all other layers. -->
+      <img class="frog-layer" id="layer-tongue" src="FrogFix/Frogredo_0004s_0000_Tongue-1.png" alt="" style="opacity:0">
+
     </div>
 
 
@@ -123,11 +127,8 @@
 
   </main>
 
-  <!-- Tongue — fixed to viewport above everything including #frog -->
-  <img id="layer-tongue" src="FrogFix/Frogredo_0004s_0000_Tongue-1.png" alt="" style="opacity:0">
-
   <!-- Frog eye tracking + fly cursor movement -->
-  <script src="js/frog.js?v=25"></script>
+  <script src="js/frog.js?v=28"></script>
 
   <!-- General page behaviour (empty for now) -->
   <script src="js/main.js"></script>

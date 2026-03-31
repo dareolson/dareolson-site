@@ -36,6 +36,19 @@ html, body {
 }
 
 /* ==============================================
+   FABRIC TEXTURE
+   SVG fractalNoise tiled over the background.
+   No image file needed — lives entirely in CSS.
+   Adjust the opacity value (0.06) to taste:
+   lower = more subtle, higher = more visible.
+============================================== */
+body {
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/></filter><rect width='200' height='200' filter='url(%23n)' opacity='0.06'/></svg>");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+}
+
+/* ==============================================
    PAGE TRANSITIONS
    Body starts invisible. main.js adds .page-visible
    on load to fade in. navigateWithFade() removes it

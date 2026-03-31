@@ -234,7 +234,8 @@ function eatFly(onDone) {
     [50,  () => { fly.style.opacity = '0'; mouth.src = MOUTH[3]; tongue.style.opacity = '1'; tongue.src = TONGUE_FRAMES[1]; aimTongue(); }],
     [100, () => { tongue.src = TONGUE_FRAMES[2]; aimTongue(); }],
     [150, () => { tongue.src = TONGUE_FRAMES[3]; mouth.src = MOUTH[4]; applyFlyPosition(eatX, eatY); fly.style.opacity = '1'; aimTongue(); }],
-    [200, () => { tongue.src = TONGUE_FRAMES[4]; aimTongue(); fly.style.transition = 'transform 0.1s ease-in'; applyFlyPosition(mouthScreenX, mouthScreenY); }],
+    [200, () => { tongue.src = TONGUE_FRAMES[2]; aimTongue(); fly.style.transition = 'transform 0.1s ease-in'; applyFlyPosition(mouthScreenX, mouthScreenY); }],
+    [250, () => { tongue.src = TONGUE_FRAMES[1]; mouth.src = MOUTH[3]; aimTongue(); }],
     [310, () => {
       fly.style.transition = '';
       fly.style.opacity    = '0';

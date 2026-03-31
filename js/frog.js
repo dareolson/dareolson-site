@@ -81,9 +81,11 @@ function initTongueOrigin() {
   mouthScreenY = cy + (localY - cy) * FROG_SCALE;
 
   // Natural tongue length = canvas distance from mouth (x:925) to tip (x:1910)
-  // converted to screen pixels after object-fit scale and frog scale
-  const TONGUE_TIP_FRAC = (1910 - 925) / 1920; // 985px / 1920px canvas width
-  tongueNaturalLength = TONGUE_TIP_FRAC * 1920 * scale * FROG_SCALE;
+  // converted to screen pixels after object-fit scale and frog scale.
+  // TONGUE_STRETCH_CORRECTION compensates for any canvas-to-screen measurement drift.
+  const TONGUE_TIP_FRAC        = (1910 - 925) / 1920;
+  const TONGUE_STRETCH_CORRECTION = 0.7; // lower = more stretch
+  tongueNaturalLength = TONGUE_TIP_FRAC * 1920 * scale * FROG_SCALE * TONGUE_STRETCH_CORRECTION;
 }
 
 function aimTongue() {

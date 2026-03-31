@@ -111,14 +111,14 @@ document.addEventListener('webkitfullscreenchange', initTongueOrigin);
 // ==============================================
 const EYELID = {
   l: {
-    open:   'FrogFix/Frogredo_0007s_0000_L-eyelid-1.png',
-    half:   'FrogFix/Frogredo_0007s_0001_L-eyelid-blink-1.png',
-    closed: 'FrogFix/Frogredo_0007s_0002_L-eyelid-blink-2.png',
+    open:   'FrogFix/L-eyelid-1.png',
+    half:   'FrogFix/L-eyelid-blink-1.png',
+    closed: 'FrogFix/L-eyelid-blink-2.png',
   },
   r: {
-    open:   'FrogFix/Frogredo_0001s_0000_R-eyelid-1.png',
-    half:   'FrogFix/Frogredo_0001s_0001_R-eyelid-blink-1.png',
-    closed: 'FrogFix/Frogredo_0001s_0002_R-eyelid-blink-2.png',
+    open:   'FrogFix/R-eyelid-1.png',
+    half:   'FrogFix/R-eyelid-blink-1.png',
+    closed: 'FrogFix/R-eyelid-blink-2.png',
   }
 };
 
@@ -146,17 +146,17 @@ scheduleBlink();
 // EAT ANIMATION
 // ==============================================
 const MOUTH = {
-  1: 'FrogFix/Frogredo_0005s_0000_Mouth-1.png',
-  2: 'FrogFix/Frogredo_0005s_0001_Mouth-2.png',
-  3: 'FrogFix/Frogredo_0005s_0002_Mouth-3.png',
-  4: 'FrogFix/Frogredo_0005s_0003_Mouth-4.png',
+  1: 'FrogFix/Mouth-1.png',
+  2: 'FrogFix/Mouth-2.png',
+  3: 'FrogFix/Mouth-3.png',
+  4: 'FrogFix/Mouth-4.png',
 };
 
 const TONGUE_FRAMES = {
-  1: 'FrogFix/Frogredo_0004s_0000_Tongue-1.png',
-  2: 'FrogFix/Frogredo_0004s_0001_Tongue-2.png',
-  3: 'FrogFix/Frogredo_0004s_0002_Tongue-3.png',
-  4: 'FrogFix/Frogredo_0004s_0003_Tongue-4.png',
+  1: 'FrogFix/Tongue-1.png',
+  2: 'FrogFix/Tongue-2.png',
+  3: 'FrogFix/Tongue-3.png',
+  4: 'FrogFix/Tongue-4.png',
 };
 
 // Preload all animation frames so src swaps are instant with no decode delay

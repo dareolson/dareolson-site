@@ -71,8 +71,8 @@
   pointer-events: none; /* never blocks clicks */
   z-index: 9999;        /* always on top of everything */
   will-change: transform;
-  width: 70px;
-  height: 55px;
+  width: 120px;
+  height: 80px;
 }
 
 /* ==============================================
@@ -88,6 +88,6 @@
 }
 
 #fly-wings-svg {
-  transform-origin: 35px 26px; /* center x, wing-to-body junction y in new viewBox */
+  transform-origin: 60px 35px; /* center of thorax where wings attach */
   animation: flap 0.15s ease-in-out infinite;
 }

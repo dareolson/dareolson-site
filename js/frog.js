@@ -198,12 +198,18 @@ function spawnNewFly() {
     fly.style.transition = 'transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
     applyFlyPosition(currentFlyX, currentFlyY); // currentFlyX/Y = last known cursor position
 
-    // Once the fly-in animation finishes, hand control back to mousemove
-    fly.addEventListener('transitionend', function handler() {
+    // Cleanup — restores normal mouse control
+    const cleanup = () => {
       fly.style.transition = '';
       flySpawning = false;
-      fly.removeEventListener('transitionend', handler);
-    });
+    };
+
+    // Primary: transitionend fires when animation completes
+    fly.addEventListener('transitionend', cleanup, { once: true });
+
+    // Fallback: if transitionend never fires (e.g. start === end position),
+    // force cleanup after the animation duration + a small buffer
+    setTimeout(cleanup, 800);
   }, 50);
 }
 

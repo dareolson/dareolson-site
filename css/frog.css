@@ -71,11 +71,8 @@
   pointer-events: none; /* never blocks clicks */
   z-index: 9999;        /* always on top of everything */
   will-change: transform;
-  contain: strict;      /* isolates layout/paint — browser skips recalc */
-  font-size: 1.4rem;
-  line-height: 1;
-  width: 1.4rem;
-  height: 1.4rem;
+  width: 70px;
+  height: 55px;
 }
 
 /* ==============================================
@@ -91,6 +88,6 @@
 }
 
 #fly-wings-svg {
-  transform-origin: 22px 19px; /* center x, wing-to-body junction y */
+  transform-origin: 35px 26px; /* center x, wing-to-body junction y in new viewBox */
   animation: flap 0.15s ease-in-out infinite;
 }

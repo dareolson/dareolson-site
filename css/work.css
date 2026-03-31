@@ -213,6 +213,38 @@ body.interior {
 }
 
 /* ==============================================
+   TRUNCATION
+   Cards beyond the initial 12 are hidden until
+   the user clicks Show More.
+============================================== */
+.video-card.is-truncated {
+  display: none;
+}
+
+/* ==============================================
+   SHOW MORE BUTTON
+============================================== */
+#show-more-btn {
+  display: block;
+  margin: 2.5rem auto 0;
+  background: none;
+  border: 1px solid #333;
+  color: var(--text-dim);
+  font-family: 'Courier New', monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.65rem 2rem;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+#show-more-btn:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ==============================================
    SEE MORE LINK
 ============================================== */
 .see-more {

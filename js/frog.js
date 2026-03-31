@@ -225,14 +225,14 @@ function eatFly(onDone) {
   aimTongue();
 
   // Frame sequence: [delay_ms, action]
-  // Gaps of 50ms+ ensure each frame renders at least 3 rAF ticks (~50ms at 60fps)
+  // 33ms gaps = 2 rAF ticks at 60fps — fast but guaranteed to render each frame
   const frames = [
     [0,   () => { mouth.src = MOUTH[2]; }],
-    [50,  () => { fly.style.opacity = '0'; mouth.src = MOUTH[3]; tongue.style.opacity = '1'; tongue.src = TONGUE_FRAMES[1]; }],
-    [100, () => { tongue.src = TONGUE_FRAMES[2]; }],
-    [150, () => { tongue.src = TONGUE_FRAMES[3]; mouth.src = MOUTH[4]; applyFlyPosition(eatX, eatY); fly.style.opacity = '1'; }],
-    [200, () => { tongue.src = TONGUE_FRAMES[4]; fly.style.transition = 'transform 0.12s ease-in'; applyFlyPosition(mouthScreenX, mouthScreenY); }],
-    [330, () => {
+    [33,  () => { fly.style.opacity = '0'; mouth.src = MOUTH[3]; tongue.style.opacity = '1'; tongue.src = TONGUE_FRAMES[1]; }],
+    [66,  () => { tongue.src = TONGUE_FRAMES[2]; }],
+    [99,  () => { tongue.src = TONGUE_FRAMES[3]; mouth.src = MOUTH[4]; applyFlyPosition(eatX, eatY); fly.style.opacity = '1'; }],
+    [132, () => { tongue.src = TONGUE_FRAMES[4]; fly.style.transition = 'transform 0.1s ease-in'; applyFlyPosition(mouthScreenX, mouthScreenY); }],
+    [240, () => {
       fly.style.transition = '';
       fly.style.opacity    = '0';
       tongue.style.opacity = '0';
@@ -250,7 +250,7 @@ function eatFly(onDone) {
   let fi = 0;
 
   function step(now) {
-    while (fi < frames.length && now - start >= frames[fi][0]) {
+    if (fi < frames.length && now - start >= frames[fi][0]) {
       frames[fi][1]();
       fi++;
     }

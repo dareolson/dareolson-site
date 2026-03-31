@@ -84,8 +84,11 @@ function initTongueOrigin() {
   // converted to screen pixels after object-fit scale and frog scale.
   // TONGUE_STRETCH_CORRECTION compensates for any canvas-to-screen measurement drift.
   const TONGUE_TIP_FRAC        = (1910 - 874) / 1920; // base x:874 to tip x:1910 = 1036px
-  const TONGUE_STRETCH_CORRECTION = 0.45;
+  const TONGUE_STRETCH_CORRECTION = 0.65;
   tongueNaturalLength = TONGUE_TIP_FRAC * 1920 * scale * FROG_SCALE * TONGUE_STRETCH_CORRECTION;
+
+  const dbg = document.getElementById('debug-dot');
+  if (dbg) dbg.textContent = `pivot ${Math.round(mouthScreenX)},${Math.round(mouthScreenY)} len ${Math.round(tongueNaturalLength)}`;
 }
 
 function aimTongue() {

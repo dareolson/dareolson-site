@@ -52,37 +52,32 @@
        wings can animate without distorting the body.
   ============================================= -->
   <div id="fly-cursor">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 80" width="120" height="80" aria-hidden="true">
-      <!-- Wings — wide, top-down, spread far left and right from thorax -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 75" width="110" height="75" aria-hidden="true">
+      <!-- Wings — wide, clear, slight amber tint like iridescent fly wings -->
       <g id="fly-wings-svg">
-        <!-- Left wing: wide oval angled slightly back -->
-        <ellipse cx="28" cy="35" rx="30" ry="13"
-          transform="rotate(-10 28 35)"
-          fill="rgba(245,130,13,0.35)" stroke="rgba(245,130,13,0.6)" stroke-width="0.8"/>
-        <!-- Right wing -->
-        <ellipse cx="92" cy="35" rx="30" ry="13"
-          transform="rotate(10 92 35)"
-          fill="rgba(245,130,13,0.35)" stroke="rgba(245,130,13,0.6)" stroke-width="0.8"/>
+        <ellipse cx="25" cy="33" rx="27" ry="12" fill="rgba(220,200,160,0.3)" stroke="rgba(200,180,130,0.5)" stroke-width="0.7"/>
+        <ellipse cx="85" cy="33" rx="27" ry="12" fill="rgba(220,200,160,0.3)" stroke="rgba(200,180,130,0.5)" stroke-width="0.7"/>
       </g>
-      <!-- Legs — 3 per side, splayed out top-down -->
-      <g stroke="#1a1208" stroke-width="1.2" stroke-linecap="round" opacity="0.9">
-        <line x1="52" y1="40" x2="36" y2="32"/><line x1="52" y1="46" x2="36" y2="46"/><line x1="52" y1="52" x2="36" y2="60"/>
-        <line x1="68" y1="40" x2="84" y2="32"/><line x1="68" y1="46" x2="84" y2="46"/><line x1="68" y1="52" x2="84" y2="60"/>
+      <!-- Legs — thin, subtle -->
+      <g stroke="#3a3020" stroke-width="0.9" stroke-linecap="round" opacity="0.7">
+        <line x1="48" y1="42" x2="36" y2="35"/><line x1="48" y1="47" x2="35" y2="47"/><line x1="48" y1="52" x2="36" y2="60"/>
+        <line x1="62" y1="42" x2="74" y2="35"/><line x1="62" y1="47" x2="75" y2="47"/><line x1="62" y1="52" x2="74" y2="60"/>
       </g>
-      <!-- Abdomen — narrow teardrop -->
-      <ellipse cx="60" cy="56" rx="8" ry="14" fill="#2a1a06"/>
+      <!-- Abdomen -->
+      <ellipse cx="55" cy="55" rx="7" ry="12" fill="#3a3520"/>
+      <!-- Abdomen stripes -->
+      <line x1="48" y1="51" x2="62" y2="51" stroke="#2a2515" stroke-width="1" opacity="0.6"/>
+      <line x1="48" y1="57" x2="62" y2="57" stroke="#2a2515" stroke-width="1" opacity="0.6"/>
       <!-- Thorax -->
-      <ellipse cx="60" cy="40" rx="9" ry="8"  fill="#1a1208"/>
-      <!-- Segment line -->
-      <line x1="51" y1="47" x2="69" y2="47" stroke="#0a0a0a" stroke-width="1" opacity="0.5"/>
+      <ellipse cx="55" cy="40" rx="8" ry="7" fill="#2a2818"/>
       <!-- Head -->
-      <circle cx="60" cy="25" r="10" fill="#1a1208"/>
-      <!-- Compound eyes — big, red -->
-      <circle cx="52" cy="23" r="6"   fill="#cc2200"/>
-      <circle cx="68" cy="23" r="6"   fill="#cc2200"/>
-      <!-- Eye shine -->
-      <circle cx="53" cy="21" r="2"   fill="rgba(255,255,255,0.3)"/>
-      <circle cx="69" cy="21" r="2"   fill="rgba(255,255,255,0.3)"/>
+      <circle cx="55" cy="26" r="8" fill="#2a2818"/>
+      <!-- Eyes — subtle dark red, not exaggerated -->
+      <circle cx="50" cy="24" r="3.5" fill="#7a2010" opacity="0.9"/>
+      <circle cx="60" cy="24" r="3.5" fill="#7a2010" opacity="0.9"/>
+      <!-- Small eye highlight -->
+      <circle cx="51" cy="23" r="1"   fill="rgba(255,255,255,0.25)"/>
+      <circle cx="61" cy="23" r="1"   fill="rgba(255,255,255,0.25)"/>
     </svg>
   </div>
 
@@ -157,7 +152,7 @@
   </main>
 
   <!-- Frog eye tracking + fly cursor movement -->
-  <script src="js/frog.js?v=42"></script>
+  <script src="js/frog.js?v=43"></script>
 
   <!-- General page behaviour (empty for now) -->
   <script src="js/main.js"></script>

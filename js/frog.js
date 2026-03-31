@@ -155,6 +155,11 @@ const TONGUE_FRAMES = {
   4: 'FrogFix/Frogredo_0004s_0003_Tongue-4.png',
 };
 
+// Preload all animation frames so src swaps are instant with no decode delay
+[...Object.values(MOUTH), ...Object.values(TONGUE_FRAMES)].forEach(src => {
+  const img = new Image(); img.src = src;
+});
+
 let eating       = false;
 let flySpawning  = false; // true while the new fly is animating in — blocks mousemove updates
 
@@ -209,53 +214,45 @@ function eatFly(onDone) {
   if (eating) return;
   eating = true;
 
-  // Capture where the fly was when eaten so we can snap back to it
   const eatX = currentFlyX;
   const eatY = currentFlyY;
 
-  // Aim tongue toward the fly before showing it
   aimTongue();
-  mouth.src = MOUTH[2];
 
-  setTimeout(() => {
-    // Hide fly exactly when tongue appears so there's no empty frame
-    fly.style.opacity = '0';
-    mouth.src = MOUTH[3];
-    tongue.style.opacity = '1';
-    tongue.src = TONGUE_FRAMES[1];
-    setTimeout(() => {
-      tongue.src = TONGUE_FRAMES[2];
-      setTimeout(() => {
-        // Tongue fully extended — snap fly back to where it was caught
-        tongue.src = TONGUE_FRAMES[3];
-        mouth.src  = MOUTH[4];
-        applyFlyPosition(eatX, eatY);
-        fly.style.opacity = '1';
+  // Frame sequence: [delay_ms, action]
+  // Using rAF + performance.now() for reliable timing — setTimeout drifts under load
+  const frames = [
+    [0,   () => { mouth.src = MOUTH[2]; }],
+    [60,  () => { fly.style.opacity = '0'; mouth.src = MOUTH[3]; tongue.style.opacity = '1'; tongue.src = TONGUE_FRAMES[1]; }],
+    [140, () => { tongue.src = TONGUE_FRAMES[2]; }],
+    [220, () => { tongue.src = TONGUE_FRAMES[3]; mouth.src = MOUTH[4]; applyFlyPosition(eatX, eatY); fly.style.opacity = '1'; }],
+    [300, () => { tongue.src = TONGUE_FRAMES[4]; fly.style.transition = 'transform 0.15s ease-in'; applyFlyPosition(mouthScreenX, mouthScreenY); }],
+    [460, () => {
+      fly.style.transition = '';
+      fly.style.opacity    = '0';
+      tongue.style.opacity = '0';
+      mouth.src = MOUTH[1];
+      eating = false;
+      if (onDone) {
+        onDone();
+      } else {
+        setTimeout(spawnNewFly, 1000);
+      }
+    }],
+  ];
 
-        setTimeout(() => {
-          // Tongue retracting — animate fly hauling back into the mouth
-          tongue.src = TONGUE_FRAMES[4];
-          fly.style.transition = 'transform 0.15s ease-in';
-          applyFlyPosition(mouthScreenX, mouthScreenY);
+  const start = performance.now();
+  let fi = 0;
 
-          setTimeout(() => {
-            // Fly reaches mouth — hide it, close mouth, done
-            fly.style.transition = '';
-            fly.style.opacity    = '0';
-            tongue.style.opacity = '0';
-            mouth.src = MOUTH[1];
-            eating = false;
-            if (onDone) {
-              onDone(); // e.g. navigate to new page
-            } else {
-              // Only spawn a new fly if we're staying on this page
-              setTimeout(spawnNewFly, 1000);
-            }
-          }, 150); // matches the haul-in transition duration
-        }, 80);
-      }, 120);
-    }, 80);
-  }, 60);
+  function step(now) {
+    while (fi < frames.length && now - start >= frames[fi][0]) {
+      frames[fi][1]();
+      fi++;
+    }
+    if (fi < frames.length) requestAnimationFrame(step);
+  }
+
+  requestAnimationFrame(step);
 }
 
 // ==============================================

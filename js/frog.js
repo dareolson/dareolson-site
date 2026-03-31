@@ -52,7 +52,7 @@ function applyFlyPosition(x, y) {
 // TONGUE_BASE_ANGLE = direction the tongue points
 // at rest in the artwork (0 = right, -90 = up).
 // ==============================================
-const MOUTH_FRAC       = { x: 0.328, y: 0.296 };
+const MOUTH_FRAC       = { x: 0.22, y: 0.296 };
 const TONGUE_BASE_ANGLE = 180; // tongue art points LEFT, so offset by 180 to flip direction
 
 // Compute and lock the tongue pivot point once on load.

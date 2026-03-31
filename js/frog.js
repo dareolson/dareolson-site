@@ -57,7 +57,7 @@ const TONGUE_BASE_ANGLE = 0; // tongue art points RIGHT in the artwork
 
 // Compute and lock the tongue pivot point once on load.
 // Only the rotation angle changes after this.
-let mouthScreenX, mouthScreenY, tongueNaturalLength;
+let mouthScreenX, mouthScreenY, tongueNaturalLength, tongueOriginX, tongueOriginY;
 
 function initTongueOrigin() {
   const vw = window.innerWidth;
@@ -72,7 +72,9 @@ function initTongueOrigin() {
   const localX = offX + MOUTH_FRAC.x * 1920 * scale;
   const localY = offY + MOUTH_FRAC.y * 1080 * scale;
 
-  tongue.style.transformOrigin = `${localX}px ${localY}px`;
+  tongueOriginX = localX;
+  tongueOriginY = localY;
+  tongue.style.transformOrigin = `${tongueOriginX}px ${tongueOriginY}px`;
 
   const FROG_SCALE = 0.8;
   const cx = vw / 2;
@@ -92,6 +94,9 @@ function initTongueOrigin() {
 }
 
 function aimTongue() {
+  // Reapply transformOrigin on every call — src swaps can reset it
+  tongue.style.transformOrigin = `${tongueOriginX}px ${tongueOriginY}px`;
+
   const dx   = currentFlyX - mouthScreenX;
   const dy   = currentFlyY - mouthScreenY;
   const dist = Math.hypot(dx, dy);

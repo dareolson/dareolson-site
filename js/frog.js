@@ -211,10 +211,11 @@ function eatFly(onDone) {
 
   // Aim tongue toward the fly before showing it
   aimTongue();
-  fly.style.opacity = '0';
   mouth.src = MOUTH[2];
 
   setTimeout(() => {
+    // Hide fly exactly when tongue appears so there's no empty frame
+    fly.style.opacity = '0';
     mouth.src = MOUTH[3];
     tongue.style.opacity = '1';
     tongue.src = TONGUE_FRAMES[1];

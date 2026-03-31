@@ -325,13 +325,15 @@ if (isTouchDevice) {
       eatFly(() => {
         waiting = false;
         pickTarget();
+        // Spawn a new fly after eating — same as desktop behaviour
+        setTimeout(spawnNewFly, 1000);
       });
     }
   }, { passive: true });
 
   function tick() {
-    // Don't move the fly while it's animating in from the screen edge
-    if (!flySpawning) {
+    // Don't move the fly while it's animating in or while the eat animation is running
+    if (!flySpawning && !eating) {
       flyX += (targetX - flyX) * SPEED;
       flyY += (targetY - flyY) * SPEED;
       applyFlyPosition(flyX, flyY);

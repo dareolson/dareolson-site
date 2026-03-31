@@ -240,15 +240,39 @@ function eatFly(onDone) {
             tongue.style.opacity = '0';
             mouth.src = MOUTH[1];
             eating = false;
-            if (onDone) onDone();
-            // Wait ~1 second then a fresh fly buzzes in
-            setTimeout(spawnNewFly, 1000);
+            if (onDone) {
+              onDone(); // e.g. navigate to new page
+            } else {
+              // Only spawn a new fly if we're staying on this page
+              setTimeout(spawnNewFly, 1000);
+            }
           }, 150); // matches the haul-in transition duration
         }, 80);
       }, 120);
     }, 80);
   }, 60);
 }
+
+// ==============================================
+// NAV LINK INTERCEPTION
+// Clicking any <a> tag triggers the eat animation
+// first, then navigates once the fly is swallowed.
+// ==============================================
+document.addEventListener('click', (e) => {
+  const link = e.target.closest('a[href]');
+  if (!link) return;
+
+  // Let external links, new-tab links, and anchor links pass through normally
+  const href = link.getAttribute('href');
+  if (link.target === '_blank' || href.startsWith('#') || href.startsWith('mailto:')) return;
+
+  e.preventDefault(); // stop immediate navigation
+
+  eatFly(() => {
+    // Navigate after the fly is swallowed
+    window.location.href = href;
+  });
+});
 
 // ==============================================
 // DESKTOP: mouse follow + click/selection to eat

@@ -211,9 +211,12 @@ function eatFly(onDone) {
   if (eating) return;
   eating = true;
 
-  // Aim tongue at fly before showing it
-  aimTongue();
+  // Capture where the fly was when eaten so we can snap back to it
+  const eatX = currentFlyX;
+  const eatY = currentFlyY;
 
+  // Aim tongue toward the fly before showing it
+  aimTongue();
   fly.style.opacity = '0';
   mouth.src = MOUTH[2];
 
@@ -224,18 +227,29 @@ function eatFly(onDone) {
     setTimeout(() => {
       tongue.src = TONGUE_FRAMES[2];
       setTimeout(() => {
+        // Tongue fully extended — snap fly back to where it was caught
         tongue.src = TONGUE_FRAMES[3];
         mouth.src  = MOUTH[4];
+        applyFlyPosition(eatX, eatY);
+        fly.style.opacity = '1';
+
         setTimeout(() => {
+          // Tongue retracting — animate fly hauling back into the mouth
           tongue.src = TONGUE_FRAMES[4];
+          fly.style.transition = 'transform 0.15s ease-in';
+          applyFlyPosition(mouthScreenX, mouthScreenY);
+
           setTimeout(() => {
+            // Fly reaches mouth — hide it, close mouth, done
+            fly.style.transition = '';
+            fly.style.opacity    = '0';
             tongue.style.opacity = '0';
             mouth.src = MOUTH[1];
             eating = false;
             if (onDone) onDone();
-            // Wait ~1 second then fly in a new fly
+            // Wait ~1 second then a fresh fly buzzes in
             setTimeout(spawnNewFly, 1000);
-          }, 80);
+          }, 150); // matches the haul-in transition duration
         }, 80);
       }, 120);
     }, 80);

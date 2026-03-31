@@ -139,26 +139,10 @@ body.interior {
   transition: transform 0.4s ease, filter 0.4s ease;
 }
 
-/* Amber tint overlay — sits above the image, below the title overlay.
-   Creates a warm duotone effect when combined with the grayscale image. */
-.thumb-wrap::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(245, 130, 13, 0.18); /* --accent at low opacity */
-  pointer-events: none;
-  z-index: 1;
-  transition: opacity 0.4s ease;
-}
-
-/* On hover: color snaps back, amber tint fades, title overlay fades in */
+/* On hover: color snaps back, title overlay fades in */
 .video-card:hover .thumb-wrap img {
   filter: grayscale(0) brightness(0.9);
   transform: scale(1.03);
-}
-
-.video-card:hover .thumb-wrap::after {
-  opacity: 0;
 }
 
 /* ==============================================

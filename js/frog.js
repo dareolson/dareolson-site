@@ -80,11 +80,10 @@ function initTongueOrigin() {
   mouthScreenX = cx + (localX - cx) * FROG_SCALE;
   mouthScreenY = cy + (localY - cy) * FROG_SCALE;
 
-  // Natural tongue length = distance from mouth to right edge of artwork,
-  // in screen pixels (after object-fit scale and frog scale)
-  const rightEdgeLocal = offX + 1920 * scale;
-  const rightEdgeScreen = cx + (rightEdgeLocal - cx) * FROG_SCALE;
-  tongueNaturalLength = rightEdgeScreen - mouthScreenX;
+  // Natural tongue length = canvas distance from mouth (x:925) to tip (x:1910)
+  // converted to screen pixels after object-fit scale and frog scale
+  const TONGUE_TIP_FRAC = (1910 - 925) / 1920; // 985px / 1920px canvas width
+  tongueNaturalLength = TONGUE_TIP_FRAC * 1920 * scale * FROG_SCALE;
 }
 
 function aimTongue() {

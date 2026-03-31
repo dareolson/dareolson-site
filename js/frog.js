@@ -176,15 +176,19 @@ function spawnNewFly() {
     case 3: startX = -60;                startY = Math.random() * vh; break; // left
   }
 
+  // Save destination NOW before applyFlyPosition overwrites currentFlyX/Y with the edge coords
+  const destX = currentFlyX;
+  const destY = currentFlyY;
+
   // Snap fly to the off-screen start position (no transition yet)
   flySpawning = true;
   applyFlyPosition(startX, startY);
   fly.style.opacity = '1';
 
-  // Short pause so the snap registers, then animate to cursor
+  // Short pause so the snap registers, then animate to saved destination
   setTimeout(() => {
     fly.style.transition = 'transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-    applyFlyPosition(currentFlyX, currentFlyY); // currentFlyX/Y = last known cursor position
+    applyFlyPosition(destX, destY); // use saved destination, not currentFlyX/Y (which was overwritten above)
 
     // Cleanup — restores normal mouse control
     const cleanup = () => {

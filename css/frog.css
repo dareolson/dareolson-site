@@ -90,6 +90,13 @@
   height: 40px;
 }
 
+/* Smaller fly on mobile */
+@media (max-width: 768px) {
+  #fly-cursor { width: 24px; height: 24px; }
+  #fly-top,
+  #fly-bottom { width: 24px; height: 24px; }
+}
+
 /* Top half — body, head, static */
 #fly-top {
   clip-path: inset(0 0 50% 0);

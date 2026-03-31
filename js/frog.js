@@ -329,10 +329,12 @@ if (isTouchDevice) {
   }, { passive: true });
 
   function tick() {
-    flyX += (targetX - flyX) * SPEED;
-    flyY += (targetY - flyY) * SPEED;
-
-    applyFlyPosition(flyX, flyY);
+    // Don't move the fly while it's animating in from the screen edge
+    if (!flySpawning) {
+      flyX += (targetX - flyX) * SPEED;
+      flyY += (targetY - flyY) * SPEED;
+      applyFlyPosition(flyX, flyY);
+    }
 
     const dist = Math.hypot(targetX - flyX, targetY - flyY);
     if (dist < 6 && !waiting) {

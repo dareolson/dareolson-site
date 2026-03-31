@@ -102,16 +102,9 @@ body.interior {
 .video-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2px;
+  gap: 4px;           /* slightly wider lines give more breathing room */
+  padding: 4px;       /* amber frame around the outer edge on all screen sizes */
   background: rgba(245, 130, 13, 0.8); /* accent at 80% — shows through gaps as amber lines */
-}
-
-/* On mobile (1 column) there are no vertical gaps, so padding exposes the amber
-   on all four outer edges, giving a complete framed border effect */
-@media (max-width: 639px) {
-  .video-grid {
-    padding: 2px;
-  }
 }
 
 @media (min-width: 640px) {

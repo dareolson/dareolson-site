@@ -52,7 +52,7 @@ function applyFlyPosition(x, y) {
 // TONGUE_BASE_ANGLE = direction the tongue points
 // at rest in the artwork (0 = right, -90 = up).
 // ==============================================
-const MOUTH_FRAC       = { x: 0.482, y: 0.231 }; // tongue base: x:925, y:250 in 1920x1080 artwork
+const MOUTH_FRAC       = { x: 0.455, y: 0.231 }; // tongue base: x:874, y:250 in 1920x1080 artwork
 const TONGUE_BASE_ANGLE = 0; // tongue art points RIGHT in the artwork
 
 // Compute and lock the tongue pivot point once on load.
@@ -83,8 +83,8 @@ function initTongueOrigin() {
   // Natural tongue length = canvas distance from mouth (x:925) to tip (x:1910)
   // converted to screen pixels after object-fit scale and frog scale.
   // TONGUE_STRETCH_CORRECTION compensates for any canvas-to-screen measurement drift.
-  const TONGUE_TIP_FRAC        = (1910 - 925) / 1920;
-  const TONGUE_STRETCH_CORRECTION = 0.45; // lower = more stretch
+  const TONGUE_TIP_FRAC        = (1910 - 874) / 1920; // base x:874 to tip x:1910 = 1036px
+  const TONGUE_STRETCH_CORRECTION = 0.45;
   tongueNaturalLength = TONGUE_TIP_FRAC * 1920 * scale * FROG_SCALE * TONGUE_STRETCH_CORRECTION;
 }
 

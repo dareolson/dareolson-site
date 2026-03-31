@@ -98,9 +98,11 @@ function aimTongue() {
   tongue.style.transform = `rotate(${angle}deg)`;
 }
 
-// Set origin after full page load so layout is settled, and again on resize
+// Set origin after full page load so layout is settled, and again on resize or fullscreen
 window.addEventListener('load', initTongueOrigin);
 window.addEventListener('resize', initTongueOrigin);
+document.addEventListener('fullscreenchange', initTongueOrigin);
+document.addEventListener('webkitfullscreenchange', initTongueOrigin);
 
 // ==============================================
 // BLINK ANIMATION
@@ -213,6 +215,9 @@ function spawnNewFly() {
 function eatFly(onDone) {
   if (eating) return;
   eating = true;
+
+  // Reinitialize if viewport changed without firing resize (e.g. fullscreen)
+  if (!mouthScreenX) initTongueOrigin();
 
   const eatX = currentFlyX;
   const eatY = currentFlyY;

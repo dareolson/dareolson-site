@@ -14,8 +14,9 @@ const lEyeball = document.getElementById('layer-l-eyeball');
 const rEyeball = document.getElementById('layer-r-eyeball');
 const lEyelid  = document.getElementById('layer-l-eyelid');
 const rEyelid  = document.getElementById('layer-r-eyelid');
-const mouth    = document.getElementById('layer-mouth');
-const tongue   = document.getElementById('layer-tongue');
+const mouth          = document.getElementById('layer-mouth');
+const tongue         = document.getElementById('layer-tongue');     // src swaps only
+const tongueWrapper  = document.getElementById('tongue-wrapper');   // rotation + opacity
 
 const flyOffsetX = fly.offsetWidth  / 2;
 const flyOffsetY = fly.offsetHeight / 2;
@@ -74,7 +75,7 @@ function initTongueOrigin() {
 
   tongueOriginX = localX;
   tongueOriginY = localY;
-  tongue.style.transformOrigin = `${tongueOriginX}px ${tongueOriginY}px`;
+  tongueWrapper.style.transformOrigin = `${tongueOriginX}px ${tongueOriginY}px`;
 
   const FROG_SCALE = 0.8;
   const cx = vw / 2;
@@ -94,8 +95,8 @@ function initTongueOrigin() {
 }
 
 function aimTongue() {
-  // Reapply transformOrigin on every call — src swaps can reset it
-  tongue.style.transformOrigin = `${tongueOriginX}px ${tongueOriginY}px`;
+  // Reapply transformOrigin on wrapper — wrapper holds the rotation, img holds only src
+  tongueWrapper.style.transformOrigin = `${tongueOriginX}px ${tongueOriginY}px`;
 
   const dx   = currentFlyX - mouthScreenX;
   const dy   = currentFlyY - mouthScreenY;
@@ -106,7 +107,7 @@ function aimTongue() {
   const stretch = Math.max(1, dist / tongueNaturalLength);
 
   // scaleX applied before rotate so it stretches along the tongue's own axis
-  tongue.style.transform = `rotate(${angle}deg) scaleX(${stretch})`;
+  tongueWrapper.style.transform = `rotate(${angle}deg) scaleX(${stretch})`;
 }
 
 // Set origin immediately, again on load, and again on resize or fullscreen
@@ -240,7 +241,7 @@ function eatFly(onDone) {
   // 50ms gaps — 3 rAF ticks at 60fps, enough that no frame can be skipped
   const frames = [
     [0,   () => { mouth.src = MOUTH[2]; }],
-    [50,  () => { fly.style.opacity = '0'; mouth.src = MOUTH[3]; tongue.style.opacity = '1'; tongue.src = TONGUE_FRAMES[1]; aimTongue(); }],
+    [50,  () => { fly.style.opacity = '0'; mouth.src = MOUTH[3]; tongueWrapper.style.opacity = '1'; tongue.src = TONGUE_FRAMES[1]; aimTongue(); }],
     [100, () => { tongue.src = TONGUE_FRAMES[2]; aimTongue(); }],
     [150, () => { tongue.src = TONGUE_FRAMES[3]; mouth.src = MOUTH[4]; applyFlyPosition(eatX, eatY); fly.style.opacity = '1'; aimTongue(); }],
     [200, () => { tongue.src = TONGUE_FRAMES[2]; aimTongue(); fly.style.transition = 'transform 0.1s ease-in'; applyFlyPosition(mouthScreenX, mouthScreenY); }],
@@ -248,7 +249,7 @@ function eatFly(onDone) {
     [310, () => {
       fly.style.transition = '';
       fly.style.opacity    = '0';
-      tongue.style.opacity = '0';
+      tongueWrapper.style.opacity = '0';
       mouth.src = MOUTH[1];
       eating = false;
       if (onDone) {

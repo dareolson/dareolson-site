@@ -274,8 +274,8 @@ document.addEventListener('click', (e) => {
   e.preventDefault(); // stop immediate navigation
 
   eatFly(() => {
-    // Navigate after the fly is swallowed
-    window.location.href = href;
+    // Fade out then navigate after the fly is swallowed
+    window.navigateWithFade(href);
   });
 });
 

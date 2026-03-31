@@ -36,6 +36,21 @@ html, body {
 }
 
 /* ==============================================
+   PAGE TRANSITIONS
+   Body starts invisible. main.js adds .page-visible
+   on load to fade in. navigateWithFade() removes it
+   before navigating to fade out.
+============================================== */
+body {
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+body.page-visible {
+  opacity: 1;
+}
+
+/* ==============================================
    NAVIGATION
    Fixed to top-right corner, always visible.
 ============================================== */

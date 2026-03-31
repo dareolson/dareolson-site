@@ -245,7 +245,7 @@ function eatFly(onDone) {
   let fi = 0;
 
   function step(now) {
-    while (fi < frames.length && now - start >= frames[fi][0]) {
+    if (fi < frames.length && now - start >= frames[fi][0]) {
       frames[fi][1]();
       fi++;
     }

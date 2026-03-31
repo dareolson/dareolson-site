@@ -103,7 +103,15 @@ body.interior {
   display: grid;
   grid-template-columns: 1fr;
   gap: 2px;
-  background: var(--accent); /* amber shows through the gaps */
+  background: rgba(245, 130, 13, 0.8); /* accent at 80% — shows through gaps as amber lines */
+}
+
+/* On mobile (1 column) there are no vertical gaps, so padding exposes the amber
+   on all four outer edges, giving a complete framed border effect */
+@media (max-width: 639px) {
+  .video-grid {
+    padding: 2px;
+  }
 }
 
 @media (min-width: 640px) {
@@ -130,7 +138,7 @@ body.interior {
 }
 
 .video-card:hover {
-  box-shadow: inset 0 0 0 2px var(--accent);
+  box-shadow: inset 0 0 0 2px rgba(245, 130, 13, 0.8);
 }
 
 .thumb-wrap {

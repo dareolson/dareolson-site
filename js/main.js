@@ -8,14 +8,13 @@
 // ==============================================
 // PAGE FADE-IN
 // Body starts at opacity:0 (set in style.css).
-// Adding .page-visible triggers the CSS transition to opacity:1.
-// rAF ensures the browser renders the invisible state first,
+// This script runs at the end of <body>, so the DOM is already
+// ready — no need to wait for DOMContentLoaded.
+// rAF ensures the browser renders the opacity:0 state first
 // so the transition actually plays rather than snapping instantly.
 // ==============================================
-window.addEventListener('DOMContentLoaded', () => {
-  requestAnimationFrame(() => {
-    document.body.classList.add('page-visible');
-  });
+requestAnimationFrame(() => {
+  document.body.classList.add('page-visible');
 });
 
 // ==============================================

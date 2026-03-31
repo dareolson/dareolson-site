@@ -89,18 +89,6 @@ function initTongueOrigin() {
   mouthScreenX = cx + (localX - cx) * FROG_SCALE;
   mouthScreenY = cy + (localY - cy) * FROG_SCALE;
 
-  // DEBUG — shows a red dot at the computed mouth position.
-  // Remove once tongue pivot is confirmed correct.
-  let dot = document.getElementById('debug-mouth');
-  if (!dot) {
-    dot = document.createElement('div');
-    dot.id = 'debug-mouth';
-    dot.style.cssText = 'position:fixed;width:10px;height:10px;background:red;border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%)';
-    document.body.appendChild(dot);
-  }
-  dot.style.left = mouthScreenX + 'px';
-  dot.style.top  = mouthScreenY + 'px';
-  console.log('mouth screen pos:', mouthScreenX, mouthScreenY);
 }
 
 function aimTongue() {

@@ -12,10 +12,16 @@
 // ready — no need to wait for DOMContentLoaded.
 // rAF ensures the browser renders the opacity:0 state first
 // so the transition actually plays rather than snapping instantly.
+// The homepage gets a 1s delay for a dramatic reveal.
+// Interior pages fade in immediately.
 // ==============================================
-requestAnimationFrame(() => {
-  document.body.classList.add('page-visible');
-});
+const fadeDelay = document.getElementById('frog') ? 1000 : 0;
+
+setTimeout(() => {
+  requestAnimationFrame(() => {
+    document.body.classList.add('page-visible');
+  });
+}, fadeDelay);
 
 // ==============================================
 // NAVIGATE WITH FADE

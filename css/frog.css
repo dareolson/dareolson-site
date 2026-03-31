@@ -71,23 +71,38 @@
   pointer-events: none; /* never blocks clicks */
   z-index: 9999;        /* always on top of everything */
   will-change: transform;
-  width: 110px;
-  height: 75px;
+  width: 80px;
+  height: 80px;
 }
 
 /* ==============================================
-   FLY WINGS
-   Only the wings group animates — body and head
-   are separate SVG elements and stay still.
-   transform-origin anchored at the point where
-   wings meet the body (center, y=19 in SVG space).
+   FLY CURSOR — PNG HALVES
+   Two overlapping images of the fly emoji PNG.
+   Clipped at the midpoint so top is static and
+   bottom (wings) can flap independently.
 ============================================== */
+#fly-top,
+#fly-bottom {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 80px;
+  height: 80px;
+}
+
+/* Top half — body, head, static */
+#fly-top {
+  clip-path: inset(0 0 50% 0);
+}
+
+/* Bottom half — wings, flaps */
 @keyframes flap {
   0%, 100% { transform: scaleY(1); }
   50%       { transform: scaleY(0.15); }
 }
 
-#fly-wings-svg {
-  transform-origin: 55px 33px; /* center of thorax where wings attach */
+#fly-bottom {
+  clip-path: inset(50% 0 0 0);
+  transform-origin: top center;
   animation: flap 0.15s ease-in-out infinite;
 }

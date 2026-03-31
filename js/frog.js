@@ -167,7 +167,45 @@ const TONGUE_FRAMES = {
   4: 'FrogFix/Frogredo_0004s_0003_Tongue-4.png',
 };
 
-let eating = false;
+let eating       = false;
+let flySpawning  = false; // true while the new fly is animating in — blocks mousemove updates
+
+// ==============================================
+// SPAWN NEW FLY
+// After eating, waits ~1s then flies a new fly
+// in from a random screen edge to the cursor.
+// ==============================================
+function spawnNewFly() {
+  // Pick a random off-screen starting point on one of the four edges
+  const edge = Math.floor(Math.random() * 4); // 0=top 1=right 2=bottom 3=left
+  let startX, startY;
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
+  switch (edge) {
+    case 0: startX = Math.random() * vw; startY = -60;      break; // top
+    case 1: startX = vw + 60;            startY = Math.random() * vh; break; // right
+    case 2: startX = Math.random() * vw; startY = vh + 60;  break; // bottom
+    case 3: startX = -60;                startY = Math.random() * vh; break; // left
+  }
+
+  // Snap fly to the off-screen start position (no transition yet)
+  flySpawning = true;
+  applyFlyPosition(startX, startY);
+  fly.style.opacity = '1';
+
+  // Short pause so the snap registers, then animate to cursor
+  setTimeout(() => {
+    fly.style.transition = 'transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    applyFlyPosition(currentFlyX, currentFlyY); // currentFlyX/Y = last known cursor position
+
+    // Once the fly-in animation finishes, hand control back to mousemove
+    fly.addEventListener('transitionend', function handler() {
+      fly.style.transition = '';
+      flySpawning = false;
+      fly.removeEventListener('transitionend', handler);
+    });
+  }, 50);
+}
 
 function eatFly(onDone) {
   if (eating) return;
@@ -193,9 +231,10 @@ function eatFly(onDone) {
           setTimeout(() => {
             tongue.style.opacity = '0';
             mouth.src = MOUTH[1];
-            fly.style.opacity = '1';
             eating = false;
             if (onDone) onDone();
+            // Wait ~1 second then fly in a new fly
+            setTimeout(spawnNewFly, 1000);
           }, 80);
         }, 80);
       }, 120);
@@ -208,7 +247,11 @@ function eatFly(onDone) {
 // ==============================================
 if (!isTouchDevice) {
   document.addEventListener('mousemove', (e) => {
-    applyFlyPosition(e.clientX, e.clientY);
+    // Always track cursor position so spawnNewFly knows where to land,
+    // but don't move the fly while it's animating in from the edge
+    currentFlyX = e.clientX;
+    currentFlyY = e.clientY;
+    if (!flySpawning) applyFlyPosition(e.clientX, e.clientY);
   });
 
   document.addEventListener('click', (e) => {

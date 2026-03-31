@@ -92,6 +92,17 @@ function initTongueOrigin() {
 
   const dbg = document.getElementById('debug-dot');
   if (dbg) dbg.textContent = `pivot ${Math.round(mouthScreenX)},${Math.round(mouthScreenY)} len ${Math.round(tongueNaturalLength)}`;
+
+  // Visual crosshair at computed mouth position — remove once pivot is confirmed correct
+  let pin = document.getElementById('mouth-pin');
+  if (!pin) {
+    pin = document.createElement('div');
+    pin.id = 'mouth-pin';
+    pin.style.cssText = 'position:fixed;width:14px;height:14px;border-radius:50%;background:red;border:2px solid white;pointer-events:none;z-index:99999;transform:translate(-50%,-50%)';
+    document.body.appendChild(pin);
+  }
+  pin.style.left = mouthScreenX + 'px';
+  pin.style.top  = mouthScreenY + 'px';
 }
 
 function aimTongue() {

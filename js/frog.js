@@ -104,7 +104,8 @@ function aimTongue() {
   tongue.style.transform = `rotate(${angle}deg) scaleX(${stretch})`;
 }
 
-// Set origin after full page load so layout is settled, and again on resize or fullscreen
+// Set origin immediately, again on load, and again on resize or fullscreen
+initTongueOrigin();
 window.addEventListener('load', initTongueOrigin);
 window.addEventListener('resize', initTongueOrigin);
 document.addEventListener('fullscreenchange', initTongueOrigin);

@@ -57,15 +57,9 @@ const TONGUE_BASE_ANGLE = 0; // tongue art points RIGHT in the artwork
 
 // Compute and lock the tongue pivot point once on load.
 // Only the rotation angle changes after this.
-let mouthScreenX, mouthScreenY;
+let mouthScreenX, mouthScreenY, tongueNaturalLength;
 
 function initTongueOrigin() {
-  // The tongue is now inside #frog, sharing the same coordinate space.
-  // The tongue element's layout size = viewport size (position:absolute; inset:0).
-  // object-fit:contain letterboxes the 1920x1080 PNG within the viewport.
-  //
-  // transformOrigin is expressed in the element's OWN layout space (pre-scale).
-  // mouthScreenX/Y is the visual screen position after #frog's scale(0.8) is applied.
   const vw = window.innerWidth;
   const vh = window.innerHeight;
 
@@ -78,24 +72,32 @@ function initTongueOrigin() {
   const localX = offX + MOUTH_FRAC.x * 1920 * scale;
   const localY = offY + MOUTH_FRAC.y * 1080 * scale;
 
-  // Set the rotation pivot in local coordinates — this never drifts
   tongue.style.transformOrigin = `${localX}px ${localY}px`;
 
-  // Visual screen position: apply #frog's scale(0.8) from viewport center.
-  // FROG_SCALE must match the transform: scale() value in frog.css.
   const FROG_SCALE = 0.8;
   const cx = vw / 2;
   const cy = vh / 2;
   mouthScreenX = cx + (localX - cx) * FROG_SCALE;
   mouthScreenY = cy + (localY - cy) * FROG_SCALE;
 
+  // Natural tongue length = distance from mouth to right edge of artwork,
+  // in screen pixels (after object-fit scale and frog scale)
+  const rightEdgeLocal = offX + 1920 * scale;
+  const rightEdgeScreen = cx + (rightEdgeLocal - cx) * FROG_SCALE;
+  tongueNaturalLength = rightEdgeScreen - mouthScreenX;
 }
 
 function aimTongue() {
-  const dx    = currentFlyX - mouthScreenX;
-  const dy    = currentFlyY - mouthScreenY;
+  const dx   = currentFlyX - mouthScreenX;
+  const dy   = currentFlyY - mouthScreenY;
+  const dist = Math.hypot(dx, dy);
   const angle = Math.atan2(dy, dx) * 180 / Math.PI - TONGUE_BASE_ANGLE;
-  tongue.style.transform = `rotate(${angle}deg)`;
+
+  // Stretch tongue to reach the fly — minimum 1x so it never shrinks below natural size
+  const stretch = Math.max(1, dist / tongueNaturalLength);
+
+  // scaleX applied before rotate so it stretches along the tongue's own axis
+  tongue.style.transform = `rotate(${angle}deg) scaleX(${stretch})`;
 }
 
 // Set origin after full page load so layout is settled, and again on resize or fullscreen

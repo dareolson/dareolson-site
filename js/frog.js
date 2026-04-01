@@ -31,7 +31,7 @@ let currentFlyY = window.innerHeight / 2;
 // L/R_EYE_OFFSET: resting position of each eyeball
 // within its socket — tuned per device type.
 // ==============================================
-const EYE_RANGE    = isTouchDevice ? 4 : 12;
+const EYE_RANGE    = isTouchDevice ? 7 : 14;
 const L_EYE_OFFSET = { x: -10 + (isTouchDevice ? 11 : 0), y: isTouchDevice ? 4 : 6 };
 const R_EYE_OFFSET = { x: 22  - (isTouchDevice ? 18 : 0), y: isTouchDevice ? 4 : 6 };
 

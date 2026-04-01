@@ -9,14 +9,14 @@
 const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
 // DOM references
-const fly      = document.getElementById('fly-cursor');
-const lEyeball = document.getElementById('layer-l-eyeball');
-const rEyeball = document.getElementById('layer-r-eyeball');
-const lEyelid  = document.getElementById('layer-l-eyelid');
-const rEyelid  = document.getElementById('layer-r-eyelid');
-const mouth          = document.getElementById('layer-mouth');
-const tongue         = document.getElementById('layer-tongue');     // src swaps only
-const tongueWrapper  = document.getElementById('tongue-wrapper');   // rotation + opacity
+const fly           = document.getElementById('fly-cursor');
+const lEyeball      = document.getElementById('layer-l-eyeball');
+const rEyeball      = document.getElementById('layer-r-eyeball');
+const lEyelid       = document.getElementById('layer-l-eyelid');
+const rEyelid       = document.getElementById('layer-r-eyelid');
+const mouth         = document.getElementById('layer-mouth');
+const tongue        = document.getElementById('layer-tongue');    // src swaps only
+const tongueWrapper = document.getElementById('tongue-wrapper');  // rotation + opacity
 
 const flyOffsetX = fly.offsetWidth  / 2;
 const flyOffsetY = fly.offsetHeight / 2;
@@ -26,12 +26,16 @@ let currentFlyX = window.innerWidth  / 2;
 let currentFlyY = window.innerHeight / 2;
 
 // ==============================================
-// EYE TRACKING SETTINGS
+// EYE TRACKING
+// EYE_RANGE: max px eyeballs shift from center.
+// L/R_EYE_OFFSET: resting position of each eyeball
+// within its socket — tuned per device type.
 // ==============================================
 const EYE_RANGE    = isTouchDevice ? 4 : 8;
 const L_EYE_OFFSET = { x: -10 + (isTouchDevice ? 11 : 0), y: isTouchDevice ? 4 : 6 };
 const R_EYE_OFFSET = { x: 22  - (isTouchDevice ? 18 : 0), y: isTouchDevice ? 4 : 6 };
 
+// Moves the fly cursor and updates eye tracking to follow it
 function applyFlyPosition(x, y) {
   currentFlyX = x;
   currentFlyY = y;
@@ -44,84 +48,71 @@ function applyFlyPosition(x, y) {
 
 // ==============================================
 // TONGUE AIM
-// Computes the mouth's screen position from the
-// tongue element's rendered size, then rotates
-// the tongue toward the fly.
+// The tongue artwork is a full 1920x1080 PNG that
+// rotates around the mouth pivot. We compute the
+// pivot in screen coordinates from the known mouth
+// position in the original Photoshop canvas.
 //
 // MOUTH_FRAC = mouth center as a fraction of the
-// 1920x1080 artwork canvas. Tune if needed.
-// TONGUE_BASE_ANGLE = direction the tongue points
-// at rest in the artwork (0 = right, -90 = up).
+// 1920x1080 artwork canvas.
+// TONGUE_BASE_ANGLE = direction tongue points at
+// rest in the artwork (0 = right, -90 = up).
 // ==============================================
-const MOUTH_FRAC       = { x: 0.482, y: 0.296 }; // mouth center: x:925, y:320 in 1920x1080 artwork
+const MOUTH_FRAC        = { x: 0.482, y: 0.296 }; // mouth center: x:925, y:320 in 1920x1080 artwork
 const TONGUE_BASE_ANGLE = 0; // tongue art points RIGHT in the artwork
 
-// Compute and lock the tongue pivot point once on load.
-// Only the rotation angle changes after this.
+// Pivot point in pre-scale layout coords, and corresponding screen coords
+// accounting for the #frog container's scale(0.8). Recalculated on resize.
 let mouthScreenX, mouthScreenY, tongueNaturalLength, tongueOriginX, tongueOriginY;
 
 function initTongueOrigin() {
   const vw = window.innerWidth;
   const vh = window.innerHeight;
 
-  // Letterbox 1920x1080 within the layout container (viewport size, pre-scale)
+  // How the 1920x1080 artwork fits (letterboxed) inside the viewport
   const scale = Math.min(vw / 1920, vh / 1080);
   const offX  = (vw - 1920 * scale) / 2;
   const offY  = (vh - 1080 * scale) / 2;
 
-  // Mouth position in the element's own layout coordinates (pre-scale)
+  // Mouth position in layout coordinates (before the #frog scale is applied)
   const localX = offX + MOUTH_FRAC.x * 1920 * scale;
   const localY = offY + MOUTH_FRAC.y * 1080 * scale;
 
+  // transformOrigin on the wrapper uses layout coords — pivot stays fixed across src swaps
   tongueOriginX = localX;
   tongueOriginY = localY;
   tongueWrapper.style.transformOrigin = `${tongueOriginX}px ${tongueOriginY}px`;
 
+  // #frog is scaled 0.8 from center — convert layout coords to actual screen coords
   const FROG_SCALE = 0.8;
   const cx = vw / 2;
   const cy = vh / 2;
   mouthScreenX = cx + (localX - cx) * FROG_SCALE;
   mouthScreenY = cy + (localY - cy) * FROG_SCALE;
 
-  // Natural tongue length = canvas distance from mouth (x:925) to tip (x:1910)
-  // converted to screen pixels after object-fit scale and frog scale.
-  // TONGUE_STRETCH_CORRECTION compensates for any canvas-to-screen measurement drift.
-  const TONGUE_TIP_FRAC        = (1910 - 925) / 1920; // base x:925 to tip x:1910 = 985px
-  const TONGUE_STRETCH_CORRECTION = 1.0;
-  tongueNaturalLength = TONGUE_TIP_FRAC * 1920 * scale * FROG_SCALE * TONGUE_STRETCH_CORRECTION;
-
-  const dbg = document.getElementById('debug-dot');
-  if (dbg) dbg.textContent = `pivot ${Math.round(mouthScreenX)},${Math.round(mouthScreenY)} len ${Math.round(tongueNaturalLength)}`;
-
-  // Visual crosshair at computed mouth position — remove once pivot is confirmed correct
-  let pin = document.getElementById('mouth-pin');
-  if (!pin) {
-    pin = document.createElement('div');
-    pin.id = 'mouth-pin';
-    pin.style.cssText = 'position:fixed;width:14px;height:14px;border-radius:50%;background:red;border:2px solid white;pointer-events:none;z-index:99999;transform:translate(-50%,-50%)';
-    document.body.appendChild(pin);
-  }
-  pin.style.left = mouthScreenX + 'px';
-  pin.style.top  = mouthScreenY + 'px';
+  // Natural tongue length in screen pixels: artwork distance from base (x:925) to tip (x:1910),
+  // scaled by object-fit scale and frog scale — used to calculate stretch ratio
+  tongueNaturalLength = ((1910 - 925) / 1920) * 1920 * scale * FROG_SCALE;
 }
 
+// Rotates the tongue wrapper to point at the fly and stretches it to reach
 function aimTongue() {
-  // Reapply transformOrigin on wrapper — wrapper holds the rotation, img holds only src
+  // Reapply transformOrigin each call — wrapper is stable but defensive is cheap
   tongueWrapper.style.transformOrigin = `${tongueOriginX}px ${tongueOriginY}px`;
 
-  const dx   = currentFlyX - mouthScreenX;
-  const dy   = currentFlyY - mouthScreenY;
-  const dist = Math.hypot(dx, dy);
+  const dx    = currentFlyX - mouthScreenX;
+  const dy    = currentFlyY - mouthScreenY;
+  const dist  = Math.hypot(dx, dy);
   const angle = Math.atan2(dy, dx) * 180 / Math.PI - TONGUE_BASE_ANGLE;
 
-  // Stretch tongue to reach the fly — minimum 1x so it never shrinks below natural size
+  // Stretch to reach the fly — never shrink below natural size
   const stretch = Math.max(1, dist / tongueNaturalLength);
 
-  // scaleX applied before rotate so it stretches along the tongue's own axis
+  // scaleX before rotate so stretching is along the tongue's own axis
   tongueWrapper.style.transform = `rotate(${angle}deg) scaleX(${stretch})`;
 }
 
-// Set origin immediately, again on load, and again on resize or fullscreen
+// Recalculate pivot whenever the viewport changes
 initTongueOrigin();
 window.addEventListener('load', initTongueOrigin);
 window.addEventListener('resize', initTongueOrigin);
@@ -130,6 +121,8 @@ document.addEventListener('webkitfullscreenchange', initTongueOrigin);
 
 // ==============================================
 // BLINK ANIMATION
+// Cycles through half-open → closed → half-open → open
+// on both eyelids simultaneously, then reschedules.
 // ==============================================
 const EYELID = {
   l: {
@@ -145,13 +138,13 @@ const EYELID = {
 };
 
 function blink() {
-  lEyelid.src = EYELID.l.half;  rEyelid.src = EYELID.r.half;
+  lEyelid.src = EYELID.l.half;   rEyelid.src = EYELID.r.half;
   setTimeout(() => {
     lEyelid.src = EYELID.l.closed; rEyelid.src = EYELID.r.closed;
     setTimeout(() => {
-      lEyelid.src = EYELID.l.half;  rEyelid.src = EYELID.r.half;
+      lEyelid.src = EYELID.l.half;   rEyelid.src = EYELID.r.half;
       setTimeout(() => {
-        lEyelid.src = EYELID.l.open;  rEyelid.src = EYELID.r.open;
+        lEyelid.src = EYELID.l.open;   rEyelid.src = EYELID.r.open;
         scheduleBlink();
       }, 60);
     }, 80);
@@ -166,6 +159,8 @@ scheduleBlink();
 
 // ==============================================
 // EAT ANIMATION
+// Frame images — preloaded on startup so src swaps
+// are instant with no decode delay.
 // ==============================================
 const MOUTH = {
   1: 'FrogFix/Mouth-1.png',
@@ -175,10 +170,8 @@ const MOUTH = {
 };
 
 const TONGUE_FRAMES = {
-  1: 'FrogFix/Tongue-1.png',
   2: 'FrogFix/Tongue-2.png',
   3: 'FrogFix/Tongue-3.png',
-  4: 'FrogFix/Tongue-4.png',
 };
 
 // Preload all animation frames so src swaps are instant with no decode delay
@@ -186,56 +179,59 @@ const TONGUE_FRAMES = {
   const img = new Image(); img.src = src;
 });
 
-let eating       = false;
-let flySpawning  = false; // true while the new fly is animating in — blocks mousemove updates
+let eating      = false;
+let flySpawning = false; // true while the new fly is animating in — blocks mousemove updates
 
 // ==============================================
 // SPAWN NEW FLY
-// After eating, waits ~1s then flies a new fly
-// in from a random screen edge to the cursor.
+// After eating, flies a new fly in from a random
+// screen edge to the current cursor position.
 // ==============================================
 function spawnNewFly() {
-  // Pick a random off-screen starting point on one of the four edges
+  const vw   = window.innerWidth;
+  const vh   = window.innerHeight;
   const edge = Math.floor(Math.random() * 4); // 0=top 1=right 2=bottom 3=left
   let startX, startY;
-  const vw = window.innerWidth;
-  const vh = window.innerHeight;
+
   switch (edge) {
-    case 0: startX = Math.random() * vw; startY = -60;      break; // top
-    case 1: startX = vw + 60;            startY = Math.random() * vh; break; // right
-    case 2: startX = Math.random() * vw; startY = vh + 60;  break; // bottom
-    case 3: startX = -60;                startY = Math.random() * vh; break; // left
+    case 0: startX = Math.random() * vw; startY = -60;      break;
+    case 1: startX = vw + 60;            startY = Math.random() * vh; break;
+    case 2: startX = Math.random() * vw; startY = vh + 60;  break;
+    case 3: startX = -60;                startY = Math.random() * vh; break;
   }
 
-  // Save destination NOW before applyFlyPosition overwrites currentFlyX/Y with the edge coords
+  // Save destination before applyFlyPosition overwrites currentFlyX/Y
   const destX = currentFlyX;
   const destY = currentFlyY;
 
-  // Snap fly to the off-screen start position (no transition yet)
+  // Snap to off-screen start (no transition), then animate to destination
   flySpawning = true;
   applyFlyPosition(startX, startY);
   fly.style.opacity = '1';
 
-  // Short pause so the snap registers, then animate to saved destination
   setTimeout(() => {
     fly.style.transition = 'transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-    applyFlyPosition(destX, destY); // use saved destination, not currentFlyX/Y (which was overwritten above)
+    applyFlyPosition(destX, destY);
 
-    // Cleanup — restores normal mouse control
     const cleanup = () => {
       fly.style.transition = '';
       flySpawning = false;
     };
 
-    // Primary: transitionend fires when animation completes
+    // transitionend is primary; fallback timeout in case start === end
     fly.addEventListener('transitionend', cleanup, { once: true });
-
-    // Fallback: if transitionend never fires (e.g. start === end position),
-    // force cleanup after the animation duration + a small buffer
     setTimeout(cleanup, 800);
   }, 50);
 }
 
+// ==============================================
+// EAT ANIMATION
+// Mouth opens, tongue shoots out toward the fly
+// (frames 2→3), fly gets pulled back to mouth
+// (frame 2 retract), then everything resets.
+// Uses requestAnimationFrame + performance.now()
+// so frames can't be skipped on slow paints.
+// ==============================================
 function eatFly(onDone) {
   if (eating) return;
   eating = true;
@@ -248,8 +244,7 @@ function eatFly(onDone) {
 
   aimTongue();
 
-  // Frame sequence: [delay_ms, action]
-  // 50ms gaps — 3 rAF ticks at 60fps, enough that no frame can be skipped
+  // [delay_ms, action] — 50ms gaps give the browser a full rAF tick per frame
   const frames = [
     [0,   () => { mouth.src = MOUTH[2]; }],
     [50,  () => { fly.style.opacity = '0'; mouth.src = MOUTH[3]; tongueWrapper.style.opacity = '1'; tongue.src = TONGUE_FRAMES[2]; aimTongue(); }],
@@ -257,11 +252,11 @@ function eatFly(onDone) {
     [150, () => { tongue.src = TONGUE_FRAMES[2]; aimTongue(); fly.style.transition = 'transform 0.1s ease-in'; applyFlyPosition(mouthScreenX, mouthScreenY); }],
     [200, () => { mouth.src = MOUTH[3]; }],
     [260, () => {
-      fly.style.transition = '';
-      fly.style.opacity    = '0';
+      fly.style.transition        = '';
+      fly.style.opacity           = '0';
       tongueWrapper.style.opacity = '0';
       mouth.src = MOUTH[1];
-      eating = false;
+      eating    = false;
       if (onDone) {
         onDone();
       } else {
@@ -288,19 +283,19 @@ function eatFly(onDone) {
 // NAV LINK INTERCEPTION
 // Clicking any <a> tag triggers the eat animation
 // first, then navigates once the fly is swallowed.
+// External, new-tab, anchor, and mailto links are
+// passed through immediately without eating.
 // ==============================================
 document.addEventListener('click', (e) => {
   const link = e.target.closest('a[href]');
   if (!link) return;
 
-  // Let external links, new-tab links, and anchor links pass through normally
   const href = link.getAttribute('href');
   if (link.target === '_blank' || href.startsWith('#') || href.startsWith('mailto:')) return;
 
-  e.preventDefault(); // stop immediate navigation
+  e.preventDefault();
 
   eatFly(() => {
-    // Fade out then navigate after the fly is swallowed
     window.navigateWithFade(href);
   });
 });
@@ -317,12 +312,14 @@ if (!isTouchDevice) {
     if (!flySpawning) applyFlyPosition(e.clientX, e.clientY);
   });
 
+  // Click on empty space triggers eat
   document.addEventListener('click', (e) => {
     if (!e.target.closest('a, button, input, textarea')) {
       eatFly();
     }
   });
 
+  // Text selection triggers eat
   document.addEventListener('mouseup', () => {
     if (window.getSelection().toString().length > 0) {
       eatFly();
@@ -332,10 +329,12 @@ if (!isTouchDevice) {
 
 // ==============================================
 // MOBILE: autonomous wandering + tap to eat
+// Fly lerps toward a random target, pauses when
+// it arrives, then picks a new target.
 // ==============================================
 if (isTouchDevice) {
-  const MARGIN = 80;
-  const SPEED  = 0.03;
+  const MARGIN = 80;  // keep fly away from screen edges
+  const SPEED  = 0.03; // lerp factor — lower = slower/smoother
 
   let flyX    = window.innerWidth  / 2;
   let flyY    = window.innerHeight / 2;
@@ -355,22 +354,20 @@ if (isTouchDevice) {
       eatFly(() => {
         waiting = false;
         pickTarget();
-        // Spawn a new fly after eating — same as desktop behaviour
         setTimeout(spawnNewFly, 1000);
       });
     }
   }, { passive: true });
 
   function tick() {
-    // Don't move the fly while it's animating in or while the eat animation is running
     if (!flySpawning && !eating) {
       flyX += (targetX - flyX) * SPEED;
       flyY += (targetY - flyY) * SPEED;
       applyFlyPosition(flyX, flyY);
     }
 
-    const dist = Math.hypot(targetX - flyX, targetY - flyY);
-    if (dist < 6 && !waiting) {
+    // When fly reaches target, pause then pick a new one
+    if (Math.hypot(targetX - flyX, targetY - flyY) < 6 && !waiting) {
       waiting = true;
       setTimeout(() => {
         pickTarget();

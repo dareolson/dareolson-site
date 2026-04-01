@@ -181,18 +181,22 @@ const TONGUE_FRAMES = {
   const img = new Image(); img.src = src;
 });
 
-let eating      = false;
-let flySpawning = false; // true while the new fly is animating in — blocks mousemove updates
+let eating       = false;
+let flySpawning  = false; // true while the new fly is animating in — blocks mousemove updates
+let flyWandering = false; // desktop only — true after spawn until mouse moves
 
 // ==============================================
 // SPAWN NEW FLY
 // After eating, flies a new fly in from a random
-// screen edge to the current cursor position.
+// screen edge. On desktop the fly buzzes around
+// autonomously until the mouse moves, then snaps
+// back to cursor control.
 // ==============================================
 function spawnNewFly() {
-  const vw   = window.innerWidth;
-  const vh   = window.innerHeight;
-  const edge = Math.floor(Math.random() * 4); // 0=top 1=right 2=bottom 3=left
+  const vw     = window.innerWidth;
+  const vh     = window.innerHeight;
+  const MARGIN = 80;
+  const edge   = Math.floor(Math.random() * 4); // 0=top 1=right 2=bottom 3=left
   let startX, startY;
 
   switch (edge) {
@@ -202,9 +206,9 @@ function spawnNewFly() {
     case 3: startX = -60;                startY = Math.random() * vh; break;
   }
 
-  // Save destination before applyFlyPosition overwrites currentFlyX/Y
-  const destX = currentFlyX;
-  const destY = currentFlyY;
+  // On desktop, land at a random spot rather than the cursor (which may be at the mouth)
+  const destX = isTouchDevice ? currentFlyX : MARGIN + Math.random() * (vw - MARGIN * 2);
+  const destY = isTouchDevice ? currentFlyY : MARGIN + Math.random() * (vh - MARGIN * 2);
 
   // Snap to off-screen start (no transition), then animate to destination
   flySpawning = true;
@@ -218,12 +222,49 @@ function spawnNewFly() {
     const cleanup = () => {
       fly.style.transition = '';
       flySpawning = false;
+      // On desktop, start autonomous wandering until the mouse moves
+      if (!isTouchDevice) {
+        flyWandering = true;
+        startDesktopWander();
+      }
     };
 
-    // transitionend is primary; fallback timeout in case start === end
     fly.addEventListener('transitionend', cleanup, { once: true });
     setTimeout(cleanup, 800);
   }, 50);
+}
+
+// Lerp the fly around random targets on desktop until the mouse moves.
+// Called once after each spawn; stops itself when flyWandering goes false.
+function startDesktopWander() {
+  const MARGIN = 80;
+  const SPEED  = 0.03;
+  let wanderX  = currentFlyX;
+  let wanderY  = currentFlyY;
+  let targetX  = MARGIN + Math.random() * (window.innerWidth  - MARGIN * 2);
+  let targetY  = MARGIN + Math.random() * (window.innerHeight - MARGIN * 2);
+  let waiting  = false;
+
+  function wanderTick() {
+    if (!flyWandering) return; // mouse moved — hand control back to cursor
+    if (!flySpawning && !eating) {
+      wanderX += (targetX - wanderX) * SPEED;
+      wanderY += (targetY - wanderY) * SPEED;
+      applyFlyPosition(wanderX, wanderY);
+    }
+    if (Math.hypot(targetX - wanderX, targetY - wanderY) < 6 && !waiting) {
+      waiting = true;
+      setTimeout(() => {
+        if (!flyWandering) return;
+        targetX = MARGIN + Math.random() * (window.innerWidth  - MARGIN * 2);
+        targetY = MARGIN + Math.random() * (window.innerHeight - MARGIN * 2);
+        waiting = false;
+      }, 400 + Math.random() * 800);
+    }
+    requestAnimationFrame(wanderTick);
+  }
+
+  requestAnimationFrame(wanderTick);
 }
 
 // ==============================================
@@ -307,11 +348,11 @@ document.addEventListener('click', (e) => {
 // ==============================================
 if (!isTouchDevice) {
   document.addEventListener('mousemove', (e) => {
-    // Always track cursor position so spawnNewFly knows where to land,
-    // but don't move the fly while it's animating in from the edge
     currentFlyX = e.clientX;
     currentFlyY = e.clientY;
-    if (!flySpawning) applyFlyPosition(e.clientX, e.clientY);
+    // Stop autonomous wandering as soon as the mouse moves — reattach fly to cursor
+    if (flyWandering) flyWandering = false;
+    if (!flySpawning && !flyWandering) applyFlyPosition(e.clientX, e.clientY);
   });
 
   // Click on empty space triggers eat

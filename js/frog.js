@@ -222,10 +222,10 @@ function spawnNewFly() {
     const cleanup = () => {
       fly.style.transition = '';
       flySpawning = false;
-      // On desktop, start autonomous wandering until the mouse moves
+      // On desktop, start autonomous wandering from the landing spot until the mouse moves
       if (!isTouchDevice) {
         flyWandering = true;
-        startDesktopWander();
+        startDesktopWander(destX, destY);
       }
     };
 
@@ -236,11 +236,11 @@ function spawnNewFly() {
 
 // Lerp the fly around random targets on desktop until the mouse moves.
 // Called once after each spawn; stops itself when flyWandering goes false.
-function startDesktopWander() {
+function startDesktopWander(startX, startY) {
   const MARGIN = 80;
   const SPEED  = 0.03;
-  let wanderX  = currentFlyX;
-  let wanderY  = currentFlyY;
+  let wanderX  = startX;
+  let wanderY  = startY;
   let targetX  = MARGIN + Math.random() * (window.innerWidth  - MARGIN * 2);
   let targetY  = MARGIN + Math.random() * (window.innerHeight - MARGIN * 2);
   let waiting  = false;

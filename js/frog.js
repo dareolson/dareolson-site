@@ -31,7 +31,7 @@ let currentFlyY = window.innerHeight / 2;
 // L/R_EYE_OFFSET: resting position of each eyeball
 // within its socket — tuned per device type.
 // ==============================================
-const EYE_RANGE    = isTouchDevice ? 4 : 8;
+const EYE_RANGE    = isTouchDevice ? 4 : 12;
 const L_EYE_OFFSET = { x: -10 + (isTouchDevice ? 11 : 0), y: isTouchDevice ? 4 : 6 };
 const R_EYE_OFFSET = { x: 22  - (isTouchDevice ? 18 : 0), y: isTouchDevice ? 4 : 6 };
 
@@ -155,7 +155,9 @@ function scheduleBlink() {
   setTimeout(blink, 2000 + Math.random() * 4000);
 }
 
-scheduleBlink();
+// Blink once shortly after load so visitors know the frog is alive,
+// then blink() hands off to the normal random schedule
+setTimeout(blink, 1500);
 
 // ==============================================
 // EAT ANIMATION

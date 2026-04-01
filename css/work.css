@@ -143,7 +143,7 @@ body.interior {
 
 .video-card:hover {
   /* Scale the whole card up and lift it with a heavier shadow */
-  transform: scale(1.06);
+  transform: scale(1.2);
   z-index: 10; /* floats above neighbouring cards */
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,0.14),

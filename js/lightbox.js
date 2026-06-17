@@ -25,6 +25,11 @@ function toSeconds(val) {
 // Find all video cards and attach click handlers
 document.querySelectorAll('.video-card').forEach(card => {
   card.addEventListener('click', () => {
+    if (card.dataset.externalUrl) {
+      window.open(card.dataset.externalUrl, '_blank', 'noopener');
+      return;
+    }
+
     const id    = card.dataset.videoId;
     const start = toSeconds(card.dataset.start);
     const end   = toSeconds(card.dataset.end);

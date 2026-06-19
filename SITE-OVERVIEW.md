@@ -114,7 +114,15 @@ the rotation and scaleX — the inner img only has its src swapped, so the pivot
 - `sitemap.xml` submitted to Google Search Console
 - `llms.txt` at site root — plain-language context file for AI crawlers
 - Google Search Console verified (HTML file method)
-- Domain: `www.dareolson.com` is canonical; `dareolson.com` redirects via GitHub Pages
+- Domain: `dareolson.com` is canonical; `www.dareolson.com` 301-redirects to it via GitHub Pages (fixed 2026-06-19 — canonical tags, og:url, og:image, and JSON-LD `url` previously pointed to `www`, contradicting the actual redirect direction)
+
+## Session Log
+
+### 2026-06-19 — GSC Audit + Canonical Mismatch Fix
+- GSC: 1/12 indexed. Diagnosed `landing-page/` and `original-works/` as working redirect stubs (meta-refresh + canonical back to `/`), not abandoned pages — correct GitHub Pages workaround for lack of server-side 301s
+- Found and fixed real bug: `index.html`, `pages/about.html`, `pages/contact.html`, `pages/work/index.html` all had canonical/og:url/og:image/JSON-LD pointing to `www.dareolson.com`, but the live server redirects `www` → bare domain. Fixed all to bare domain to match
+- Submitted Request Indexing for `/pages/work/` via GSC URL Inspection — hit daily quota before doing `/pages/about.html` and `/pages/contact.html`
+- TODO next session: request indexing for the remaining 2 real pages; ~6 unaccounted ghost URLs from a previous site version still showing in GSC (404 + crawled-not-indexed buckets) — not urgent, will decay naturally
 
 ---
 

@@ -48,7 +48,7 @@ HEAD = """<!DOCTYPE html>
   <meta property="og:url" content="{url}">
   <meta property="og:type" content="{ogtype}">
   <meta property="og:image" content="{ogimage}">
-{jsonld}  <link rel="stylesheet" href="../../css/style.css">
+{extras}{jsonld}  <link rel="stylesheet" href="../../css/style.css">
   <link rel="stylesheet" href="../../css/work.css">
   <link rel="stylesheet" href="../../css/writing.css">
   <link rel="preload" href="../../fonts/newsreader-400-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -67,6 +67,52 @@ TAIL = """
 
 def esc(s):
     return html.escape(s, quote=True)
+
+PERSON_ID = SITE + "/#derek"
+ORG_ID = SITE + "/#grain-and-thunder"
+# One identity, used on every page, so search engines connect the byline, the company, and the awards to the same person.
+PERSON = {
+    "@type": "Person", "@id": PERSON_ID, "name": "Derek Olson", "alternateName": ["Dare Olson", "Derek \u201cDare\u201d Olson"],
+    "url": SITE + "/pages/about.html", "mainEntityOfPage": SITE + "/pages/about.html",
+    "jobTitle": "Founder and Creative Director, Grain and Thunder; journalist; filmmaker; developer",
+    "description": "Derek \u201cDare\u201d Olson is a journalist, filmmaker, and developer in Minot, North Dakota. He is the founder of Grain and Thunder and a former investigative reporter at OC Weekly.",
+    "worksFor": {"@id": ORG_ID},
+    "award": [
+        "Bronze, 47th Annual Telly Awards, for the animated pilot Millennial Taekwondo Tortoises",
+        "Honorable mention, Entertainment Feature, Los Angeles Press Club Southern California Journalism Awards",
+        "First place, Best Feature Story, Nevada Press Association Better Newspaper Contest",
+    ],
+    "knowsAbout": ["investigative journalism", "documentary film", "cinematography", "web development"],
+    "address": {"@type": "PostalAddress", "addressLocality": "Minot", "addressRegion": "ND", "addressCountry": "US"},
+    "sameAs": ["https://grainandthunder.com", "https://www.grainandthunder.com/press/telly-47", "https://www.linkedin.com/in/dareolson",
+               "https://github.com/dareolson", "https://www.youtube.com/@dareolson"],
+}
+ORG_GT = {"@type": "Organization", "@id": ORG_ID, "name": "Grain and Thunder", "url": "https://grainandthunder.com",
+          "description": "A documentary and commercial production company in Minot, North Dakota, founded by Derek Olson.",
+          "founder": {"@id": PERSON_ID}, "sameAs": ["https://www.youtube.com/@GrainAndThunder"]}
+PUBLISHER = {"@type": "NewsMediaOrganization", "name": "OC Weekly", "url": "https://www.ocweekly.com"}
+BUILD_DATE = datetime.date.today().isoformat()
+PORTRAIT = "img/writing/derek-journalist.webp"
+
+
+def trim(t, n=155):
+    t = re.sub(r"\s+", " ", t).strip()
+    if len(t) <= n:
+        return t
+    cut = t[:n].rsplit(" ", 1)[0].rstrip(",;:\u2014-")
+    return cut + "\u2026"
+
+
+def seo_extras(url, title, desc, image, image_alt, article=None):
+    """Open Graph, Twitter card, robots, and article tags."""
+    x = '  <meta property="og:site_name" content="Derek Olson">\n  <meta property="og:locale" content="en_US">\n'
+    x += '  <meta property="og:image:alt" content="%s">\n' % esc(image_alt)
+    x += '  <meta name="twitter:card" content="summary_large_image">\n  <meta name="twitter:title" content="%s">\n  <meta name="twitter:description" content="%s">\n  <meta name="twitter:image" content="%s">\n' % (esc(title), esc(desc), image)
+    x += '  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">\n'
+    if article:
+        x += '  <meta property="article:published_time" content="%s">\n  <meta property="article:modified_time" content="%s">\n' % (article["date"], BUILD_DATE)
+        x += '  <meta property="article:author" content="%s/pages/about.html">\n  <meta property="article:section" content="%s">\n' % (SITE, esc(article["section"]))
+    return x
 
 
 def norm(s):
@@ -194,19 +240,33 @@ def story_meta(a):
 
 def story_page(s, older, newer):
     url = "%s/pages/writing/%s.html" % (SITE, s["slug"])
-    desc = s["dek"] or re.sub(r"\s+", " ", s["blocks"][0])[:155]
-    og = SITE + "/" + (s["cover_img"] or "img/og-image.png")
-    ld = {"@context": "https://schema.org", "@type": "NewsArticle", "headline": s["title"], "description": desc,
-          "author": {"@type": "Person", "name": "Derek Olson", "url": SITE}, "publisher": {"@type": "Organization", "name": "OC Weekly"},
-          "datePublished": s["date"], "mainEntityOfPage": url, "image": og}
+    desc = trim(blurb(s) or s["dek"] or s["blocks"][0])
+    img = SITE + "/" + (s["cover_img"] or PORTRAIT)
+    imgs = [img] + ([SITE + "/" + PORTRAIT] if s["cover_img"] else [])
+    section = "Cover story" if s["cover_story"] else "Features and news"
+    long_tag = s["title"] + " | Derek Olson, OC Weekly"
+    ttl = long_tag if len(long_tag) <= 64 else EDITORIAL.get("seo_titles", {}).get(s["slug"], s["title"]) + " | Derek Olson"
+    article = {
+        "@type": "NewsArticle", "@id": url + "#article", "url": url, "mainEntityOfPage": {"@type": "WebPage", "@id": url},
+        "headline": s["title"][:110], "name": s["title"], "description": desc, "inLanguage": "en-US", "isAccessibleForFree": True,
+        "datePublished": s["date"], "dateModified": BUILD_DATE, "wordCount": s["words"], "articleSection": section,
+        "author": dict(PERSON), "creator": {"@id": PERSON_ID}, "publisher": PUBLISHER, "image": imgs,
+    }
     if s["archive"]:
-        ld["isBasedOn"] = s["archive"]
+        article["isBasedOn"] = s["archive"]
+        article["sameAs"] = [s["archive"]] + ([s["live"]] if s["live"] else [])
+    crumbs = {"@type": "BreadcrumbList", "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Derek Olson", "item": SITE + "/"},
+        {"@type": "ListItem", "position": 2, "name": "Writing", "item": SITE + "/pages/writing/"},
+        {"@type": "ListItem", "position": 3, "name": s["title"], "item": url}]}
+    ld = {"@context": "https://schema.org", "@graph": [article, crumbs, ORG_GT]}
     jsonld = '  <script type="application/ld+json">\n  %s\n  </script>\n' % json.dumps(ld, ensure_ascii=False)
-    h = HEAD.format(title=esc(s["title"] + " | Derek Olson"), desc=esc(desc), url=url, ogtype="article",
-                    ogimage=og, jsonld=jsonld, nav=NAV.format(r="../../"))
-    meta = ["By Derek Olson", "OC Weekly"]
+    extras = seo_extras(url, ttl, desc, img, (s["cover_meta"] or {}).get("alt", "Derek Olson, journalist"), {"date": s["date"], "section": section})
+    h = HEAD.format(title=esc(ttl), desc=esc(desc), url=url, ogtype="article", ogimage=img, extras=extras, jsonld=jsonld, nav=NAV.format(r="../../"))
+    byline = '<span>By <a rel="author" href="../about.html">Derek Olson</a></span>'
+    meta = [byline, "OC Weekly"]
     if SHOW_DATES:
-        meta.append(fmt_date(s["date"]))
+        meta.append('<time datetime="%s">%s</time>' % (s["date"], fmt_date(s["date"])))
     meta.append("%d min read" % s["mins"])
     tags = []
     if s["cover_story"]:
@@ -220,7 +280,7 @@ def story_page(s, older, newer):
     h += '        <h1 class="story-title">%s</h1>\n' % esc(s["title"])
     if s["dek"]:
         h += '        <p class="story-dek">%s</p>\n' % esc(s["dek"])
-    h += '        <p class="story-meta">%s</p>\n      </div>\n' % " &middot; ".join(esc(m) for m in meta)
+    h += '        <p class="story-meta">%s</p>\n      </div>\n' % " &middot; ".join(meta)
     if s["cover_img"]:
         c = s["cover_meta"] or {}
         h += ('      <figure class="story-cover"><img src="../../%s" alt="%s" decoding="async" fetchpriority="high"><figcaption>%s</figcaption></figure>\n'
@@ -331,8 +391,23 @@ def index_page(stories):
     brief = sorted([s for s in stories if not s["cover_story"]], key=lambda s: s["date"], reverse=True)
     url = SITE + "/pages/writing/"
     intro = PUB["standfirst"]
-    h = HEAD.format(title="Writing | Derek Olson", desc=esc(intro), url=url, ogtype="website",
-                    ogimage=SITE + "/img/og-image.png", jsonld="", nav=NAV.format(r="../../"))
+    ttl = "Writing | Derek Olson: investigative and feature journalism"
+    desc = "Cover stories and features by Derek Olson, a former investigative reporter at OC Weekly, in full, with links to the archived originals."
+    img = SITE + "/" + PORTRAIT
+    items = sorted(stories, key=lambda x: x["date"], reverse=True)
+    ld = {"@context": "https://schema.org", "@graph": [
+        {"@type": "CollectionPage", "@id": url + "#page", "url": url, "name": "Writing by Derek Olson", "description": desc, "inLanguage": "en-US",
+         "isPartOf": {"@type": "WebSite", "@id": SITE + "/#website", "url": SITE, "name": "Derek Olson"},
+         "about": {"@id": PERSON_ID}, "author": dict(PERSON), "primaryImageOfPage": {"@type": "ImageObject", "url": img},
+         "mainEntity": {"@type": "ItemList", "numberOfItems": len(items), "itemListElement": [
+             {"@type": "ListItem", "position": i + 1, "url": "%s/pages/writing/%s.html" % (SITE, st["slug"]), "name": st["title"]} for i, st in enumerate(items)]}},
+        {"@type": "BreadcrumbList", "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Derek Olson", "item": SITE + "/"},
+            {"@type": "ListItem", "position": 2, "name": "Writing", "item": url}]},
+        ORG_GT]}
+    jsonld = '  <script type="application/ld+json">\n  %s\n  </script>\n' % json.dumps(ld, ensure_ascii=False)
+    extras = seo_extras(url, ttl, desc, img, "Derek Olson at a desk on an old rotary phone, with a desk lamp beside him")
+    h = HEAD.format(title=esc(ttl), desc=esc(desc), url=url, ogtype="website", ogimage=img, extras=extras, jsonld=jsonld, nav=NAV.format(r="../../"))
     h += '  <main id="writing-page">\n'
     h += '    <header class="writing-hero">\n      <div class="writing-hero-text">\n        <h1 class="page-title">Writing</h1>\n        <p class="lede">%s</p>\n      </div>\n' % esc(intro)
     h += '      <figure class="writing-hero-photo"><img src="../../img/writing/derek-journalist.webp" width="1200" height="1200" alt="Derek Olson at a desk in a dim room, on the phone, with an old rotary telephone and a desk lamp" decoding="async" fetchpriority="high"></figure>\n    </header>\n'
@@ -357,6 +432,12 @@ def main():
         open(os.path.join(OUT, s["slug"] + ".html"), "w", encoding="utf-8").write(story_page(s, older, newer))
         print("%-62s %5d words  %s%s%s" % (s["slug"][:62], s["words"], "cover " if s["cover_story"] else "", "[cover art] " if s["cover_img"] else "", "[art] " if s["art"] else ""))
     open(os.path.join(OUT, "index.html"), "w", encoding="utf-8").write(index_page(stories))
+    # sitemap for the writing pages (submit https://dareolson.com/sitemap-writing.xml in Search Console)
+    rows = [("%s/pages/writing/" % SITE, "0.9")] + [("%s/pages/writing/%s.html" % (SITE, st["slug"]), "0.8" if st["cover_story"] else "0.6") for st in stories]
+    xml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+    for loc, pr in rows:
+        xml += "  <url>\n    <loc>%s</loc>\n    <lastmod>%s</lastmod>\n    <changefreq>yearly</changefreq>\n    <priority>%s</priority>\n  </url>\n" % (loc, BUILD_DATE, pr)
+    open(os.path.join(ROOT, "sitemap-writing.xml"), "w", encoding="utf-8").write(xml + "</urlset>\n")
 
 
 if __name__ == "__main__":

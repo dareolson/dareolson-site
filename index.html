@@ -20,20 +20,50 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Derek Olson",
-    "alternateName": "Dare Olson",
-    "url": "https://dareolson.com",
-    "email": "derek@grainandthunder.com",
-    "jobTitle": ["Full-Stack Developer", "Director", "Cinematographer"],
-    "worksFor": {
-      "@type": "Organization",
-      "name": "Grain and Thunder"
-    },
-    "sameAs": [
-      "https://www.linkedin.com/in/dareolson",
-      "https://www.youtube.com/@dareolson",
-      "https://github.com/dareolson"
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://dareolson.com/#website",
+        "url": "https://dareolson.com",
+        "name": "Derek Olson",
+        "alternateName": "Dare Olson",
+        "publisher": {"@id": "https://dareolson.com/#derek"}
+      },
+      {
+        "@type": "Person",
+        "@id": "https://dareolson.com/#derek",
+        "name": "Derek Olson",
+        "alternateName": ["Dare Olson", "Derek “Dare” Olson"],
+        "url": "https://dareolson.com/pages/about.html",
+        "mainEntityOfPage": "https://dareolson.com",
+        "email": "derek@grainandthunder.com",
+        "jobTitle": "Founder and Creative Director, Grain and Thunder; journalist; filmmaker; developer",
+        "description": "Derek “Dare” Olson is a journalist, filmmaker, and developer in Minot, North Dakota. He is the founder of Grain and Thunder and a former investigative reporter at OC Weekly.",
+        "worksFor": {"@id": "https://dareolson.com/#grain-and-thunder"},
+        "award": [
+          "Bronze, 47th Annual Telly Awards, for the animated pilot Millennial Taekwondo Tortoises",
+          "Honorable mention, Entertainment Feature, Los Angeles Press Club Southern California Journalism Awards",
+          "First place, Best Feature Story, Nevada Press Association Better Newspaper Contest"
+        ],
+        "knowsAbout": ["investigative journalism", "documentary film", "cinematography", "web development"],
+        "address": {"@type": "PostalAddress", "addressLocality": "Minot", "addressRegion": "ND", "addressCountry": "US"},
+        "sameAs": [
+          "https://grainandthunder.com",
+          "https://www.grainandthunder.com/press/telly-47",
+          "https://www.linkedin.com/in/dareolson",
+          "https://github.com/dareolson",
+          "https://www.youtube.com/@dareolson"
+        ]
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://dareolson.com/#grain-and-thunder",
+        "name": "Grain and Thunder",
+        "url": "https://grainandthunder.com",
+        "description": "A documentary and commercial production company in Minot, North Dakota, founded by Derek Olson.",
+        "founder": {"@id": "https://dareolson.com/#derek"},
+        "sameAs": ["https://www.youtube.com/@GrainAndThunder"]
+      }
     ]
   }
   </script>

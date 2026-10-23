@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐸</text></svg>">
+  <title>The Frog — Interactive Animation Case Study | Dare Olson</title>
+  <meta name="description" content="How the animated frog on dareolson.com works: layered artwork, cursor-tracking eyes, procedural blinking, and a tongue that rotates and stretches to its target. Vanilla JavaScript, zero dependencies.">
+  <meta name="author" content="Derek Olson">
+  <link rel="canonical" href="https://dareolson.com/pages/builds/frog.html">
+  <meta property="og:title" content="The Frog — Interactive Animation Case Study">
+  <meta property="og:description" content="Layered artwork, cursor tracking, and coordinate math in one vanilla JavaScript file.">
+  <meta property="og:url" content="https://dareolson.com/pages/builds/frog.html">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://dareolson.com/img/og-image.png">
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/work.css">
+  <link rel="stylesheet" href="../../css/builds.css">
+</head>
+<body class="interior">
+  <nav id="main-nav">
+    <a href="../../index.html">HOME</a>
+    <a href="index.html" class="nav-active">BUILDS</a>
+    <a href="../work/index.html">FILM</a>
+    <a href="../about.html">ABOUT</a>
+    <a href="../contact.html">CONTACT</a>
+  </nav>
+
+  <main id="builds-page" class="case">
+    <a class="back-link" href="index.html">&larr; All builds</a>
+    <h1 class="page-title" style="margin-top:2rem">The Frog</h1>
+
+    <p class="lede">The character on this site's homepage follows your cursor with its eyes, blinks on a random schedule, and eats the fly that stands in for your pointer. It is one JavaScript file with no framework and no libraries.</p>
+
+    <dl class="meta-row">
+      <div><dt>Role</dt><dd>Illustration, interaction design, development</dd></div>
+      <div><dt>Stack</dt><dd>Vanilla JavaScript, CSS, static HTML</dd></div>
+      <div><dt>Dependencies</dt><dd>None</dd></div>
+      <div><dt>Live</dt><dd><a href="../../index.html" style="color:var(--text)">The homepage</a></dd></div>
+    </dl>
+
+    <h2>The goal</h2>
+    <div class="prose">
+      <p>A portfolio site is usually a template with a name on it. I wanted the first five seconds to show that the person behind it makes things move, and I wanted that to be the site itself, not a screenshot of something I made elsewhere. The constraint was that it had to feel like a character with a personality and still load fast, work on a phone, and never get in the way of navigation.</p>
+    </div>
+
+    <h2>How it is built</h2>
+    <div class="prose">
+      <p>I drew the frog in Photoshop as separate 1920 by 1080 transparent layers: body, mouth in four stages, left and right eyeballs, eyelids in three states, and two tongue frames. They stack in one container, so a body part moves by swapping an image or changing a transform, with no redraw of the whole figure. The art is black on transparent and one CSS filter, <em>invert(1)</em>, turns it white on the dark background.</p>
+      <p>The static parts (body, legs, nose) are baked into one layer, so only the pieces that actually animate are separate elements.</p>
+    </div>
+
+    <h2>Four behaviors, four small systems</h2>
+    <div class="prose">
+      <p><em>Eye tracking.</em> The pointer position is normalized across the viewport and mapped to a small offset range, so the eyeballs shift inside their sockets. The range and resting position differ for touch and mouse devices, because the frog sits differently on a phone.</p>
+      <p><em>Blinking.</em> A scheduler cycles both eyelids through half closed, closed, half closed, open, then picks the next blink at a random interval between two and six seconds. The first blink fires about a second and a half after load so a visitor knows the frog is alive.</p>
+      <p><em>The fly.</em> On desktop the fly is the cursor. After the frog eats it, a new one enters from a random screen edge and wanders on its own by easing toward random targets, until the mouse moves and takes it back. On touch screens there is no cursor, so the fly always wanders and a tap triggers the catch.</p>
+      <p><em>The tongue.</em> This was the hard part, and it is plain geometry. The mouth is a known point in the original artwork, which the code converts into screen coordinates for any viewport, accounting for how the artwork is letterboxed and for the container's scale. The tongue is rotated around that pivot by the angle to the fly and stretched along its own axis by the ratio of distance to natural length, so it reaches targets near and far.</p>
+    </div>
+
+    <pre>const angle   = Math.atan2(dy, dx) * 180 / Math.PI;
+const stretch = Math.max(1, dist / tongueNaturalLength);
+wrapper.style.transform = `rotate(${angle}deg) scaleX(${stretch})`;</pre>
+
+    <h2>The bug worth mentioning</h2>
+    <div class="prose">
+      <p>Browsers reset an image's transform origin when its source changes, so the tongue's pivot drifted every time a new frame loaded. The fix is structural: the rotation and stretch live on a wrapper element, and only the inner image swaps its source. The pivot never moves because the element that owns it never changes.</p>
+      <p>Frames are preloaded so source swaps are instant, and the eat sequence runs on <em>requestAnimationFrame</em> with timestamps rather than chained timeouts, so a slow paint cannot skip a frame.</p>
+    </div>
+
+    <h2>Product decisions</h2>
+    <ul class="prose">
+      <li>Clicking a nav link triggers the eat, then navigates. The animation accompanies the click and cannot trap the visitor.</li>
+      <li>The hidden cursor and the fly exist on the homepage only. Interior pages use a normal pointer.</li>
+      <li>No framework. A static page that animates a handful of images does not need a runtime, and it keeps the page light.</li>
+    </ul>
+
+    <h2>What I can build for a client</h2>
+    <div class="prose">
+      <p>The same techniques apply to work that agencies and brands actually ask for: a mascot or product character that reacts to the visitor, scroll-driven storytelling, animated explainers, interactive landing pages, and branded micro-interactions. I draw, animate, and write the code, so there is no handoff between a designer and a developer.</p>
+    </div>
+
+    <div class="cta-block prose">
+      <p>Need something like this for a brand or a campaign? <a href="../contact.html">Tell me what you have in mind</a>.</p>
+    </div>
+  </main>
+
+  <script src="../../js/main.js?v=3"></script>
+  <script data-goatcounter="https://dareolson.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

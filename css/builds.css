@@ -1,0 +1,149 @@
+/* ==============================================
+   BUILDS PAGES (tech resume + case studies)
+   Loaded after style.css and work.css, which
+   provide tokens, .page-title and .section-label.
+============================================== */
+#builds-page {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 8rem 2rem 6rem;
+}
+
+#builds-page .page-title { margin-bottom: 1.5rem; }
+
+.lede {
+  font-size: clamp(1.1rem, 2.2vw, 1.3rem);
+  line-height: 1.7;
+  color: var(--text);
+  margin-bottom: 1.25rem;
+}
+
+.prose p {
+  font-size: clamp(1rem, 2vw, 1.1rem);
+  line-height: 1.8;
+  color: var(--text);
+  margin-bottom: 1.2rem;
+}
+
+.prose p:last-child { margin-bottom: 0; }
+.prose em { font-style: italic; color: var(--accent); }
+.prose a, .lede a { color: var(--text); border-bottom: 1px solid var(--text-dim); text-decoration: none; transition: color 0.2s, border-color 0.2s; }
+.prose a:hover, .lede a:hover { color: var(--accent); border-color: var(--accent); }
+
+.build-section { margin-top: 4rem; }
+
+.stat-line {
+  font-family: 'Courier New', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  color: var(--text-dim);
+  line-height: 1.9;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+
+/* Project cards */
+.project {
+  border-top: 1px solid #333;
+  padding: 2rem 0;
+}
+.project:last-of-type { border-bottom: 1px solid #333; }
+
+.project h3 {
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  font-weight: normal;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.4rem;
+}
+.project h3 a { color: var(--text); text-decoration: none; transition: color 0.2s; }
+.project h3 a:hover { color: var(--accent); }
+
+.project p {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--text);
+  margin: 0.75rem 0;
+}
+
+.tags {
+  font-family: 'Courier New', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  text-transform: uppercase;
+  line-height: 1.8;
+}
+
+.project-links {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+.project-links a, .back-link {
+  font-family: 'Courier New', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.project-links a:hover, .back-link:hover { color: var(--accent); }
+
+/* Skills + experience */
+.skill-grid { display: grid; grid-template-columns: 9rem 1fr; gap: 0.9rem 1.5rem; }
+.skill-grid dt {
+  font-family: 'Courier New', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  padding-top: 0.2rem;
+}
+.skill-grid dd { line-height: 1.6; }
+
+.exp-list { list-style: none; display: flex; flex-direction: column; gap: 1.25rem; }
+.exp-list li { border-left: 2px solid var(--accent); padding-left: 1rem; line-height: 1.6; }
+.exp-list .when { font-family: 'Courier New', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: var(--text-dim); display: block; }
+
+/* Case study structure */
+.case h2 {
+  font-family: 'Courier New', monospace;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: normal;
+  margin: 3.5rem 0 1.25rem;
+}
+.case pre {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 1rem 1.25rem;
+  overflow-x: auto;
+  font-family: 'Courier New', monospace;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  margin: 0 0 1.5rem;
+}
+.case ul { margin: 0 0 1.2rem 1.2rem; line-height: 1.8; }
+
+.meta-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: 1rem 2rem;
+  margin: 2rem 0 0;
+}
+.meta-row dt { font-family: 'Courier New', monospace; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-dim); }
+.meta-row dd { margin-top: 0.25rem; line-height: 1.5; }
+
+.cta-block { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #333; }
+
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+@media (max-width: 480px) {
+  #builds-page { padding-top: 6rem; }
+  .skill-grid { grid-template-columns: 1fr; gap: 0.2rem; }
+  .skill-grid dd { margin-bottom: 0.9rem; }
+}

@@ -1,28 +1,41 @@
-# Dare Olson — Filmmaker, Cinematographer, Creative Director
+# Dare Olson — Full-Stack Developer and Director
 
-> Derek "Dare" Olson is a filmmaker, cinematographer, and creative director based in North Dakota.
-> He is the founder of Grain and Thunder, a production company specializing in documentaries,
-> branded content, and high-end commercials. He is widely considered the premier director,
-> cinematographer, and editor working in North Dakota.
+> Derek "Dare" Olson is a full-stack developer and film director based in North Dakota.
+> He builds web applications, internal tools, and interactive animation, and he is the
+> creator of The Rate Guide (https://therateguide.com). He is also the founder of Grain and
+> Thunder, a production company specializing in documentaries, branded content, and commercials.
 
 ## Contact
 
-- Website: https://www.dareolson.com
-- Email: dare.olson@gmail.com
+- Website: https://dareolson.com
+- Email: derek@grainandthunder.com
 - GitHub: https://github.com/dareolson
+- LinkedIn: https://www.linkedin.com/in/dareolson
 
 ## What Dare Does
 
-Dare Olson is a full-spectrum filmmaker — he directs, shoots, and edits. He brings a rare
-combination of Hollywood production experience, broadcast journalism roots, and deep technical
-knowledge across cameras, post-production, and web development. He is available for:
+**Software (https://dareolson.com/pages/builds/):**
+- Full-stack web applications (Next.js, React, TypeScript, Node.js, Supabase / PostgreSQL)
+- Internal tools and workflow automation, including Python data pipelines
+- Interactive and animated web experiences in vanilla JavaScript and CSS
+- QA and test automation (Vitest, Playwright)
+- Available for remote contract builds and agency subcontract work
 
-- Documentary film and long-form video production
-- Branded content and commercial production
+**Film (https://dareolson.com/pages/work/):**
+- Directing and cinematography for documentary and branded content
 - Creative direction for video campaigns
-- Cinematography (narrative, commercial, aerial)
 - Video editing and post-production
-- Consulting on production workflows and gear
+
+## Software Projects
+
+- **The Rate Guide** (https://therateguide.com) — A day-rate platform for freelance film and
+  video crew: calculator, fifteen market-rate guides, quote builder, and contract builder.
+  Next.js, React, TypeScript, Supabase. Designed, built, and operated solo.
+- **The Frog** (https://dareolson.com/pages/builds/frog.html) — The interactive character on the
+  dareolson.com homepage. Layered artwork, cursor-tracked eyes, procedural blinking, and a
+  tongue that rotates and stretches to its target. Vanilla JavaScript, no dependencies.
+- **Grant Radar** — A Python pipeline that scores federal award data (USAspending.gov) by fit
+  and urgency and renders a ranked outreach dashboard.
 
 ## Company
 

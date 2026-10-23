@@ -117,9 +117,11 @@ body.page-visible {
     justify-content: center;
     background: rgba(10, 10, 10, 0.95);
     padding: 1rem 0;
-    gap: 1.5rem;
+    gap: 1rem;
     font-size: 0.65rem;
   }
+
+  #main-nav a { letter-spacing: 0.12em; }
 
   #identity {
     bottom: 2rem;
@@ -183,4 +185,19 @@ body.page-visible {
 #cta:hover {
   color: var(--accent);
   border-color: var(--accent);
+}
+
+/* ==============================================
+   ACCESSIBILITY
+   Visible keyboard focus; calmer page fades when
+   the visitor asks for reduced motion.
+============================================== */
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body { transition: none; }
+  #layer-l-eyeball, #layer-r-eyeball { transition: none; }
 }

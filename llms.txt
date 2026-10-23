@@ -16,7 +16,7 @@
 
 **Software (https://dareolson.com/pages/builds/):**
 - Full-stack web applications (Next.js, React, TypeScript, Node.js, Supabase / PostgreSQL)
-- Internal tools and workflow automation, including Python data pipelines
+- Internal tools and workflow automation (Python and JavaScript)
 - Interactive and animated web experiences in vanilla JavaScript and CSS
 - QA and test automation (Vitest, Playwright)
 - Available for remote contract builds and agency subcontract work
@@ -34,8 +34,6 @@
 - **The Frog** (https://dareolson.com/pages/builds/frog.html) — The interactive character on the
   dareolson.com homepage. Layered artwork, cursor-tracked eyes, procedural blinking, and a
   tongue that rotates and stretches to its target. Vanilla JavaScript, no dependencies.
-- **Grant Radar** — A Python pipeline that scores federal award data (USAspending.gov) by fit
-  and urgency and renders a ranked outreach dashboard.
 
 ## Company
 

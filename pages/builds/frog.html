@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="../../css/style.css">
   <link rel="stylesheet" href="../../css/work.css">
   <link rel="stylesheet" href="../../css/builds.css">
+  <link rel="preload" href="../../fonts/newsreader-400-latin.woff2" as="font" type="font/woff2" crossorigin>
 </head>
 <body class="interior">
   <nav id="main-nav">
@@ -28,7 +29,7 @@
 
   <main id="builds-page" class="case">
     <a class="back-link" href="index.html">&larr; All builds</a>
-    <h1 class="page-title" style="margin-top:2rem">The Frog</h1>
+    <h1 class="page-title">The Frog</h1>
 
     <p class="lede">The character on this site's homepage follows your cursor with its eyes, blinks on a random schedule, and eats the fly that stands in for your pointer. It is one JavaScript file with no framework and no libraries.</p>
 
@@ -45,6 +46,7 @@
     </div>
 
     <h2>How it is built</h2>
+    <div class="layers" role="group" aria-label="The frog's layers, then all stacked together"><figure class="tile"><div class="frame"><div class="stack" aria-hidden="true"><img src="../../FrogFix/body-static.png" alt=""></div></div><figcaption>Body, legs, nose</figcaption></figure><figure class="tile"><div class="frame"><div class="stack" aria-hidden="true"><img src="../../FrogFix/Mouth-1.png" alt=""></div></div><figcaption>Mouth</figcaption></figure><figure class="tile"><div class="frame"><div class="stack" aria-hidden="true"><img src="../../FrogFix/R-eyeball.png" alt=""><img src="../../FrogFix/L-eyeball.png" alt=""></div></div><figcaption>Eyeballs</figcaption></figure><figure class="tile"><div class="frame"><div class="stack" aria-hidden="true"><img src="../../FrogFix/R-eyelid-1.png" alt=""><img src="../../FrogFix/L-eyelid-1.png" alt=""></div></div><figcaption>Eyelids</figcaption></figure><figure class="tile"><div class="frame"><div class="stack" aria-hidden="true"><img src="../../FrogFix/Tongue-2.png" alt=""></div></div><figcaption>Tongue</figcaption></figure><figure class="tile result"><div class="frame" data-eyes><div class="stack" aria-hidden="true"><img src="../../FrogFix/body-static.png" alt=""><img src="../../FrogFix/Mouth-1.png" alt=""><img src="../../FrogFix/R-eyeball.png" alt="" class="eye" data-side="r"><img src="../../FrogFix/L-eyeball.png" alt="" class="eye" data-side="l"><img src="../../FrogFix/R-eyelid-1.png" alt=""><img src="../../FrogFix/L-eyelid-1.png" alt=""></div></div><figcaption>Stacked</figcaption></figure></div>
     <div class="prose">
       <p>I drew the frog in Photoshop as separate 1920 by 1080 transparent layers: body, mouth in four stages, left and right eyeballs, eyelids in three states, and two tongue frames. They stack in one container, so a body part moves by swapping an image or changing a transform, with no redraw of the whole figure. The art is black on transparent and one CSS filter, <em>invert(1)</em>, turns it white on the dark background.</p>
       <p>The static parts (body, legs, nose) are baked into one layer, so only the pieces that actually animate are separate elements.</p>
@@ -86,6 +88,7 @@ wrapper.style.transform = `rotate(${angle}deg) scaleX(${stretch})`;</pre>
   </main>
 
   <script src="../../js/main.js?v=3"></script>
+  <script src="../../js/figure.js?v=1"></script>
   <script data-goatcounter="https://dareolson.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>

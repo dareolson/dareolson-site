@@ -26,13 +26,13 @@
 }
 
 #about-bio em {
-  font-style: italic;
+  font-style: normal;
   color: var(--accent);
 }
 
 /* Client list */
 .client-list {
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono);
   font-size: 0.75rem;
   letter-spacing: 0.1em;
   color: var(--text-dim);
@@ -50,7 +50,7 @@
 }
 
 .recognition-list li {
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono);
   font-size: 0.72rem;
   letter-spacing: 0.08em;
   color: var(--text-dim);
@@ -60,7 +60,7 @@
 }
 
 .recognition-list em {
-  font-style: italic;
+  font-style: normal;
   color: var(--text);
 }
 

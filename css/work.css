@@ -26,9 +26,10 @@ body.interior {
    PAGE TITLE
 ============================================== */
 .page-title {
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  font-weight: normal;
-  letter-spacing: 0.02em;
+  font-size: clamp(2.4rem, 6vw, 4.5rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
   color: var(--text);
   margin-bottom: 4rem;
 }
@@ -41,7 +42,7 @@ body.interior {
 }
 
 .section-label {
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono);
   font-size: 0.85rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -73,7 +74,7 @@ body.interior {
   background: none;
   border: 1px solid #333;
   color: var(--text-dim);
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono);
   font-size: 0.8rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -202,7 +203,7 @@ body.interior {
 }
 
 .video-title {
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono);
   font-size: 0.78rem;
   letter-spacing: 0.08em;
   color: var(--text);
@@ -235,7 +236,7 @@ body.interior {
   background: none;
   border: 1px solid #333;
   color: var(--text-dim);
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono);
   font-size: 0.8rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -255,7 +256,7 @@ body.interior {
 .see-more {
   display: inline-block;
   margin-top: 1.5rem;
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono);
   font-size: 0.7rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -326,7 +327,7 @@ body.interior {
   cursor: pointer;
   padding: 0.25rem 0.5rem;
   transition: color 0.2s;
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono);
 }
 
 #lightbox-close:hover {

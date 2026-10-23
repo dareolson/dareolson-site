@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="../../css/style.css">
   <link rel="stylesheet" href="../../css/work.css">
   <link rel="stylesheet" href="../../css/builds.css">
+  <link rel="preload" href="../../fonts/newsreader-400-latin.woff2" as="font" type="font/woff2" crossorigin>
 </head>
 <body class="interior">
   <nav id="main-nav">
@@ -27,49 +28,57 @@
   </nav>
 
   <main id="builds-page">
-    <h1 class="page-title">Builds</h1>
+    <h1 class="page-title">Web apps, internal tools, and things that move.</h1>
 
-    <p class="lede">I build web applications, internal tools, and interactive animation, from the data model to the deployed product. I came to software after twenty years in production, so I start with how the work actually gets done and build the system around that.</p>
-    <p class="stat-line">Available for remote contract builds, agency subcontract work, and QA / test automation</p>
+    <p class="lede">I came to software after twenty years in production, so I start with how the work actually gets done, then build the system around it. Data model to deployed product.</p>
+    <p class="status">Open to remote contract builds, agency subcontract work, and QA / test automation.</p>
 
     <section class="build-section">
-      <h2 class="section-label">Selected projects</h2>
+      <h2>Selected projects</h2>
 
       <article class="project">
-        <h3>The Rate Guide</h3>
-        <p>A full-stack platform for freelance film and video crew: a day-rate calculator that works backwards from take-home pay, fifteen market-rate guides, a quote builder, and a contract builder with versioned clauses and document output. Designed, built, tested, deployed, and operated solo.</p>
-        <p class="tags">Next.js 16 · React 19 · TypeScript · Supabase / Postgres · Vercel · Resend · Playwright · Vitest</p>
-        <div class="project-links">
-          <a href="https://therateguide.com" target="_blank" rel="noopener">View live &#8599;</a>
+        <a class="media" href="https://therateguide.com" target="_blank" rel="noopener" aria-label="Open The Rate Guide">
+          <img src="../../img/builds/rate-guide-calculator.webp" width="1400" height="813" alt="The Rate Guide homepage: a day-rate calculator for film and video crew, dark interface with amber accents" loading="lazy" decoding="async">
+        </a>
+        <div class="project-body">
+          <h3>The Rate Guide</h3>
+          <p>A full-stack platform for freelance film and video crew: a day-rate calculator that works backwards from take-home pay, fifteen market-rate guides, a quote builder, and a contract builder with versioned clauses and document output. Designed, built, tested, deployed, and operated solo.</p>
+          <p class="tags"><span>Next.js 16</span> <span>React 19</span> <span>TypeScript</span> <span>Supabase / Postgres</span> <span>Vercel</span> <span>Playwright</span> <span>Vitest</span></p>
+          <div class="project-links"><a href="https://therateguide.com" target="_blank" rel="noopener">View live &#8599;</a></div>
         </div>
       </article>
 
       <article class="project">
-        <h3><a href="frog.html">The Frog</a></h3>
-        <p>The animated character on this site's homepage, built from layered artwork with cursor tracking, procedural blinking, and a tongue that rotates and stretches to hit a moving target. Vanilla JavaScript, no dependencies. The case study explains how it works and what similar interactions I can build for a client.</p>
-        <p class="tags">JavaScript · CSS · Interaction design · Animation</p>
-        <div class="project-links">
-          <a href="frog.html">Read case study</a>
-          <a href="../../index.html">See it on the homepage</a>
+        <a class="media frog-fig" href="frog.html" data-eyes aria-label="Read the Frog case study">
+          <div class="stack" aria-hidden="true"><img src="../../FrogFix/body-static.png" alt=""><img src="../../FrogFix/Mouth-1.png" alt=""><img src="../../FrogFix/R-eyeball.png" alt="" class="eye" data-side="r"><img src="../../FrogFix/L-eyeball.png" alt="" class="eye" data-side="l"><img src="../../FrogFix/R-eyelid-1.png" alt=""><img src="../../FrogFix/L-eyelid-1.png" alt=""></div>
+        </a>
+        <div class="project-body">
+          <h3><a href="frog.html">The Frog</a></h3>
+          <p>The character on this site's homepage, built from layered artwork with cursor-tracked eyes, procedural blinking, and a tongue that rotates and stretches to hit a moving target. Vanilla JavaScript, no dependencies. Move your cursor over it.</p>
+          <p class="tags"><span>JavaScript</span> <span>CSS</span> <span>Interaction design</span> <span>Animation</span></p>
+          <div class="project-links"><a href="frog.html">Read the case study</a><a href="../../index.html">See it on the homepage</a></div>
         </div>
       </article>
 
-      <article class="project">
-        <h3>Grant Radar</h3>
-        <p>A Python pipeline that pulls federal award data from USAspending.gov, scores each award by fit and by how soon its funding window closes, and renders a ranked outreach dashboard. It deliberately separates what the data shows from what it cannot show, and flags stale results.</p>
-        <p class="tags">Python · Public APIs · Data scoring · Scheduled automation</p>
+      <article class="project no-media">
+        <div class="project-body">
+          <h3>Grant Radar</h3>
+          <p>A Python pipeline that pulls federal award data from USAspending.gov, scores each award by fit and by how soon its funding window closes, and renders a ranked outreach dashboard. It keeps what the data shows separate from what it cannot show, and it flags stale results.</p>
+          <p class="tags"><span>Python</span> <span>Public APIs</span> <span>Data scoring</span> <span>Scheduled automation</span></p>
+        </div>
       </article>
     </section>
 
     <section class="build-section">
-      <h2 class="section-label">How I work</h2>
+      <h2>How I work</h2>
       <div class="prose">
-        <p>I use AI-assisted tooling heavily, and I keep the judgment human: I model the domain, decide what the system should refuse to do, and verify the result with unit, route-handler, and end-to-end tests that run against the deployed site. On the Rate Guide, one module is the single source of truth for market rates, and the API validates every input against it, so the guides, calculator, and job rules cannot drift apart.</p>
+        <p>I use AI-assisted tooling heavily and keep the judgment human: I model the domain, decide what the system should refuse to do, and verify the result with unit, route-handler, and end-to-end tests that run against the deployed site.</p>
+        <p>On the Rate Guide, one module is the single source of truth for market rates, and the API validates every input against it, so the guides, the calculator, and the job rules cannot drift apart.</p>
       </div>
     </section>
 
     <section class="build-section">
-      <h2 class="section-label">Skills</h2>
+      <h2>Skills</h2>
       <dl class="skill-grid">
         <dt>Front end</dt><dd>JavaScript, TypeScript, React, Next.js (App Router), HTML5, CSS, accessibility and reduced-motion handling</dd>
         <dt>Back end</dt><dd>Node.js, route handlers, Supabase / PostgreSQL, authentication, email delivery, Python</dd>
@@ -80,12 +89,12 @@
     </section>
 
     <section class="build-section">
-      <h2 class="section-label">Relevant experience</h2>
+      <h2>Relevant experience</h2>
       <ul class="exp-list">
-        <li><span class="when">2025 to present</span>Independent builder: The Rate Guide, Grant Radar, and the Grain and Thunder site</li>
-        <li><span class="when">2018</span>QA, Internet Brands: CarsDirect, Fodor's, WebMD</li>
-        <li><span class="when">2012 to 2017</span>In-house production supervisor, Disney's Maker Studios: oversaw stages and equipment for projects that cleared 100M+ views</li>
-        <li><span class="when">2023 to 2025</span>Adjunct professor, Minot State University: taught production and professional communications</li>
+        <li><span class="when">2025 to present</span> <span>Independent builder: The Rate Guide, Grant Radar, and the Grain and Thunder site</span></li>
+        <li><span class="when">2023 to 2025</span> <span>Adjunct professor, Minot State University: taught production and professional communications</span></li>
+        <li><span class="when">2018</span> <span>QA, Internet Brands: CarsDirect, Fodor's, WebMD</span></li>
+        <li><span class="when">2012 to 2017</span> <span>In-house production supervisor, Disney's Maker Studios: oversaw stages and equipment for projects that cleared 100M+ views</span></li>
       </ul>
     </section>
 
@@ -96,6 +105,7 @@
   </main>
 
   <script src="../../js/main.js?v=3"></script>
+  <script src="../../js/figure.js?v=1"></script>
   <script data-goatcounter="https://dareolson.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>

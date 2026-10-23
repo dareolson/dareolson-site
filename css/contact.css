@@ -12,7 +12,7 @@
 }
 
 .contact-line {
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono);
   font-size: 0.75rem;
   letter-spacing: 0.15em;
   color: var(--text-dim);
@@ -22,7 +22,7 @@
 .contact-email {
   display: block;
   font-size: clamp(1.2rem, 3vw, 2rem);
-  font-family: 'Georgia', serif;
+  font-family: var(--serif);
   color: var(--text);
   text-decoration: none;
   border-bottom: 1px solid #333;
@@ -43,7 +43,7 @@
 }
 
 .contact-links a {
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono);
   font-size: 0.7rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;

@@ -136,11 +136,11 @@ body.page-visible {
     justify-content: center;
     background: rgba(10, 10, 10, 0.95);
     padding: 1rem 0;
-    gap: 1rem;
+    gap: 0.8rem;
     font-size: 0.65rem;
   }
 
-  #main-nav a { letter-spacing: 0.08em; font-size: 0.72rem; }
+  #main-nav a { letter-spacing: 0.03em; font-size: 0.66rem; }
 
 }
 

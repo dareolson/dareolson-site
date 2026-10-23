@@ -1,0 +1,90 @@
+/* ==============================================
+   WRITING: index + story pages
+   Same tokens and scale as the rest of the site.
+============================================== */
+#writing-page, #story-page {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 9rem 2rem 7rem;
+}
+
+/* ---------- Index ---------- */
+.writing-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: 2.5rem 5rem;
+  align-items: center;
+}
+#writing-page .page-title { margin-bottom: 1.5rem; animation: rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both; }
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+#writing-page .lede { font-size: var(--fs-intro); line-height: 1.55; max-width: 28em; text-wrap: pretty; }
+.writing-hero-photo {
+  margin: 0; border: 1px solid var(--rule); border-radius: 3px; overflow: hidden; aspect-ratio: 1 / 1; background: #131210;
+  box-shadow: 0 1px 2px rgba(0,0,0,.5), 0 28px 56px -28px rgba(0,0,0,.75); max-width: 460px; justify-self: end; width: 100%;
+}
+.writing-hero-photo img { width: 100%; height: 100%; object-fit: cover; display: block; filter: sepia(0.14) saturate(1.05); }
+
+.writing-section { margin-top: 6.5rem; }
+.writing-section h2 {
+  font-size: var(--fs-h2); font-weight: 400; letter-spacing: -0.015em; line-height: 1.1;
+  border-top: 1px solid var(--rule); padding-top: 1.5rem; margin-bottom: 1.5rem;
+}
+.story-list { list-style: none; }
+.story-row {
+  display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: 0.5rem 3rem;
+  padding: 1.75rem 0; border-top: 1px solid var(--rule);
+  color: inherit; text-decoration: none;
+}
+.story-list li:first-child .story-row { border-top: 0; padding-top: 0.5rem; }
+.story-row .when { font-family: var(--mono); font-size: var(--fs-mono); color: var(--accent); padding-top: 0.45rem; }
+.story-row .what { display: grid; gap: 0.5rem; max-width: 42em; }
+.story-row strong { font-weight: 400; font-size: var(--fs-h3); line-height: 1.2; letter-spacing: -0.01em; color: var(--text); transition: color 0.2s; }
+.story-row .sub { font-size: var(--fs-body); line-height: 1.55; color: var(--text-mid); text-wrap: pretty; }
+.story-row .read { font-family: var(--mono); font-size: var(--fs-mono-sm); color: var(--text-dim); }
+.story-row:hover strong { color: var(--accent); }
+.story-row:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; }
+
+/* ---------- Story page ---------- */
+#story-page { padding-bottom: 6rem; }
+.back-link { font-family: var(--mono); font-size: var(--fs-mono); letter-spacing: 0.04em; color: var(--text-dim); text-decoration: none; transition: color .2s; }
+.back-link:hover { color: var(--accent); }
+.story-tag { font-family: var(--mono); font-size: var(--fs-mono); letter-spacing: 0.06em; color: var(--accent); margin: 2.5rem 0 1rem; }
+.story-title {
+  font-size: clamp(2.3rem, 5.4vw, 4rem); font-weight: 400; line-height: 1.05; letter-spacing: -0.022em;
+  text-wrap: balance; max-width: 18em; margin-top: 2.5rem; animation: rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+}
+.story-tag + .story-title { margin-top: 0; }
+.story-dek { font-size: var(--fs-intro); line-height: 1.45; color: var(--text-mid); max-width: 30em; margin-top: 1.25rem; text-wrap: balance; }
+.story-meta { font-family: var(--mono); font-size: var(--fs-mono); letter-spacing: 0.02em; color: var(--text-dim); margin: 1.75rem 0 3.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--rule); }
+.story-body { max-width: 36em; }
+.story-body p { font-size: clamp(1.15rem, 1.6vw, 1.3rem); line-height: 1.75; color: var(--text); margin-bottom: 1.5rem; }
+.story-body hr.break { border: 0; text-align: center; margin: 2.5rem 0; height: 1em; }
+.story-body hr.break::before { content: "* * *"; letter-spacing: 0.6em; color: var(--text-dim); font-size: 1rem; }
+.story-source { margin-top: 5rem; padding-top: 1.75rem; border-top: 1px solid var(--rule); max-width: 36em; }
+.story-source h2 { font-size: var(--fs-h3); font-weight: 400; margin-bottom: 0.6rem; }
+.story-source p { font-size: var(--fs-body); line-height: 1.6; color: var(--text-mid); margin-bottom: 1rem; }
+.story-source ul { list-style: none; display: grid; gap: 0.6rem; }
+.story-source a { font-family: var(--mono); font-size: var(--fs-mono); color: var(--text); text-decoration: none; border-bottom: 1px solid var(--accent); padding-bottom: 0.15rem; transition: color .2s; }
+.story-source a:hover { color: var(--accent); }
+.story-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 4.5rem; max-width: 36em; }
+.story-nav a { display: grid; gap: 0.3rem; text-decoration: none; color: var(--text); padding-top: 1.1rem; border-top: 1px solid var(--rule); transition: color .2s; }
+.story-nav a:last-child { text-align: right; }
+.story-nav .dir { font-family: var(--mono); font-size: var(--fs-mono-sm); color: var(--text-dim); }
+.story-nav .t { font-size: var(--fs-body); line-height: 1.3; }
+.story-nav a:hover .t { color: var(--accent); }
+
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 2px; }
+@media (prefers-reduced-motion: reduce) { .story-title, #writing-page .page-title { animation: none; } }
+
+@media (max-width: 860px) {
+  .writing-hero { grid-template-columns: 1fr; }
+  .writing-hero-photo { justify-self: start; max-width: 360px; }
+  .story-row { grid-template-columns: 1fr; gap: 0.35rem; }
+  .story-row .when { padding-top: 0; }
+}
+@media (max-width: 480px) {
+  #writing-page, #story-page { padding: 6.5rem 1.25rem 4.5rem; }
+  .writing-section { margin-top: 4.5rem; }
+  .story-nav { grid-template-columns: 1fr; gap: 1rem; }
+  .story-nav a:last-child { text-align: left; }
+}

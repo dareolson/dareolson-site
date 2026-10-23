@@ -1,0 +1,236 @@
+---
+title: "Spare the Child"
+dek: ""
+date: 2007-05-31
+outlet: OC Weekly
+archive: https://web.archive.org/web/20070901123134/http://www.ocweekly.com/news/news/spare-the-child/27207/
+live: https://www.ocweekly.com/news-spare-the-child-6366068/
+---
+
+Six years after they first separated, Amy and Nathanael Bril realized that divorce had become inevitable. Too much had changed. Amy Bril says she scarcely recognizes her former self, a mostly homebound mother who home-schooled her three children.
+
+Before she began living apart from her husband, Bril had no driver's license, work history or social life. Once on her own, she dated for the first time, bought her first car and learned to assert herself.
+
+Now 35, in light makeup and a breezy summer shirt over a swimsuit top, Bril still bears striking resemblance to her childhood pictures. Her big brown eyes roam the generic strip mall where she sits, as if this mundane suburban setting still holds some novelty for her.
+
+Her words are steady and measured as she describes her new life. The world has become easier to navigate with each passing season, but Bril fears she hasn't gained enough ground to face the challenge ahead. She must put all of her faith into a system she was raised to believe is the Antichrist incarnate: the law.
+
+Bril was recently laid off from her job as a tax preparer, has no lawyer, and has barely enough money for the frequent trips to the Lamoreaux Justice Center in Orange to file paperwork and gear up for a custody battle with Nathanael.
+
+In April, he filed for sole legal and physical custody of their three children, ages 13, 10 and 8.
+
+Amy fears that if he gets custody, she will never see her children again. She says the threat comes not from Nathanael himself, but from a historically perverse cult known as the Family International, to which he has pledged his life—and in which Amy grew up.
+
+Because of their ages, Amy says she can't fully disclose to her children why she doesn't want their lives to completely revolve around the Family.
+
+“I don't want to fill their minds with that—they're too young,” she says. “But some day, when they're teenagers, they're going to know.
+
+“What I'm doing today, they are going to respect me for when they're old enough to understand,” she says.
+
+In 1968, Amy Bril's father, a 14-year-old high-school dropout, met a defrocked Evangelical minister named David Berg in Huntington Beach, Bril says. At a seaside Christian caf, Berg, preaching virtues like abstinence and salvation through Jesus, found an eager audience among a flock of spiritually starved, post-Summer of Love teens.
+
+Fueled by the adoration of his young followers and a sense of superiority over the mainstream Christianity that rejected him, Berg placed himself next to Jesus Christ as God's chosen prophet, according to former followers. He preached a peculiar mix of communal living and hellfire and brimstone, but soon he saturated his doctrine with sexuality.
+
+Throughout the following decade, Berg and his prophecies led his flock down a path of debauchery, authoritarian rule and child abuse. Some members delved further into the abyss each year, eventually leading to incest and pedophilia with the children they bore, according to court documents, news reports and witness accounts.
+
+Amy Bril, whose legal first name is “Armendria,” was born on a communal compound in her mother's native Texas in 1972. Her birth came two years before Berg predicted California would sink into the ocean and the rest of the world would be decimated by a comet. She would spend the next 17 years living in more than 30 countries. She says she was given away by her parents at age 8 to be groomed as Berg's sex slave; locked indoors, sometimes for 6 months at a time; and denied an education.
+
+Instead of an adequate high-school curriculum, Bril and hundreds of other children were force-fed Berg's sometimes-perverse doctrine, she and other former members say.
+
+According to Nathanael Bril, Amy is bringing up the history of the group as a scare tactic. In a telephone interview with the Weekly, Nathanael says Amy knows her children have not suffered any abuse at the hands of the Family and that she's using stories from long ago to manipulate the outcome of the custody hearing.
+
+“Her only card that she can use against me in court are stories from 25 years ago that happened to her,” he says.
+
+“She abandoned her family over five years ago,” he says. “Now that I've filed for divorce, all of a sudden, she's shown an interest in having the children.”
+
+* * *
+
+Inside a ground-level apartment in a Los Angeles suburb, Sam Ajemian keeps one of the only repositories of literature from the Family, formerly known as the Children of God. The 62-year-old Ajemian, of Armenian descent but born and raised in Greece, speaks in a sometimes hard-to-decipher accent, has bushy black eyebrows, silvering hair and big hairy forearms.
+
+In 1969, Ajemian was 24 when he joined the Family as it made its way through Berkeley, he says. He had become a Christian only one month prior to his introduction to Berg.
+
+[
+
+“You know how churches are very boring and dead? Well, this guy was full of fire,” he says. “We were all very young, and he was a 50-year-old man. He was very impressive. He said he spoke to God and he was the Endtime prophet.”
+
+Ajemian, who was known in the group as “Zach the Greek,” was a member for the next 10 years and participated in Berg's free-love practices, such as wife-swapping and orgies. By then, the Family had dispersed into several small homes spread throughout Europe, Asia and South America.
+
+Ajemian says he wasn't aware of the pedophilia in the group because only some communal homes actually did it, but when molestation started becoming part of the written doctrine, he took a long reflective walk through the Acropolis at Athens and decided to quit.
+
+Ajemian says at first he felt somewhat ambivalent about his experience. As time progressed and he awoke from Berg's spell, he became angry. About 17 years ago, he began in earnest to collect as much material as he could that shows what he says is the Family's true nature. His collection contains thousands of examples of literature from the group's beginning up until the mid-1990s.
+
+Ajemian, who wrote and published his own book, The Children of God Cult, a.k.a. the Family, using his archives, says he hopes someday the members of the group who carried out the alleged crimes will be brought to justice. He has eight bookshelves of the Family's literature stacked up to the ceiling in a bedroom he's dedicated to his library.
+
+In the early 1990s, authorities raided or investigated Family homes in Brazil, Argentina, Peru, Venezuela, Italy, Sweden, Spain, France, Australia and Los Angeles, according to a 2004 Family International publication called “Religious Freedoms on Trial.” Nearly 600 of the group's children were held by social services in those countries but were eventually returned, according to the publication. Although the group was never convicted of child abuse in court, the pressure from law enforcement, court battles and media scrutiny, beginning in the mid-1980s, compelled the Family to clean up its public image. They purged much of their explicit literature and doctrine and outlawed deviant practices that had become widespread, according to previous media inquiries into the group.
+
+Books and pictures were ordered burned, former practices of pedophilia were ostensibly outlawed, and the Family put on a new face, ex-members say.
+
+Amy Bril says she does believe that, in large part, the Family has changed, but unless it turns over the members who participated in child abuse in the past, she says, pedophiles are still within its ranks.
+
+In an e-mailed response to a list of questions, Family International spokeswoman Anne Cunningham said the group now has a zero-tolerance policy for sexual abuse of minors.
+
+“The Family will immediately expel and excommunicate any adult member deemed guilty of physically or sexually abusive behavior toward children,” she wrote. “Family members are advised to conduct themselves in conformance with the laws of the jurisdiction in which they live and to cooperate with the justice system of the land.”
+
+Among the documents the group purged in the '80s and '90s are several of Berg's prophecies, some of which he disavowed publicly before his death. The prophecies came in the form of long, semi-structured diatribes known as the Mo' letters (Mo' is short for Moses). Replete with grammatical errors and exclamation points, the letters read like the semi-educated ramblings of a mentally ill street preacher.
+
+Former members of the group who lived with or near Berg said he would sequester himself from the others for days, often drunk, and emerge with his “prophecies” from God.
+
+Among his detailed instructions to members were ways to raise money, including deceiving churches, going door-to-door for donations, bilking men through sanctioned sexual usury known as “Flirty Fishing,” or prostitution. Prostitution and “Flirty Fishing” were both banned by the group in 1987.
+
+Much of the older literature is peppered with nude photos and drawings of men and women, often depicted in sexual intercourse or in orgies. Sex and orgies are considered communion, Ajemian says. He says that when he was involved with the group, members in communal homes would make schedules of who would have sex with whom each morning; those not willing to give themselves, sometimes including children, were reprimanded as being “full of the devil.”
+
+Berg's own writings claimed any kind of sex done in love was natural, including incest. He referred to it as “the rule of love.”
+
+In a 1980 publication, now removed from the doctrine, called “The Devil Hates Sex!” Berg wrote, “There's nothing in the world at all wrong with sex as long as it's practiced in love, whatever it is or whoever it's with, no matter who or what age or what relative or what manner! And you don't hardly dare even say these words in private! If the law ever got a hold of this, they'd try to string me up! They'd probably lynch me before I got to the jail!”
+
+[
+
+Although the group says all forms of child-related sexuality have been purged from its doctrine, one bizarre ritual from slightly more than a decade ago might still be practiced, Ajemian and other ex-members say. In a doctrine titled “Loving Jesus,” members as young as their early teens are encouraged to masturbate while fantasizing about having sex with Jesus Christ. The multipart series, produced by the Family during 1995 and 1996, is part of Ajemian's collection and also available on the website xfamily.org, which is run by former members. Since homosexuality is forbidden in the group, young boys were told to imagine themselves as women.
+
+Cunningham said the group does not encourage children to sexually fantasize about Jesus.
+
+Nathanael Bril says his children have not been exposed to any of the sexual teachings of the prior generation, and, he says, they “don't even know the meaning of the word 'sex.'”
+
+In a previously published statement by Family International spokeswoman Claire Borowick, she said the family now has changed its policies about sex, completely forbidding it before age 16.
+
+But the records of the more disturbing Mo' letters from 25 and 30 years ago still remain, as do many members from that era. Although Berg's deviant sexual teachings are now mostly a buried embarrassment, many of his letters are still considered Gospel to members of the group. Some of the Mo' letters still in circulation can be viewed on the Family's website, thefamily.org.
+
+One video in Ajemian's collection includes a vulnerable, prepubescent Amy Bril. She enters the frame and begins dancing, appearing somewhat reluctant. She is in a forest, partially exposed and clothed only in a translucent-pink sarong. In the video, Ajemian says, Bril removes her clothes completely. She was 9 years old at the time.
+
+Bril says that, like many young girls in the group, she was forced to make the striptease videos every year from age 8 until 13. The videos were sent to Berg, who also shared them with other men in the group, she says.
+
+At age 13, Amy became one of Berg's many child-brides in a mock wedding in the Philippines, she says.
+
+* * *
+
+Among the piled letters, books and compilations in Ajemian's collection is a faux-leather-bound book with the gold embossed title The Story of Davidito.
+
+The book, published in the early 1980s and repudiated by the Family a few years later, contains more than 700 black-and-white pages chronicling the early years of the Family's young Messiah, a child born to the current leader, Karen Zerby, and an unknown father. Zerby served as Berg's personal secretary, then his wife, and eventually became the group's prophet after Berg's death in 1994. She now leads the group with a man named Peter Amsterdam. Berg lived to be 75 and was never prosecuted for any of the alleged instances of child abuse.
+
+The book contains explicit details and photographs depicting the young boy being molested from the time he was born. One picture shows a twentysomething nanny fellating the smiling toddler; the book then describes in detail how much he liked it. Other photos show the young boy in sexual poses with other nude children.
+
+In many of the photographic examples of pedophilia, the faces of the perpetrators are obscured, replaced by eerie, smiling, hand-drawn masks. The practice was commonly used to protect members' identities, former members say.
+
+On Jan. 8, 2005, Davidito, who had changed his name several times throughout his childhood and most recently, at 29, was called Ricky Rodriguez, allegedly murdered one of his former nannies by stabbing her and slitting her throat. He then shot himself and was found in his car.
+
+The night before the killing, Rodriguez nonchalantly loaded his .40 caliber Glock in front of a video camera and talked about his thirst for revenge for the abuse perpetrated on him and other children. The full video is available on the Internet.
+
+In the video, he expressed remorse that he couldn't kill more of the leadership, especially his own mother. Rodriguez had confided in friends that his mother had sex with him when he was 12, they said.
+
+The killings brought the Family back under the national media microscope; stories about the group soon followed from Rolling Stone magazine, Dateline NBC, ABC's 20/20 and The Montel Williams Show.
+
+* * *
+
+Armendria and Nathanael Bril were married in Brazil when they were 17 and 18, respectively. Both were born into the Family and even stayed in the same compound in Texas as babies. Bril says their marriage was loving, and he is a good father.
+
+[
+
+She says Nathanael truly believes the group has changed. She calls him “deluded.”
+
+“For all of the things we don't agree about, we were in love,” she says. “In a different situation, in a different country or in a different time, if we had met each other, we may still be together today. But we were in very difficult and very complicated circumstances.”
+
+Amy left the Family six years ago, partially because her father and brother, both former members, committed suicide, she says.
+
+The pressures of the group's continued advocacy of free love and polyamory, which she says are part of the group's core beliefs, also strained her marriage.
+
+“In my opinion, it breaks up families,” she says. “Eventually, it destroys marriages because you can't keep up that constant, no-boundaries falling in and out of love with whoever you want—and maintain a relationship, unless there's something wrong with the relationship or someone's in denial.”
+
+Amy says Nathanael is dependent both financially and emotionally on the Family. She considers him a victim. Like all of the Family's members, Nathanael sends 14 percent of his income to the leadership, some of whom personally abused Amy and countless others, she and other former members say.
+
+Cunningham says the money is not pocketed by the leadership, but rather goes to help the group's charity work in Third World countries. Most of the family's 13,000 members are involved in mission work across the globe, she says.
+
+Recently, Nathanael has expressed a desire to return to a communal home in Brazil with their three children, Amy says. His home telephone number, contained in court documents, is also listed as a contact number for a missionary group in Brazil known as RioVision.
+
+Nathanael did not identify an attorney in his divorce and custody paperwork, but Amy says she will fight him in court rather than give him sole custody of the children.
+
+“We weren't going to use lawyers—until I found out he wanted full custody and wanted to go back to Brazil,” she says. “That leaves me where? Mother of three children, the only thing in my life I have that's worth fighting for, and he's going to go back to Brazil and take my kids away from me. In some cult that he supports that were my abusers. It's like, wait a second, that's not going to happen.
+
+“If he has full custody, he can take them any time he wants, and I'll never get them back,” she says. “There's no way I'm letting my kids out of this country. As long as they are in America, I have a chance. If they leave America, I don't have a prayer.”
+
+Nathanael denies that he wants to take the children to Brazil full-time. He says he hopes they will be able to do missionary work in poor countries, including Brazil, but only on short-term trips.
+
+“I have an affinity with Brazil. It is a special country to me. Two of my children were born there,” he says. “As far as relocating there to live, I have no plans to do that.”
+
+* * *
+
+On May 4, witnesses outside of Los Angeles City Councilman Jack Weiss' Sherman Oaks office saw a man gluing swastikas on the door. Adonis “Don” Irwin, 32, was arrested and charged with vandalism, performing a hate crime and posting a swastika. If convicted, he faces a maximum of two and a half years in jail and $11,000 in fines. News reports speculated Irwin was a neo-Nazi, but his first spiritual mentor was not Adolf Hitler. It was David Berg.
+
+Irwin was born into the Family. A close friend of Ricky Rodriguez, Irwin gave a eulogy at his funeral. According to news reports, Irwin twice visited Weiss' office the week before the incident and filed constituent complaints, claiming he was affiliated with a group opposed to child trafficking.
+
+Friends say Irwin is not an anti-Semite, that he is one of several former Family members who have succumbed to the psychological damage and pressures of their childhoods. The same pressures have led to at least 30 suicides of former members in the past 12 years, former members say. The Family, in a statement that followed Rodriguez's suicide, claim the number is closer to 10.
+
+Irwin's sister, Merry Berg, was David Berg's granddaughter. Former members say she was the victim of repeated sexual and physical abuse from members of the group, including from David Berg himself.
+
+Friends say she lives on the streets in San Diego. Amy Bril says she periodically receives phone calls from her, always from different phone numbers.
+
+In his suicide video, Rodriguez says the beatings of Merry Berg helped engender his obsession with revenge.
+
+[
+
+Sarah Martin, born into the Family as “Sarafina,” says she and other children who doubted their religion were put into reeducation camps called “Victor Programs.” In the programs, Martin says she was often not allowed to speak for months at a time and suffered multiple beatings.
+
+When she was 16, Martin says, she was punished by being brought up on a stage in front of more than 30 people and spanked on her bare bottom with a wooden paddle until she cried. Other times, she says, she was locked in a room and forced to listen to a tape of Berg's teachings 24 hours a day for weeks, sometimes months.
+
+The combination of isolation, lack of boundaries and corporal punishment has wreaked havoc on the psychological states of several members raised in the group, she says.
+
+Martin now spends countless hours compiling news reports, documents, pictures and other Family material, which she posts on the websites xfamily.org and movingon.org, which are among several sites dedicated to supporting former members.
+
+Nathanael says he believes some of these former members are peer-pressuring Amy into fighting for custody of the children. He doesn't deny that some children growing up in the cult were abused, but he and many other children were never exposed to the dark side of the group, he says.
+
+“I wasn't even 10 years old when this stuff was happening,” he says. “I think a lot of things happened to her that were very sad and shouldn't have happened to her.
+
+“But there is a point where you have to let it go. You need to move on,” he says.
+
+* * *
+
+When Amy Bril left the Family at age 29, she says she was wholly unprepared for life outside. She didn't know how to drive or how to balance a checkbook; she had absolutely no street smarts and held only a diploma issued by the group.
+
+After six years, she says, she is becoming comfortable in mainstream society—a place, she was taught as a young girl, run by minions of the Antichrist.
+
+“When you're in there, you're basically like a zombie,” she says. “They train you to only to read their materials, not to seek outside knowledge. There's other people around you that all believe the same, so you're basically surrounded by a lot of peer pressure.”
+
+Martin says she attempted the GED test after she left the Family at age 18 and failed miserably. She says she tested as having a seventh-grade education, which she believes is typical for adults raised in the Family. According to its website, thefamily.org, the Family advocates home schooling for all of its children.
+
+A statement on the Family's website says, “Our children follow an orderly, progressive and well-planned curriculum, and it is an ongoing project to keep this updated and expanded on when possible with new books, videos, audiotapes, computer programs, etc. The emphasis is on the joy of learning rather than on marks, grade levels and competition.”
+
+Nathanael Bril rejects Amy's assertions that his children aren't getting an adequate education at home. He says the children follow an accredited home-schooling program called the Etiwanda Academy. The two youngest children are two years above their grade level, and the oldest child is on-pace, he says. He expects the children's academic progress will be inspected during the divorce, and he welcomes such scrutiny.
+
+“They're going to find out that, scholastically, they are not only doing well, but they are doing very well,” he says.
+
+Amy Bril says the group sees education as less than a primary concern because they believe the Second Coming of Jesus and the Rapture will happen soon. She says they've shied away from pinpointing a date after being wrong several times.
+
+“I was raised never believing I would live past 13 years old,” she says. “The shortsightedness is not a good thing because they don't train the children and people for their futures. They don't plan for retirement. None of the people in the Family have savings. They don't own property.
+
+“There's a lot of a lot of churches that believe Jesus is coming back, but those people in the churches are saving for retirement. They have a plan B,” she says.
+
+Nathanael admitted that he believes the Endtime will come soon, but that belief is not destructive to his children.
+
+“Living your life as if today's the last day, you will do a lot more than if you thought you had another 30 or 40 or 50 years,” he says. “In that respect, I think it is healthy to think we're living in the Endtime.”
+
+* * *
+
+Sarah Martin has been compiling literature produced by the family and affidavits from former members and friends of Amy Bril to help bolster her case, which is scheduled to begin June 18.
+
+[
+
+Amy's greatest worry, however, is not having an attorney.
+
+Without a college degree, she doesn't earn the kind of money that would attract the kind of representation she will need to fight a long custody battle, she says.
+
+Whittier Law School graduate John Patton, who discovered Bril's case while researching a forthcoming article for the Whittier Journal of Child and Family Advocacy, says he has asked several lawyers to consider the case. They've all been unwilling or unable to pick it up, he says, mainly because the work would be pro bono or heavily discounted.
+
+“There is still this ongoing effort to get her into an attorney's office,” he says. “But you either need someone who's familiar with the Family, or you need someone who's willing to take the time to research the Family.”
+
+Patton helped persuade the staff attorney at the family-advocacy center at Whittier to help Amy fill out the paperwork necessary to file for custody, but she alone will not be able to stand against the resources at the disposal of the Family, he says.
+
+Although Nathanael Bril had not named an attorney in his January and April divorce and custody filings, Patton, who researched several past court cases involving the Family, says, “The attorneys for the Family are vicious; they're not going to give up.”
+
+Amy Bril says she wants the discussion to not get personal and to focus on what's best for the children. She says she only filed for sole custody in response to Nathanael wanting full custody. She doesn't want them taken away from Nathanael; she just wants to ensure they have a bridge to the outside world if they ever choose on their own to leave.
+
+“Their father loves them. He is a good father—I'll be honest with you. I think he means well, and he loves them, and of what he has to offer, I think he's given his best. [Nathanael] isn't an abuser. In court, I'm not going to say he is because he isn't,” she says. “But he is holding back the chances of my children having a normal and an educated life.
+
+“They are home-schooled right now. They don't socialize with children outside of the Family. To me, that represents everything I just came out of. And I came out late in life. They have an opportunity, by having a mom that has left, to start reasoning, start questioning things. To start being more prepared for society the way it is.”
+
+Nathanael says even if he gets the sole custody he's seeking, he wouldn't try to cut Amy out of their children's lives.
+
+“Nothing is going to change with our divorce than the way it has been for the past six years. The only difference is that I'll be able to move on with my life,” he says. “Our divorce has nothing at all to do with the Family—nothing. I could not be in the Family tomorrow. People leave the Family all the time. I've come close several times.”

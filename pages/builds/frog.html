@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐸</text></svg>">
-  <title>The Frog — Interactive Animation Case Study | Dare Olson</title>
+  <title>The Frog | Interactive Animation Case Study | Dare Olson</title>
   <meta name="description" content="How the animated frog on dareolson.com works: layered artwork, cursor-tracking eyes, procedural blinking, and a tongue that rotates and stretches to its target. Vanilla JavaScript, zero dependencies.">
   <meta name="author" content="Derek Olson">
   <link rel="canonical" href="https://dareolson.com/pages/builds/frog.html">
-  <meta property="og:title" content="The Frog — Interactive Animation Case Study">
+  <meta property="og:title" content="The Frog | Interactive Animation Case Study">
   <meta property="og:description" content="Layered artwork, cursor tracking, and coordinate math in one vanilla JavaScript file.">
   <meta property="og:url" content="https://dareolson.com/pages/builds/frog.html">
   <meta property="og:type" content="article">
@@ -42,7 +42,7 @@
 
     <h2>The goal</h2>
     <div class="prose">
-      <p>A portfolio site is usually a template with a name on it. I wanted the first five seconds to show that the person behind it makes things move, and I wanted that to be the site itself, not a screenshot of something I made elsewhere. The constraint was that it had to feel like a character with a personality and still load fast, work on a phone, and never get in the way of navigation.</p>
+      <p>I wanted the first five seconds of my portfolio to show that I make things move, and I wanted the site itself to do it. The frog had to feel like a character, load fast, work on a phone, and stay out of the way of navigation.</p>
     </div>
 
     <h2>How it is built</h2>
@@ -52,21 +52,21 @@
       <p>The static parts (body, legs, nose) are baked into one layer, so only the pieces that actually animate are separate elements.</p>
     </div>
 
-    <h2>Four behaviors, four small systems</h2>
+    <h2>Four behaviors</h2>
     <div class="prose">
-      <p><em>Eye tracking.</em> The pointer position is normalized across the viewport and mapped to a small offset range, so the eyeballs shift inside their sockets. The range and resting position differ for touch and mouse devices, because the frog sits differently on a phone.</p>
-      <p><em>Blinking.</em> A scheduler cycles both eyelids through half closed, closed, half closed, open, then picks the next blink at a random interval between two and six seconds. The first blink fires about a second and a half after load so a visitor knows the frog is alive.</p>
+      <p><em>Eye tracking.</em> The code normalizes the pointer position across the viewport and maps it to a small offset, so the eyeballs shift inside their sockets. Touch and mouse devices get different ranges and resting positions, because the frog sits differently on a phone.</p>
+      <p><em>Blinking.</em> Both eyelids cycle through half closed, closed, half closed, and open, then the code picks the next blink at a random interval between two and six seconds. The first blink fires about a second and a half after load, so visitors see the frog is alive.</p>
       <p><em>The fly.</em> On desktop the fly is the cursor. After the frog eats it, a new one enters from a random screen edge and wanders on its own by easing toward random targets, until the mouse moves and takes it back. On touch screens there is no cursor, so the fly always wanders and a tap triggers the catch.</p>
-      <p><em>The tongue.</em> This was the hard part, and it is plain geometry. The mouth is a known point in the original artwork, which the code converts into screen coordinates for any viewport, accounting for how the artwork is letterboxed and for the container's scale. The tongue is rotated around that pivot by the angle to the fly and stretched along its own axis by the ratio of distance to natural length, so it reaches targets near and far.</p>
+      <p><em>The tongue.</em> The tongue was the hardest part, and it comes down to geometry. The mouth is a known point in the original artwork. The code converts it into screen coordinates for any viewport, accounting for letterboxing and the container's scale. It rotates the tongue around that pivot by the angle to the fly and stretches it along its own axis by the ratio of distance to natural length, so it reaches targets near and far.</p>
     </div>
 
     <pre>const angle   = Math.atan2(dy, dx) * 180 / Math.PI;
 const stretch = Math.max(1, dist / tongueNaturalLength);
 wrapper.style.transform = `rotate(${angle}deg) scaleX(${stretch})`;</pre>
 
-    <h2>The bug worth mentioning</h2>
+    <h2>The pivot bug</h2>
     <div class="prose">
-      <p>Browsers reset an image's transform origin when its source changes, so the tongue's pivot drifted every time a new frame loaded. The fix is structural: the rotation and stretch live on a wrapper element, and only the inner image swaps its source. The pivot never moves because the element that owns it never changes.</p>
+      <p>Browsers reset an image's transform origin when its source changes, so the tongue's pivot drifted every time a new frame loaded. I moved the rotation and stretch onto a wrapper element and left only the source swap on the inner image. The element that owns the pivot never changes, so the pivot stays put.</p>
       <p>Frames are preloaded so source swaps are instant, and the eat sequence runs on <em>requestAnimationFrame</em> with timestamps rather than chained timeouts, so a slow paint cannot skip a frame.</p>
     </div>
 
@@ -79,11 +79,11 @@ wrapper.style.transform = `rotate(${angle}deg) scaleX(${stretch})`;</pre>
 
     <h2>What I can build for a client</h2>
     <div class="prose">
-      <p>The same techniques apply to work that agencies and brands actually ask for: a mascot or product character that reacts to the visitor, scroll-driven storytelling, animated explainers, interactive landing pages, and branded micro-interactions. I draw, animate, and write the code, so there is no handoff between a designer and a developer.</p>
+      <p>The same techniques work for what agencies and brands ask for: a mascot or product character that reacts to the visitor, scroll-driven storytelling, animated explainers, and interactive landing pages. I draw, animate, and code it myself, so nothing gets lost between a designer and a developer.</p>
     </div>
 
     <div class="cta-block prose">
-      <p>Need something like this for a brand or a campaign? <a href="../contact.html">Tell me what you have in mind</a>.</p>
+      <p>Have a brand or campaign that needs something like this? <a href="../contact.html">Tell me about it</a>.</p>
     </div>
   </main>
 

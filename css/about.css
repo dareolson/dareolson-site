@@ -1,100 +1,124 @@
 /* ==============================================
    ABOUT PAGE
-   Same system as Builds: serif headings over hairlines,
-   a year column on the left, readable serif on the right.
+   Photo-led hero, a large lede, then one ledger system
+   (year | what) for clients, recognition, board, press.
 ============================================== */
-#about-page {
-  max-width: 1120px;
-  margin: 0 auto;
-  padding: 9rem 2rem 7rem;
-}
+#about-page { padding: 0 0 8rem; }
 
-#about-page .page-title {
-  font-size: clamp(2.6rem, 6.4vw, 5.25rem);
-  line-height: 1.02;
-  margin-bottom: 2.5rem;
+/* Hero: full-bleed photo fading into the page */
+.about-hero { position: relative; height: clamp(26rem, 68vh, 44rem); overflow: hidden; }
+.about-hero img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: 50% 24%;
+  filter: sepia(0.22) saturate(1.15) brightness(0.9) contrast(1.05);
+}
+.about-hero::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(10,10,10,0.35) 0%, rgba(10,10,10,0) 30%, rgba(10,10,10,0.55) 72%, var(--bg) 100%);
+}
+.about-hero-inner {
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 2;
+  max-width: 1120px; margin: 0 auto; padding: 0 2rem 2.5rem;
+}
+.about-hero .page-title {
+  font-size: clamp(2.8rem, 7.2vw, 6rem);
+  line-height: 1;
+  letter-spacing: -0.025em;
+  margin: 0;
+  text-wrap: balance;
   animation: rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
 }
 @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
 
-.about-bio p {
-  font-size: clamp(1.2rem, 2.2vw, 1.45rem);
-  line-height: 1.6;
+.about-wrap { max-width: 1120px; margin: 0 auto; padding: 0 2rem; }
+
+/* Intro: big lede left, details right */
+.about-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: 2rem 5rem;
+  padding: 3.5rem 0 1rem;
+  align-items: start;
+}
+.lede-big {
+  font-size: clamp(1.9rem, 3.8vw, 3rem);
+  line-height: 1.2;
+  letter-spacing: -0.012em;
   color: var(--text);
-  max-width: 36em;
+  text-wrap: balance;
+}
+.about-bio p {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  color: var(--text-mid);
   text-wrap: pretty;
-  margin-bottom: 1.4rem;
+  margin-bottom: 1.5rem;
 }
 .about-bio p:last-child { margin-bottom: 0; }
 
 .about-bio a, .ledger a {
   color: var(--text);
   text-decoration: underline;
-  text-decoration-color: var(--text-dim);
-  text-underline-offset: 0.2em;
+  text-decoration-color: var(--accent);
+  text-underline-offset: 0.22em;
   text-decoration-thickness: 1px;
-  transition: color 0.2s, text-decoration-color 0.2s;
+  transition: color 0.2s;
 }
-.about-bio a:hover, .ledger a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+.about-bio a:hover, .ledger a:hover { color: var(--accent); }
 
-.about-section { margin-top: 6rem; }
+/* Sections */
+.about-section { margin-top: 8rem; }
 .about-section h2 {
-  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  font-size: clamp(1.8rem, 3.4vw, 2.5rem);
   font-weight: 400;
-  letter-spacing: -0.01em;
-  line-height: 1.15;
+  letter-spacing: -0.015em;
+  line-height: 1.1;
   border-top: 1px solid var(--rule);
-  padding-top: 1.25rem;
-  margin-bottom: 1.5rem;
+  padding-top: 1.5rem;
+  margin-bottom: 2.5rem;
 }
 
-.client-line {
-  font-size: clamp(1.25rem, 2.4vw, 1.6rem);
-  line-height: 1.5;
-  color: var(--text-mid);
-  max-width: 36em;
-  text-wrap: balance;
-}
+/* Clients: photo beside a larger name list */
+.about-clients { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: 3rem 5rem; align-items: center; }
+.set-photo { margin: 0; border: 1px solid var(--rule); border-radius: 3px; overflow: hidden; aspect-ratio: 3 / 2; background: #131210; box-shadow: 0 1px 2px rgba(0,0,0,0.5), 0 28px 56px -28px rgba(0,0,0,0.75); }
+.set-photo img { width: 100%; height: 100%; object-fit: cover; display: block; filter: sepia(0.18) saturate(1.1) brightness(0.95); }
+.about-clients h2 { border-top: 0; padding-top: 0; margin-bottom: 1.5rem; }
+.client-line { font-size: clamp(1.4rem, 2.6vw, 1.9rem); line-height: 1.5; color: var(--text); text-wrap: balance; }
 
 /* Ledger: year | what */
 .ledger { list-style: none; }
 .ledger li {
   display: grid;
-  grid-template-columns: 9rem minmax(0, 1fr);
-  gap: 1rem 2rem;
-  padding: 1.35rem 0;
+  grid-template-columns: 11rem minmax(0, 1fr);
+  gap: 1rem 3rem;
+  padding: 2rem 0;
   border-top: 1px solid var(--rule);
 }
-.ledger li:first-child { border-top: 0; padding-top: 0.25rem; }
+.ledger li:first-child { padding-top: 0.5rem; border-top: 0; }
 .ledger .when {
   font-family: var(--mono);
-  font-size: 0.9rem;
-  letter-spacing: 0.01em;
-  color: var(--text-dim);
-  padding-top: 0.3rem;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  color: var(--accent);
+  padding-top: 0.45rem;
 }
-.ledger .what { display: grid; gap: 0.3rem; max-width: 40em; }
-.ledger strong {
-  font-weight: 400;
-  font-size: clamp(1.25rem, 2.2vw, 1.5rem);
-  line-height: 1.25;
-  color: var(--text);
-}
-.ledger .sub {
-  font-size: 1.1rem;
-  line-height: 1.55;
-  color: var(--text-mid);
-  text-wrap: pretty;
-}
+.ledger .what { display: grid; gap: 0.55rem; max-width: 40em; }
+.ledger strong { font-weight: 400; font-size: clamp(1.4rem, 2.5vw, 1.8rem); line-height: 1.2; letter-spacing: -0.01em; color: var(--text); }
+.ledger .sub { font-size: 1.15rem; line-height: 1.65; color: var(--text-mid); text-wrap: pretty; }
 .ledger em { font-style: normal; color: var(--text); }
 
-@media (prefers-reduced-motion: reduce) { #about-page .page-title { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .about-hero .page-title { animation: none; } }
 
+@media (max-width: 860px) {
+  .about-intro, .about-clients { grid-template-columns: minmax(0, 1fr); }
+  .about-section { margin-top: 6rem; }
+}
 @media (max-width: 640px) {
-  .ledger li { grid-template-columns: 1fr; gap: 0.25rem; }
+  .ledger li { grid-template-columns: 1fr; gap: 0.35rem; padding: 1.6rem 0; }
   .ledger .when { padding-top: 0; }
 }
 @media (max-width: 480px) {
-  #about-page { padding: 6.5rem 1.25rem 5rem; }
-  .about-section { margin-top: 4.5rem; }
+  .about-hero { height: 24rem; }
+  .about-hero-inner, .about-wrap { padding-left: 1.25rem; padding-right: 1.25rem; }
+  .about-hero-inner { padding-bottom: 1.75rem; }
 }

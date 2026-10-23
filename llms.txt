@@ -31,6 +31,8 @@
 - **The Rate Guide** (https://therateguide.com) — A day-rate platform for freelance film and
   video crew: calculator, fifteen market-rate guides, quote builder, and contract builder.
   Next.js, React, TypeScript, Supabase. Designed, built, and operated solo.
+- **Grain and Thunder site** (https://grainandthunder.com) — Designed and built solo in Astro, with
+  case studies, press pages, and signup/feedback forms backed by serverless Postgres (Neon).
 - **The Frog** (https://dareolson.com/pages/builds/frog.html) — The interactive character on the
   dareolson.com homepage. Layered artwork, cursor-tracked eyes, procedural blinking, and a
   tongue that rotates and stretches to its target. Vanilla JavaScript, no dependencies.

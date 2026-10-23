@@ -79,3 +79,22 @@
   transition: color 0.2s;
 }
 #about-bio a:hover { color: var(--accent); }
+
+/* Press */
+.press-list { list-style: none; margin-top: 1.25rem; display: flex; flex-direction: column; }
+.press-list li { display: grid; gap: 0.35rem; padding: 1.4rem 0; border-top: 1px solid var(--rule); }
+.press-list li:last-child { border-bottom: 1px solid var(--rule); }
+.press-meta { font-family: var(--mono); font-size: 0.82rem; letter-spacing: 0.01em; color: var(--text-dim); }
+#about-bio .press-title, .press-title {
+  font-size: clamp(1.25rem, 2.6vw, 1.6rem);
+  line-height: 1.25;
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 1px;
+  transition: color 0.2s;
+}
+.press-title:hover { color: var(--accent); }
+.press-note { font-size: 1.05rem; line-height: 1.6; color: var(--text-mid, #d6d0c6); max-width: 38em; }
+.press-note em { font-style: normal; color: var(--text); }

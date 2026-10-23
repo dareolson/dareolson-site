@@ -18,13 +18,22 @@
 }
 .about-hero-inner {
   position: absolute; left: 0; right: 0; bottom: 0; z-index: 2;
-  max-width: 1120px; margin: 0 auto; padding: 0 2rem 2.5rem;
+  max-width: 1120px; margin: 0 auto; padding: 0 2rem 4.5rem;
+  pointer-events: none;
 }
+/* Dark translucent panel so the name reads over any part of the photo */
 .about-hero .page-title {
-  font-size: clamp(2.8rem, 7.2vw, 6rem);
-  line-height: 1;
-  letter-spacing: -0.025em;
+  display: inline-block;
+  font-size: clamp(2.2rem, 5.2vw, 4.25rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
   margin: 0;
+  padding: 0.9rem 1.75rem 1rem;
+  background: rgba(10, 10, 10, 0.68);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(240, 236, 228, 0.12);
+  border-radius: 3px;
   text-wrap: balance;
   animation: rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
 }
@@ -117,11 +126,15 @@
   .ledger li { grid-template-columns: 1fr; gap: 0.35rem; padding: 1.6rem 0; }
   .ledger .when { padding-top: 0; }
 }
-@media (max-width: 480px) {
-  .about-hero { height: 24rem; }
-  .about-hero-inner, .about-wrap { padding-left: 1.25rem; padding-right: 1.25rem; }
-  .about-hero-inner { padding-bottom: 1.75rem; }
+@media (max-width: 640px) {
+  /* Photo on top, name below it, nothing over the face */
+  .about-hero { height: auto; overflow: visible; }
+  .about-hero img { position: relative; inset: auto; display: block; height: 26rem; object-position: 50% 12%; }
+  .about-hero::after { height: 26rem; inset: 0 0 auto 0; background: linear-gradient(to bottom, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0) 25%, rgba(10,10,10,0) 70%, var(--bg) 100%); }
+  .about-hero-inner { position: relative; padding: 0.5rem 1.25rem 0; margin-top: 0; }
+  .about-hero .page-title { background: none; border: 0; padding: 0; backdrop-filter: none; -webkit-backdrop-filter: none; font-size: clamp(2.4rem, 11vw, 3.2rem); }
 }
+@media (max-width: 480px) { .about-wrap { padding-left: 1.25rem; padding-right: 1.25rem; } }
 
 /* Press: full-width rows, big headlines, whole row is the link */
 .press-feature { margin-top: 5rem; }

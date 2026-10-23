@@ -1,8 +1,8 @@
 {
   "publication": {
-    "name": "Back Issues",
+    "name": "Writing",
     "tagline": "Stories by Derek Olson",
-    "standfirst": "Cover stories and features from my years as a reporter at OC Weekly, in full, with a link to each archived original."
+    "standfirst": "My first love was investigative journalism. One of the most difficult things about the daily grind as a journalist is creating work you can be proud of forever. Here’s some of mine."
   },
   "lead": "spare-the-child",
   "order": [
@@ -15,7 +15,11 @@
     "against-the-wall",
     "did-crimes-kamran-mashayekhi-witnessed-put-his-life-in-danger"
   ],
-  "start_here": ["spare-the-child", "roll-player", "sparring-with-shadows"],
+  "start_here": [
+    "spare-the-child",
+    "roll-player",
+    "sparring-with-shadows"
+  ],
   "deks": {
     "spare-the-child": "Amy Bril wants to make sure her kids don’t grow up like she did—inside the notorious cult known as the Family.",
     "chicken-babies-bondage-nights": "True-life adventures with Richard Johnson, art provocateur.",
@@ -23,70 +27,188 @@
     "did-crimes-kamran-mashayekhi-witnessed-put-his-life-in-danger": "Did crimes Kamran Mashayekhi witnessed put his life in danger? Some law enforcement officials aren’t so sure."
   },
   "cards": {
-    "roll-player": {"title": "Roll Player", "dek": "Charles Monson works the system to help fellow quadriplegics get the high-tech wheelchairs they need."},
-    "sparring-with-shadows": {"title": "Sparring With Shadows", "dek": "How Jeremy Williams’ suicide devastated OC’s first professional mixed-martial-arts team."},
-    "get-in-the-cage": {"title": "Get in the Cage!", "dek": "After this weekend, Irvine’s Quinton ‘Rampage’ Jackson just might make mixed martial arts everyone’s favorite spectator sport."},
-    "house-of-pain": {"title": "House of Pain", "dek": "Arther Masaoka fought to stop the city of Tustin from bulldozing his home and lost. But were his problems of his own creation?"},
-    "chicken-babies-bondage-nights": {"title": "Chicken Babies, Bondage Nights and Severed Monkey Heads", "dek": "True-life adventures with Richard Johnson, art provocateur."},
-    "against-the-wall": {"title": "Against the Wall", "dek": "Praying, eating and bowling with the most hated student group at UC Irvine."},
-    "did-crimes-kamran-mashayekhi-witnessed-put-his-life-in-danger": {"title": "Taken for a Ride", "dek": "Did crimes Kamran Mashayekhi witnessed put his life in danger? Some law enforcement officials aren’t so sure."}
+    "roll-player": {
+      "title": "Roll Player",
+      "dek": "Charles Monson works the system to help fellow quadriplegics get the high-tech wheelchairs they need."
+    },
+    "sparring-with-shadows": {
+      "title": "Sparring With Shadows",
+      "dek": "How Jeremy Williams’ suicide devastated OC’s first professional mixed-martial-arts team."
+    },
+    "get-in-the-cage": {
+      "title": "Get in the Cage!",
+      "dek": "After this weekend, Irvine’s Quinton ‘Rampage’ Jackson just might make mixed martial arts everyone’s favorite spectator sport."
+    },
+    "house-of-pain": {
+      "title": "House of Pain",
+      "dek": "Arther Masaoka fought to stop the city of Tustin from bulldozing his home and lost. But were his problems of his own creation?"
+    },
+    "chicken-babies-bondage-nights": {
+      "title": "Chicken Babies, Bondage Nights and Severed Monkey Heads",
+      "dek": "True-life adventures with Richard Johnson, art provocateur."
+    },
+    "against-the-wall": {
+      "title": "Against the Wall",
+      "dek": "Praying, eating and bowling with the most hated student group at UC Irvine."
+    },
+    "did-crimes-kamran-mashayekhi-witnessed-put-his-life-in-danger": {
+      "title": "Taken for a Ride",
+      "dek": "Did crimes Kamran Mashayekhi witnessed put his life in danger? Some law enforcement officials aren’t so sure."
+    }
   },
   "stories": {
     "get-in-the-cage": {
-      "cover": {"vol": 13, "no": 1, "alt": "OC Weekly cover: Quinton 'Rampage' Jackson shirtless in a heavy chain, with the headline Get in the Cage!"},
+      "cover": {
+        "vol": 13,
+        "no": 1,
+        "alt": "OC Weekly cover: Quinton 'Rampage' Jackson shirtless in a heavy chain, with the headline Get in the Cage!"
+      },
       "quotes": [
-        {"text": "Why should I look like every other fighter, walk down, be quiet and not show who I am? Hide my personality. Why should I do that? You can't please everybody.", "who": "Quinton “Rampage” Jackson"},
-        {"text": "It sucks. Being away from my kids sucks. The kids don't understand why you're not there—all they know is you're not there.", "who": "Quinton “Rampage” Jackson"}
+        {
+          "text": "Why should I look like every other fighter, walk down, be quiet and not show who I am? Hide my personality. Why should I do that? You can't please everybody.",
+          "who": "Quinton “Rampage” Jackson"
+        },
+        {
+          "text": "It sucks. Being away from my kids sucks. The kids don't understand why you're not there—all they know is you're not there.",
+          "who": "Quinton “Rampage” Jackson"
+        }
       ]
     },
     "roll-player": {
-      "cover": {"vol": 12, "no": 51, "alt": "OC Weekly cover: a bald man in profile, with the headline Roll Player"},
+      "cover": {
+        "vol": 12,
+        "no": 51,
+        "alt": "OC Weekly cover: a bald man in profile, with the headline Roll Player"
+      },
       "quotes": [
-        {"text": "Man, that's what it's all about—self-determination. The sunshine on your face. The simple things.", "who": "Charles Monson III"},
-        {"text": "You make the conscious decision to leave the airplane when all of your instincts say, 'Don't jump.'", "who": "Monson, on skydiving"}
+        {
+          "text": "Man, that's what it's all about—self-determination. The sunshine on your face. The simple things.",
+          "who": "Charles Monson III"
+        },
+        {
+          "text": "You make the conscious decision to leave the airplane when all of your instincts say, 'Don't jump.'",
+          "who": "Monson, on skydiving"
+        }
       ]
     },
     "spare-the-child": {
-      "cover": {"vol": 12, "no": 39, "alt": "OC Weekly cover: an illustrated woman in a red dress among dark trees, with the headline Spare the Child"},
+      "cover": {
+        "vol": 12,
+        "no": 39,
+        "alt": "OC Weekly cover: an illustrated woman in a red dress among dark trees, with the headline Spare the Child"
+      },
       "quotes": [
-        {"text": "I was raised never believing I would live past 13 years old.", "who": "Amy Bril"},
-        {"text": "There's no way I'm letting my kids out of this country. As long as they are in America, I have a chance. If they leave America, I don't have a prayer.", "who": "Amy Bril"}
+        {
+          "text": "I was raised never believing I would live past 13 years old.",
+          "who": "Amy Bril"
+        },
+        {
+          "text": "There's no way I'm letting my kids out of this country. As long as they are in America, I have a chance. If they leave America, I don't have a prayer.",
+          "who": "Amy Bril"
+        }
       ]
     },
     "against-the-wall": {
       "cover": null,
       "quotes": [
-        {"text": "(Many people) feel that we are an extremist, hardcore, loud, in-your-face kind of organization.", "who": "Omar Zarka, then president of UC Irvine’s Muslim Student Union"},
-        {"text": "We have self-confidence and self-esteem. We know what's the right thing to do, and we do it.", "who": "Elsayed, a recent graduate, speaking to new members"}
+        {
+          "text": "(Many people) feel that we are an extremist, hardcore, loud, in-your-face kind of organization.",
+          "who": "Omar Zarka, then president of UC Irvine’s Muslim Student Union"
+        },
+        {
+          "text": "We have self-confidence and self-esteem. We know what's the right thing to do, and we do it.",
+          "who": "Elsayed, a recent graduate, speaking to new members"
+        }
       ]
     },
     "chicken-babies-bondage-nights": {
-      "cover": {"vol": 13, "no": 16, "alt": "OC Weekly cover: a red-framed shadow box on a handwritten tag reading Chicken Babies, Bondage Nights and Severed Monkey Heads"},
+      "cover": {
+        "vol": 13,
+        "no": 16,
+        "alt": "OC Weekly cover: a red-framed shadow box on a handwritten tag reading Chicken Babies, Bondage Nights and Severed Monkey Heads"
+      },
       "quotes": [
-        {"text": "I was two seconds from lighting this guy's art on fire to keep warm. It was a big circle with a damn log glued in the center, so how much more damn 'firewood' can you get?", "who": "Richard Johnson"},
-        {"text": "People like to talk about it casually. They hear about it, and they like to pretend they're close to it. Like their life is more interesting than it is.", "who": "Richard Johnson"}
+        {
+          "text": "I was two seconds from lighting this guy's art on fire to keep warm. It was a big circle with a damn log glued in the center, so how much more damn 'firewood' can you get?",
+          "who": "Richard Johnson"
+        },
+        {
+          "text": "People like to talk about it casually. They hear about it, and they like to pretend they're close to it. Like their life is more interesting than it is.",
+          "who": "Richard Johnson"
+        }
       ]
     },
     "did-crimes-kamran-mashayekhi-witnessed-put-his-life-in-danger": {
-      "cover": {"vol": 13, "no": 25, "alt": "OC Weekly cover: a taxi driver's eyes in the rearview mirror, with the headline Taken for a Ride"},
+      "cover": {
+        "vol": 13,
+        "no": 25,
+        "alt": "OC Weekly cover: a taxi driver's eyes in the rearview mirror, with the headline Taken for a Ride"
+      },
       "quotes": [
-        {"text": "They take from you; they use you. And then they throw you into the lion's den.", "who": "Kamran Mashayekhi"},
-        {"text": "I'm in a taxi, you run into them all of a sudden, and they say, 'I remember you. You're a snitch.'", "who": "Kamran Mashayekhi"}
+        {
+          "text": "They take from you; they use you. And then they throw you into the lion's den.",
+          "who": "Kamran Mashayekhi"
+        },
+        {
+          "text": "I'm in a taxi, you run into them all of a sudden, and they say, 'I remember you. You're a snitch.'",
+          "who": "Kamran Mashayekhi"
+        }
       ]
     },
     "house-of-pain": {
-      "cover": {"vol": 13, "no": 29, "alt": "OC Weekly cover: a man holding a sign in front of a demolition claw, with the headline House of Pain"},
+      "cover": {
+        "vol": 13,
+        "no": 29,
+        "alt": "OC Weekly cover: a man holding a sign in front of a demolition claw, with the headline House of Pain"
+      },
       "quotes": [
-        {"text": "This is one of those rare situations where [Masaoka's] a total jerk—yet I think what happened to him was wrong.", "who": "Frank Carleo, the couple’s former attorney"},
-        {"text": "Thousands and thousands of dollars and man-hours went into this thing, and all of it started because Tustin didn't want to hire a licensed engineer.", "who": "Frank Carleo"}
+        {
+          "text": "This is one of those rare situations where [Masaoka's] a total jerk—yet I think what happened to him was wrong.",
+          "who": "Frank Carleo, the couple’s former attorney"
+        },
+        {
+          "text": "Thousands and thousands of dollars and man-hours went into this thing, and all of it started because Tustin didn't want to hire a licensed engineer.",
+          "who": "Frank Carleo"
+        }
       ]
     },
     "sparring-with-shadows": {
-      "cover": {"vol": 13, "no": 35, "alt": "OC Weekly cover: the shadow of a fighter between two gloved hands, with the headline Sparring With Shadows"},
+      "cover": {
+        "vol": 13,
+        "no": 35,
+        "alt": "OC Weekly cover: the shadow of a fighter between two gloved hands, with the headline Sparring With Shadows"
+      },
       "quotes": [
-        {"text": "We're keeping our eyes open for signs that we know Jeremy's up there wanting us to live again and to be happy, and we're trying.", "who": "Susan Williams, Jeremy’s mother"},
-        {"text": "Jeremy just stood there, holding the guy's hands, until finally the guy said, 'Okay,' and Jeremy said, 'Okay,' and he ran back in.", "who": "Richard Williams"}
+        {
+          "text": "We're keeping our eyes open for signs that we know Jeremy's up there wanting us to live again and to be happy, and we're trying.",
+          "who": "Susan Williams, Jeremy’s mother"
+        },
+        {
+          "text": "Jeremy just stood there, holding the guy's hands, until finally the guy said, 'Okay,' and Jeremy said, 'Okay,' and he ran back in.",
+          "who": "Richard Williams"
+        }
       ]
     }
+  },
+  "blurbs": {
+    "spare-the-child": "Amy Bril grew up in the Children of God, the cult now called the Family. As her divorce heads to court, she and her husband disagree about whether the group has anything to do with it, and about where their three children should grow up.",
+    "roll-player": "Charles Monson, a quadriplegic, drives to rehab centers to help severely disabled patients fight their health plan for the power wheelchairs it keeps denying.",
+    "sparring-with-shadows": "A year after the suicide of coach Jeremy Williams, Orange County’s first professional mixed-martial-arts team is still fighting. His parents remember the son who handed his money to a stranger on the street.",
+    "get-in-the-cage": "Three weeks before the biggest fight of his career, Irvine’s Quinton “Rampage” Jackson trains near Big Bear Lake, trying to turn a following in Japan into a household name in America.",
+    "house-of-pain": "Arther Masaoka fought Tustin for years over his house, and lost. Even the lawyer who used to represent him calls him “a total jerk,” then adds that what happened to him was wrong.",
+    "chicken-babies-bondage-nights": "Richard Johnson drives a cab, runs an art gallery, and hosts a bondage night. He will talk about all of it, except the one thing everyone asks about.",
+    "against-the-wall": "Praying, eating and bowling with the most hated student group at UC Irvine, a group so wary of the press that its president asked me to stop interviewing members until he had spoken with me.",
+    "did-crimes-kamran-mashayekhi-witnessed-put-his-life-in-danger": "Kamran Mashayekhi, 66, says crimes he witnessed as a cab driver have put him on a hit list. Some in law enforcement aren’t so sure.",
+    "did-alleged-attack-on-self-described-snitch-happen": "Evidence seems to support Kamran Mashayekhi’s story of being attacked in a Buena Park garage. But did it happen for the reasons he says?",
+    "corpus-christi-canceled-at-chapman": "A chapel dean at Chapman University cancels a play about a “gay Jesus” that he hasn’t seen or read. The production finds a new home at a nearby church.",
+    "garden-grove-officer-union-promotion": "Officer Mark Hutchinson alleges Garden Grove pushed him off the job after nearly 25 years because he fought for higher wages and pensions as police union president.",
+    "hurts-so-good": "Norma Jean Riddick, 40, a former dominatrix turned standup comedian in Costa Mesa, walks us through the underworld of fetishes and masochism.",
+    "counsel-bluffs": "A client paid John Hedderman $3,000 in cash and a $3,000 check to handle her custody case. The DA says he wasn’t just a bad lawyer. The DA says he wasn’t a lawyer at all.",
+    "the-tale-of-no-tape": "Naui Huitzilopochtli has been pepper-sprayed, kicked and threatened for filming rallies. Then, he says, Garden Grove police shook him down for it."
+  },
+  "titles": {
+    "did-alleged-attack-on-self-described-snitch-happen": "The Telltale Paint",
+    "corpus-christi-canceled-at-chapman": "‘Corpus Christi’ Canceled at Chapman",
+    "garden-grove-officer-union-promotion": "Arrested Advancement"
   }
 }

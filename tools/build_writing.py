@@ -202,7 +202,7 @@ def story_page(s, older, newer):
     if s["archive"]:
         ld["isBasedOn"] = s["archive"]
     jsonld = '  <script type="application/ld+json">\n  %s\n  </script>\n' % json.dumps(ld, ensure_ascii=False)
-    h = HEAD.format(title=esc(s["title"] + " | " + PUB["name"] + ", Derek Olson"), desc=esc(desc), url=url, ogtype="article",
+    h = HEAD.format(title=esc(s["title"] + " | Derek Olson"), desc=esc(desc), url=url, ogtype="article",
                     ogimage=og, jsonld=jsonld, nav=NAV.format(r="../../"))
     meta = ["By Derek Olson", "OC Weekly"]
     if SHOW_DATES:
@@ -266,51 +266,84 @@ def cover_card(s):
             % (s["slug"], art, badge, label, esc(card.get("title", s["title"])), esc(card.get("dek", s["dek"]))))
 
 
+def blurb(s):
+    return EDITORIAL.get("blurbs", {}).get(s["slug"], s["dek"])
+
+
+def card_title(s):
+    return EDITORIAL.get("cards", {}).get(s["slug"], {}).get("title") or EDITORIAL.get("titles", {}).get(s["slug"]) or s["title"]
+
+
+def kicker(s, label="Cover story"):
+    return "%s%s" % (label, (" &middot; " + fmt_date(s["date"], short=True)) if SHOW_DATES else "")
+
+
+def read_line(s):
+    return '<p class="feat-more"><span>%d min read</span><a href="%s.html">Read the story <span aria-hidden="true">&rarr;</span></a></p>' % (s["mins"], s["slug"])
+
+
+def cover_img(s, eager=False, sizes=""):
+    c = s["cover_meta"] or {}
+    return '<img src="../../%s" alt="%s" %sdecoding="async">' % (s["cover_img"], esc(c.get("alt", s["title"])), 'fetchpriority="high" ' if eager else 'loading="lazy" ')
+
+
+def quote_html(s, i=0, cls="feat-quote"):
+    if len(s["quotes"]) <= i:
+        return ""
+    q = s["quotes"][i]
+    return '<blockquote class="%s"><p>\u201c%s\u201d</p><footer>%s</footer></blockquote>' % (cls, esc(q["text"]), esc(q["who"]))
+
+
+def feature_lead(s):
+    return ('      <article class="feat feat-lead">\n        <a class="feat-cover" href="%s.html">%s</a>\n        <div class="feat-text">\n'
+            '          <p class="kicker">%s</p>\n          <h3><a href="%s.html">%s</a></h3>\n          <p class="blurb">%s</p>\n          %s\n          %s\n        </div>\n      </article>\n'
+            % (s["slug"], cover_img(s, True), kicker(s), s["slug"], esc(card_title(s)), esc(blurb(s)), quote_html(s, 0), read_line(s)))
+
+
+def feature_card(s, cls=""):
+    return ('        <article class="feat feat-card %s">\n          <a class="feat-cover" href="%s.html">%s</a>\n          <p class="kicker">%s</p>\n          <h3><a href="%s.html">%s</a></h3>\n          <p class="blurb">%s</p>\n          %s\n        </article>\n'
+            % (cls, s["slug"], cover_img(s), kicker(s), s["slug"], esc(card_title(s)), esc(blurb(s)), read_line(s)))
+
+
+def feature_wide(s, reverse=False):
+    return ('      <article class="feat feat-wide%s">\n        <a class="feat-cover" href="%s.html">%s</a>\n        <div class="feat-text">\n'
+            '          <p class="kicker">%s</p>\n          <h3><a href="%s.html">%s</a></h3>\n          <p class="blurb">%s</p>\n          %s\n          %s\n        </div>\n      </article>\n'
+            % (" reverse" if reverse else "", s["slug"], cover_img(s), kicker(s), s["slug"], esc(card_title(s)), esc(blurb(s)), quote_html(s, 0), read_line(s)))
+
+
+def feature_type(s):
+    q = s["quotes"][1] if len(s["quotes"]) > 1 else (s["quotes"][0] if s["quotes"] else None)
+    qh = ""
+    if q:
+        qh = '<blockquote class="type-quote"><p>\u201c%s\u201d</p><footer>%s</footer></blockquote>' % (esc(q["text"]), esc(q["who"]))
+    return ('      <article class="feat feat-type">\n        <div class="type-body">\n          <p class="kicker">%s</p>\n          %s\n'
+            '          <h3><a href="%s.html">%s</a></h3>\n          <p class="blurb">%s</p>\n          %s\n        </div>\n      </article>\n'
+            % (kicker(s), qh, s["slug"], esc(card_title(s)), esc(blurb(s)), read_line(s)))
+
+
+def brief_card(s):
+    return ('        <li><a class="brief" href="%s.html"><span class="kicker">%s</span><strong>%s</strong><span class="blurb">%s</span><span class="read">%d min read</span></a></li>\n'
+            % (s["slug"], fmt_date(s["date"], short=True) if SHOW_DATES else "", esc(card_title(s)), esc(blurb(s)), s["mins"]))
+
+
 def index_page(stories):
     by = {s["slug"]: s for s in stories}
-    lead = by[EDITORIAL["lead"]]
-    order = [by[x] for x in EDITORIAL["order"] if x in by]
-    wall = [s for s in order if s["slug"] != lead["slug"]]
     brief = sorted([s for s in stories if not s["cover_story"]], key=lambda s: s["date"], reverse=True)
     url = SITE + "/pages/writing/"
-    desc = "%s: %s" % (PUB["name"], PUB["standfirst"])
-    h = HEAD.format(title=esc(PUB["name"] + " | Stories by Derek Olson"), desc=esc(desc), url=url, ogtype="website",
-                    ogimage=SITE + "/" + (lead["cover_img"] or "img/og-image.png"), jsonld="", nav=NAV.format(r="../../"))
+    intro = PUB["standfirst"]
+    h = HEAD.format(title="Writing | Derek Olson", desc=esc(intro), url=url, ogtype="website",
+                    ogimage=SITE + "/img/og-image.png", jsonld="", nav=NAV.format(r="../../"))
     h += '  <main id="writing-page">\n'
-    h += ('    <header class="pub-mast">\n      <p class="pub-kicker">%s</p>\n      <h1 class="pub-name">%s</h1>\n      <p class="pub-standfirst">%s</p>\n    </header>\n'
-          % (esc(PUB["tagline"]), esc(PUB["name"]), esc(PUB["standfirst"])))
-    lq = lead["quotes"][0] if lead["quotes"] else None
-    h += '    <section class="pub-lead" aria-label="Lead story">\n'
-    if lead["cover_img"]:
-        c = lead["cover_meta"]
-        h += '      <a class="lead-cover" href="%s.html"><img src="../../%s" alt="%s" fetchpriority="high" decoding="async"></a>\n' % (lead["slug"], lead["cover_img"], esc(c["alt"]))
-    h += '      <div class="lead-text">\n        <p class="story-tag">Cover story &middot; Start here</p>\n'
-    h += '        <h2 class="lead-title"><a href="%s.html">%s</a></h2>\n        <p class="lead-dek">%s</p>\n' % (lead["slug"], esc(lead["title"]), esc(lead["dek"]))
-    if lq:
-        h += '        <blockquote class="lead-quote"><p>“%s”</p><footer>%s</footer></blockquote>\n' % (esc(lq["text"]), esc(lq["who"]))
-    h += '        <p class="lead-meta">%d min read &middot; <a href="%s.html">Read the story <span aria-hidden="true">&rarr;</span></a></p>\n      </div>\n    </section>\n' % (lead["mins"], lead["slug"])
-    h += '    <section class="pub-wall" aria-labelledby="wall-h">\n      <h2 id="wall-h" class="sec-h">More cover stories</h2>\n      <ul class="cover-grid">\n'
-    h += "".join(cover_card(s) for s in wall) + "      </ul>\n    </section>\n"
-    band = by.get("roll-player")
-    if band and band["quotes"]:
-        q = band["quotes"][0]
-        h += ('    <figure class="quote-band"><blockquote><p>“%s”</p></blockquote><figcaption>%s, in <a href="roll-player.html">Roll Player</a></figcaption></figure>\n'
-              % (esc(q["text"]), esc(q["who"])))
-    h += '    <section class="pub-brief">\n      <h2 class="sec-h">Features and news</h2>\n      <ul class="story-list">\n'
-    for s in brief:
-        when = fmt_date(s["date"], short=True) if SHOW_DATES else ""
-        h += ('        <li><a class="story-row" href="%s.html"><span class="when">%s</span><span class="what"><strong>%s</strong><span class="read">%d min read</span></span></a></li>\n'
-              % (s["slug"], when, esc(s["title"]), s["mins"]))
-    h += "      </ul>\n    </section>\n"
-    h += '''    <section class="pub-writer">
-      <figure class="writer-photo"><img src="../../img/writing/derek-journalist.webp" width="1200" height="1200" alt="Derek Olson at a desk on an old rotary phone, with a desk lamp beside him" loading="lazy" decoding="async"></figure>
-      <div class="writer-text">
-        <h2 class="sec-h">About the writer</h2>
-        <p>Derek Olson covered crime and politics as a reporter and studied at the Poynter Institute before he picked up a camera. His reporting won a Los Angeles Press Club honorable mention and a Nevada Press Association first place for feature writing. He is a filmmaker and developer in Minot, North Dakota.</p>
-        <p><a href="../about.html">More about Derek <span aria-hidden="true">&rarr;</span></a></p>
-      </div>
-    </section>
-'''
+    h += '    <header class="writing-hero">\n      <div class="writing-hero-text">\n        <h1 class="page-title">Writing</h1>\n        <p class="lede">%s</p>\n      </div>\n' % esc(intro)
+    h += '      <figure class="writing-hero-photo"><img src="../../img/writing/derek-journalist.webp" width="1200" height="1200" alt="Derek Olson at a desk in a dim room, on the phone, with an old rotary telephone and a desk lamp" decoding="async" fetchpriority="high"></figure>\n    </header>\n'
+    h += '    <section class="writing-section features">\n      <h2>Cover stories</h2>\n'
+    h += feature_lead(by["spare-the-child"])
+    h += '      <div class="duo">\n' + feature_card(by["roll-player"]) + feature_card(by["sparring-with-shadows"], "drop") + "      </div>\n"
+    h += feature_wide(by["get-in-the-cage"], reverse=True)
+    h += feature_type(by["against-the-wall"])
+    h += '      <div class="trio">\n' + feature_card(by["house-of-pain"]) + feature_card(by["chicken-babies-bondage-nights"], "drop") + feature_card(by["did-crimes-kamran-mashayekhi-witnessed-put-his-life-in-danger"], "drop2") + "      </div>\n"
+    h += "    </section>\n"
+    h += '    <section class="writing-section">\n      <h2>More reporting</h2>\n      <ul class="brief-grid">\n' + "".join(brief_card(s) for s in brief) + "      </ul>\n    </section>\n"
     return h + "  </main>\n" + TAIL
 
 

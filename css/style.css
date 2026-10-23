@@ -23,6 +23,7 @@
   --accent: #f5820d;      /* Amber orange — matches Grain & Thunder brand */
   --text: #f0ece4;        /* Warm off-white for headings */
   --text-dim: #9a948a;    /* Warm muted grey, 6.4:1 on --bg */
+  --text-mid: #cfc9bf;    /* Secondary reading text, 12:1 on --bg */
   --rule: rgba(240, 236, 228, 0.14); /* Hairlines */
   --serif: 'Newsreader', Georgia, 'Times New Roman', serif;
   --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;

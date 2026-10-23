@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/work.css">
   <link rel="stylesheet" href="../css/about.css">
+  <link rel="preload" href="../fonts/newsreader-400-latin.woff2" as="font" type="font/woff2" crossorigin>
 </head>
 <body class="interior">
 
@@ -27,58 +28,45 @@
   </nav>
 
   <main id="about-page">
-
     <h1 class="page-title">About</h1>
 
-    <div id="about-body">
-
-      <div id="about-bio">
+    <div class="about-bio">
         <p>Derek Olson covered crime and politics as a reporter and studied at the Poynter Institute before he picked up a camera. He spent a decade in Los Angeles as a stage manager at Smashbox Studios and production supervisor at Disney's Maker Studios, and he shot extreme sports at the Sochi Winter Olympics.</p>
         <p>He earned a full-stack web development certificate from UCLA Extension in 2017. He works in JavaScript, TypeScript, React, Next.js, Node, Python, and Postgres, and he built and runs <a href="https://therateguide.com" target="_blank" rel="noopener">The Rate Guide</a>, a day-rate platform for freelance film crews. <a href="builds/index.html">See his builds.</a></p>
         <p>He runs Grain and Thunder now, out of North Dakota.</p>
       </div>
 
-      <div id="about-clients">
-        <h2 class="section-label">Clients</h2>
-        <p class="client-list">Pepsi &nbsp;·&nbsp; Beyond Meat &nbsp;·&nbsp; DC Shoes &nbsp;·&nbsp; Wolfgang Puck &nbsp;·&nbsp; Canon &nbsp;·&nbsp; JCPenney &nbsp;·&nbsp; Disney Channel &nbsp;·&nbsp; Disney+</p>
-      </div>
+    <section class="about-section">
+      <h2>Clients</h2>
+      <p class="client-line">Pepsi, Beyond Meat, DC Shoes, Wolfgang Puck, Canon, JCPenney, Disney Channel, Disney+</p>
+    </section>
 
-      <div id="about-affiliations">
-        <h2 class="section-label">Board service</h2>
-        <ul class="recognition-list">
-          <li><a href="https://midwestjournalists.org/board/" target="_blank" rel="noopener">Midwest Broadcast Journalists Association</a>: board of directors, North Dakota representative (current)</li>
-        </ul>
-      </div>
-      <div id="about-recognition">
-        <h2 class="section-label">Recognition</h2>
-        <ul class="recognition-list">
-          <li>Bronze, 47th Annual Telly Awards: <em>Millennial Taekwondo Tortoises</em> (2026)</li>
-          <li>Jerome Independent Film Festival: Animated TV Pilot (2023)</li>
-          <li>Evaluated for development by FOX Animation</li>
-          <li>Las Vegas Film Festival: <em>The Rideshare</em> (2017)</li>
-          <li>Sochi 2014 Winter Olympics: Photo services, 1B+ daily impressions</li>
-          <li>American Pavilion, Cannes Film Festival: <em>Merry Christmas Farmer</em> (2013)</li>
-          <li><a href="https://lapressclub.org/wp-content/uploads/2017/02/2008-Southern-California-Journalism-Award-Winners.pdf" target="_blank" rel="noopener">Los Angeles Press Club, Southern California Journalism Awards</a>: Entertainment Feature, honorable mention, for &ldquo;Chicken Babies, Bondage Nights and Severed Monkey Heads&rdquo; in OC Weekly (2008)</li>
-        </ul>
-      </div>
-      <div id="about-press">
-        <h2 class="section-label">In the press</h2>
-        <ul class="press-list">
-          <li>
-            <span class="press-meta">Minot State University News &middot; October 21, 2026</span>
-            <a class="press-title" href="https://www.minotstateu.edu/pio/news/2026/10/MSU-connections-help-bring-local-talent-together-for-television-pilot.shtml" target="_blank" rel="noopener">MSU connections help bring local talent together for television pilot</a>
-            <span class="press-note">How MSU staff, faculty, alumni, and former students came together to make <em>The B.O.G.</em>, a television pilot shot in Minot.</span>
-          </li>
-          <li>
-            <span class="press-meta">Minot Daily News &middot; September 4, 2026</span>
-            <a class="press-title" href="https://www.minotdailynews.com/life/arts-entertainment/2026/09/minot-native-brings-stories-to-screen/" target="_blank" rel="noopener">Minot native brings stories to screen</a>
-            <span class="press-note">A profile of the path from print journalism to Los Angeles production and back to Minot to start Grain and Thunder.</span>
-          </li>
-        </ul>
-      </div>
+    <section class="about-section">
+      <h2>Recognition</h2>
+      <ul class="ledger">
+        <li><span class="when">2026</span><span class="what"><strong>Bronze, 47th Annual Telly Awards</strong><span class="sub"><em>Millennial Taekwondo Tortoises</em>, animated comedy pilot</span></span></li>
+        <li><span class="when">2023</span><span class="what"><strong>Jerome Independent Film Festival</strong><span class="sub">Animated TV pilot, evaluated for development by FOX Animation</span></span></li>
+        <li><span class="when">2017</span><span class="what"><strong>Las Vegas Film Festival</strong><span class="sub"><em>The Rideshare</em></span></span></li>
+        <li><span class="when">2014</span><span class="what"><strong>Sochi Winter Olympics</strong><span class="sub">Photo services, extreme sports coverage, 1B+ daily impressions</span></span></li>
+        <li><span class="when">2013</span><span class="what"><strong>American Pavilion, Cannes Film Festival</strong><span class="sub"><em>Merry Christmas Farmer</em></span></span></li>
+        <li><span class="when">2008</span><span class="what"><strong><a href="https://lapressclub.org/wp-content/uploads/2017/02/2008-Southern-California-Journalism-Award-Winners.pdf" target="_blank" rel="noopener">Los Angeles Press Club</a></strong><span class="sub">Honorable mention, Entertainment Feature, Southern California Journalism Awards. &ldquo;Chicken Babies, Bondage Nights and Severed Monkey Heads,&rdquo; OC Weekly</span></span></li>
+      </ul>
+    </section>
 
-    </div>
+    <section class="about-section">
+      <h2>Board service</h2>
+      <ul class="ledger">
+        <li><span class="when">Current</span><span class="what"><strong><a href="https://midwestjournalists.org/board/" target="_blank" rel="noopener">Midwest Broadcast Journalists Association</a></strong><span class="sub">Board of directors, North Dakota representative</span></span></li>
+      </ul>
+    </section>
 
+    <section class="about-section">
+      <h2>In the press</h2>
+      <ul class="ledger">
+        <li><span class="when">Oct 2026</span><span class="what"><strong><a href="https://www.minotstateu.edu/pio/news/2026/10/MSU-connections-help-bring-local-talent-together-for-television-pilot.shtml" target="_blank" rel="noopener">MSU connections help bring local talent together for television pilot</a></strong><span class="sub">Minot State University News. How MSU staff, faculty, alumni, and former students came together to make <em>The B.O.G.</em>, a television pilot shot in Minot.</span></span></li>
+        <li><span class="when">Sep 2026</span><span class="what"><strong><a href="https://www.minotdailynews.com/life/arts-entertainment/2026/09/minot-native-brings-stories-to-screen/" target="_blank" rel="noopener">Minot native brings stories to screen</a></strong><span class="sub">Minot Daily News. A profile of the path from print journalism to Los Angeles production and back to Minot to start Grain and Thunder.</span></span></li>
+      </ul>
+    </section>
   </main>
 
   <script src="../js/main.js?v=2"></script>

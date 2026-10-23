@@ -8,7 +8,7 @@ body.interior {
   overflow-y: auto;  /* homepage locks scroll; content pages need it */
   overflow-x: hidden;
   cursor: auto;      /* restore default cursor on interior pages */
-  min-height: 100%;
+  min-height: 100vh;
   height: auto;
 }
 

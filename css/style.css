@@ -221,3 +221,17 @@ html { scrollbar-color: #3a352d var(--bg); scrollbar-width: thin; }
 /* No link ever falls back to the browser's default blue. */
 a { color: inherit; }
 a:visited { color: inherit; }
+
+#press-link {
+  display: block;
+  margin-top: 1.1rem;
+  max-width: 24rem;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+#press-link:hover { color: var(--accent); }

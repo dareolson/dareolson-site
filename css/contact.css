@@ -2,62 +2,44 @@
    CONTACT PAGE
 ============================================== */
 #contact-page {
-  max-width: 800px;
+  max-width: 1120px;
   margin: 0 auto;
-  padding: 8rem 2rem 6rem;
+  padding: 9rem 2rem 7rem;
 }
-
-#contact-body {
-  margin-top: 2rem;
+#contact-page .page-title {
+  font-size: clamp(2.6rem, 6.4vw, 5.25rem);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  margin-bottom: 2.5rem;
 }
-
-.contact-line {
-  font-family: var(--mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.15em;
-  color: var(--text-dim);
-  margin-bottom: 1.5rem;
-}
-
+.contact-line { font-size: clamp(1.25rem, 2.4vw, 1.6rem); line-height: 1.4; color: var(--text-mid); margin-bottom: 1.25rem; }
 .contact-email {
-  display: block;
-  font-size: clamp(1.2rem, 3vw, 2rem);
-  font-family: var(--serif);
+  display: inline-block;
+  font-size: clamp(1.7rem, 5.2vw, 4rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
   color: var(--text);
-  text-decoration: none;
-  border-bottom: 1px solid #333;
-  padding-bottom: 1.5rem;
-  margin-bottom: 2rem;
-  transition: color 0.2s, border-color 0.2s;
-}
-
-.contact-email:hover {
-  color: var(--accent);
-  border-color: var(--accent);
-}
-
-.contact-links {
-  display: flex;
-  gap: 2rem;
-  flex-wrap: wrap;
-}
-
-.contact-links a {
-  font-family: var(--mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--text-dim);
-  text-decoration: none;
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.18em;
+  overflow-wrap: anywhere;
   transition: color 0.2s;
 }
-
-.contact-links a:hover {
-  color: var(--accent);
+.contact-email:hover { color: var(--accent); }
+.contact-links {
+  list-style: none;
+  display: flex; flex-wrap: wrap; gap: 0.75rem 2.75rem;
+  margin-top: 4rem; padding-top: 2rem;
+  border-top: 1px solid var(--rule);
 }
-
-@media (max-width: 480px) {
-  #contact-page {
-    padding-top: 6rem;
-  }
+.contact-links a {
+  font-size: 1.35rem;
+  color: var(--text);
+  text-decoration: none;
+  border-bottom: 1px solid var(--text-dim);
+  padding-bottom: 0.15rem;
+  transition: color 0.2s, border-color 0.2s;
 }
+.contact-links a:hover { color: var(--accent); border-color: var(--accent); }
+@media (max-width: 480px) { #contact-page { padding: 6.5rem 1.25rem 5rem; } }

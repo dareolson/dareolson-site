@@ -122,3 +122,44 @@
   .about-hero-inner, .about-wrap { padding-left: 1.25rem; padding-right: 1.25rem; }
   .about-hero-inner { padding-bottom: 1.75rem; }
 }
+
+/* Press: full-width rows, big headlines, whole row is the link */
+.press-feature { margin-top: 5rem; }
+.press-row {
+  display: grid;
+  grid-template-columns: 14rem minmax(0, 1fr);
+  gap: 1rem 3rem;
+  padding: 2.5rem 0;
+  border-top: 1px solid var(--rule);
+  text-decoration: none;
+  color: inherit;
+}
+.press-row:last-of-type { border-bottom: 1px solid var(--rule); }
+.press-src { display: grid; gap: 0.35rem; align-content: start; padding-top: 0.6rem; }
+.press-src .outlet { font-size: 1.1rem; line-height: 1.35; color: var(--text); }
+.press-src .date { font-family: var(--mono); font-size: 0.9rem; color: var(--accent); }
+.press-body { display: grid; gap: 0.9rem; max-width: 44em; }
+.press-body .headline {
+  font-size: clamp(1.9rem, 4vw, 3.1rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  text-wrap: balance;
+  transition: color 0.2s;
+}
+.press-body .summary { font-size: 1.2rem; line-height: 1.6; color: var(--text-mid); text-wrap: pretty; }
+.press-body .summary em { font-style: normal; color: var(--text); }
+.press-body .read {
+  font-family: var(--mono); font-size: 0.9rem; letter-spacing: 0.04em; color: var(--text);
+  justify-self: start; border-bottom: 1px solid var(--accent); padding-bottom: 0.2rem;
+  transition: color 0.2s;
+}
+.press-body .read span { display: inline-block; transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1); }
+.press-row:hover .headline, .press-row:hover .read { color: var(--accent); }
+.press-row:hover .read span { transform: translate(3px, -3px); }
+.press-row:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; }
+@media (max-width: 860px) {
+  .press-row { grid-template-columns: 1fr; padding: 2rem 0; }
+  .press-src { display: flex; gap: 1rem; align-items: baseline; flex-wrap: wrap; padding-top: 0; }
+}
+@media (prefers-reduced-motion: reduce) { .press-row:hover .read span { transform: none; } }

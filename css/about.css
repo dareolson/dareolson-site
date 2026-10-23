@@ -69,3 +69,13 @@
     padding-top: 6rem;
   }
 }
+
+#about-bio a {
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 1px;
+  transition: color 0.2s;
+}
+#about-bio a:hover { color: var(--accent); }

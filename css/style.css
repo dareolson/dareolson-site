@@ -93,8 +93,8 @@ body.page-visible {
   color: var(--text);
   text-decoration: none;
   font-family: var(--mono);
-  font-size: 0.74rem;
-  letter-spacing: 0.12em;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
   transition: color 0.2s;
 }
 
@@ -129,7 +129,7 @@ body.page-visible {
     font-size: 0.65rem;
   }
 
-  #main-nav a { letter-spacing: 0.12em; }
+  #main-nav a { letter-spacing: 0.08em; font-size: 0.72rem; }
 
   #identity {
     bottom: 2rem;
@@ -170,8 +170,8 @@ body.page-visible {
 #identity p {
   margin-top: 0.6rem;
   font-family: var(--mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.2em;
+  font-size: 0.82rem;
+  letter-spacing: 0.16em;
   color: var(--accent);
   text-transform: uppercase;
 }
@@ -180,7 +180,7 @@ body.page-visible {
   display: inline-block;
   margin-top: 1.5rem;
   font-family: var(--mono);
-  font-size: 0.75rem;
+  font-size: 0.82rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--text);
@@ -216,3 +216,7 @@ html { scrollbar-color: #3a352d var(--bg); scrollbar-width: thin; }
 ::-webkit-scrollbar { width: 10px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: #3a352d; border-radius: 5px; }
+
+/* No link ever falls back to the browser's default blue. */
+a { color: inherit; }
+a:visited { color: inherit; }

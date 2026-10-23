@@ -24,7 +24,7 @@
 /* Dark translucent panel so the name reads over any part of the photo */
 .about-hero .page-title {
   display: inline-block;
-  font-size: clamp(2.2rem, 5.2vw, 4.25rem);
+  font-size: var(--fs-title);
   line-height: 1.05;
   letter-spacing: -0.02em;
   margin: 0;
@@ -50,14 +50,14 @@
   align-items: start;
 }
 .lede-big {
-  font-size: clamp(1.9rem, 3.8vw, 3rem);
+  font-size: var(--fs-lede);
   line-height: 1.2;
   letter-spacing: -0.012em;
   color: var(--text);
   text-wrap: balance;
 }
 .about-bio p {
-  font-size: 1.2rem;
+  font-size: var(--fs-body);
   line-height: 1.7;
   color: var(--text-mid);
   text-wrap: pretty;
@@ -78,7 +78,7 @@
 /* Sections */
 .about-section { margin-top: 8rem; }
 .about-section h2 {
-  font-size: clamp(1.8rem, 3.4vw, 2.5rem);
+  font-size: var(--fs-h2);
   font-weight: 400;
   letter-spacing: -0.015em;
   line-height: 1.1;
@@ -92,7 +92,7 @@
 .set-photo { margin: 0; border: 1px solid var(--rule); border-radius: 3px; overflow: hidden; aspect-ratio: 3 / 2; background: #131210; box-shadow: 0 1px 2px rgba(0,0,0,0.5), 0 28px 56px -28px rgba(0,0,0,0.75); }
 .set-photo img { width: 100%; height: 100%; object-fit: cover; display: block; filter: sepia(0.18) saturate(1.1) brightness(0.95); }
 .about-clients h2 { border-top: 0; padding-top: 0; margin-bottom: 1.5rem; }
-.client-line { font-size: clamp(1.4rem, 2.6vw, 1.9rem); line-height: 1.5; color: var(--text); text-wrap: balance; }
+.client-line { font-size: var(--fs-h3); line-height: 1.5; color: var(--text); text-wrap: balance; }
 
 /* Ledger: year | what */
 .ledger { list-style: none; }
@@ -106,14 +106,14 @@
 .ledger li:first-child { padding-top: 0.5rem; border-top: 0; }
 .ledger .when {
   font-family: var(--mono);
-  font-size: 0.95rem;
+  font-size: var(--fs-mono);
   letter-spacing: 0.02em;
   color: var(--accent);
   padding-top: 0.45rem;
 }
 .ledger .what { display: grid; gap: 0.55rem; max-width: 40em; }
-.ledger strong { font-weight: 400; font-size: clamp(1.4rem, 2.5vw, 1.8rem); line-height: 1.2; letter-spacing: -0.01em; color: var(--text); }
-.ledger .sub { font-size: 1.15rem; line-height: 1.65; color: var(--text-mid); text-wrap: pretty; }
+.ledger strong { font-weight: 400; font-size: var(--fs-h3); line-height: 1.2; letter-spacing: -0.01em; color: var(--text); }
+.ledger .sub { font-size: var(--fs-body); line-height: 1.65; color: var(--text-mid); text-wrap: pretty; }
 .ledger em { font-style: normal; color: var(--text); }
 
 @media (prefers-reduced-motion: reduce) { .about-hero .page-title { animation: none; } }
@@ -149,21 +149,21 @@
 }
 .press-row:last-of-type { border-bottom: 1px solid var(--rule); }
 .press-src { display: grid; gap: 0.35rem; align-content: start; padding-top: 0.6rem; }
-.press-src .outlet { font-size: 1.1rem; line-height: 1.35; color: var(--text); }
-.press-src .date { font-family: var(--mono); font-size: 0.9rem; color: var(--accent); }
+.press-src .outlet { font-size: var(--fs-body); line-height: 1.35; color: var(--text); }
+.press-src .date { font-family: var(--mono); font-size: var(--fs-mono); color: var(--accent); }
 .press-body { display: grid; gap: 0.9rem; max-width: 44em; }
 .press-body .headline {
-  font-size: clamp(1.9rem, 4vw, 3.1rem);
+  font-size: var(--fs-h2);
   line-height: 1.1;
   letter-spacing: -0.02em;
   color: var(--text);
   text-wrap: balance;
   transition: color 0.2s;
 }
-.press-body .summary { font-size: 1.2rem; line-height: 1.6; color: var(--text-mid); text-wrap: pretty; }
+.press-body .summary { font-size: var(--fs-body); line-height: 1.6; color: var(--text-mid); text-wrap: pretty; }
 .press-body .summary em { font-style: normal; color: var(--text); }
 .press-body .read {
-  font-family: var(--mono); font-size: 0.9rem; letter-spacing: 0.04em; color: var(--text);
+  font-family: var(--mono); font-size: var(--fs-mono); letter-spacing: 0.04em; color: var(--text);
   justify-self: start; border-bottom: 1px solid var(--accent); padding-bottom: 0.2rem;
   transition: color 0.2s;
 }

@@ -17,16 +17,16 @@ body.interior {
    Padded content area, pushed below the fixed nav.
 ============================================== */
 #work-page {
-  max-width: 1200px;
+  max-width: 1120px;
   margin: 0 auto;
-  padding: 8rem 2rem 6rem; /* top clears the fixed nav */
+  padding: 9rem 2rem 7rem; /* top clears the fixed nav */
 }
 
 /* ==============================================
    PAGE TITLE
 ============================================== */
 .page-title {
-  font-size: clamp(2.4rem, 6vw, 4.5rem);
+  font-size: var(--fs-title);
   font-weight: 400;
   line-height: 1.05;
   letter-spacing: -0.02em;

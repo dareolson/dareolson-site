@@ -7,12 +7,12 @@
   padding: 9rem 2rem 7rem;
 }
 #contact-page .page-title {
-  font-size: clamp(2.6rem, 6.4vw, 5.25rem);
+  font-size: var(--fs-title);
   line-height: 1.02;
   letter-spacing: -0.025em;
   margin-bottom: 2.5rem;
 }
-.contact-line { font-size: clamp(1.25rem, 2.4vw, 1.6rem); line-height: 1.4; color: var(--text-mid); margin-bottom: 1.25rem; }
+.contact-line { font-size: var(--fs-intro); line-height: 1.4; color: var(--text-mid); margin-bottom: 1.25rem; }
 .contact-email {
   display: inline-block;
   font-size: clamp(1.7rem, 5.2vw, 4rem);
@@ -34,7 +34,7 @@
   border-top: 1px solid var(--rule);
 }
 .contact-links a {
-  font-size: 1.35rem;
+  font-size: var(--fs-intro);
   color: var(--text);
   text-decoration: none;
   border-bottom: 1px solid var(--text-dim);

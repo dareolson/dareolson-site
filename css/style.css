@@ -25,6 +25,16 @@
   --text-dim: #9a948a;    /* Warm muted grey, 6.4:1 on --bg */
   --text-mid: #cfc9bf;    /* Secondary reading text, 12:1 on --bg */
   --rule: rgba(240, 236, 228, 0.14); /* Hairlines */
+
+  /* One type scale for the whole site */
+  --fs-title: clamp(2.6rem, 6vw, 4.5rem);    /* page titles, 72px max */
+  --fs-lede: clamp(1.9rem, 3.8vw, 2.75rem);  /* the one big statement per page, 44px */
+  --fs-h2: clamp(1.75rem, 3vw, 2.25rem);     /* section headings, 36px */
+  --fs-h3: clamp(1.4rem, 2.4vw, 1.75rem);    /* item titles, 28px */
+  --fs-intro: clamp(1.25rem, 2.2vw, 1.5rem); /* intro paragraphs, 24px */
+  --fs-body: clamp(1.1rem, 1.5vw, 1.2rem);   /* reading text, 19px */
+  --fs-mono: 0.9rem;                         /* dates, labels, text links, 14px */
+  --fs-mono-sm: 0.8rem;                      /* nav, tags, captions, 13px */
   --serif: 'Newsreader', Georgia, 'Times New Roman', serif;
   --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
 }
@@ -165,7 +175,7 @@ body.page-visible {
 }
 
 #identity h1 {
-  font-size: clamp(2.5rem, 5vw, 4.5rem); /* scales fluidly with viewport */
+  font-size: var(--fs-title);
   font-weight: 400;
   letter-spacing: -0.015em;
   line-height: 1;

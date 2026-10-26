@@ -57,6 +57,14 @@ if (!document.getElementById('frog')) {
     // Let external, new-tab, anchor, and mailto links pass through normally
     if (link.target === '_blank' || href.startsWith('#') || href.startsWith('mailto:')) return;
 
+    // Modified clicks (Cmd/Ctrl-click, middle-click, etc.) and downloads
+    // keep the browser's default behavior (new tab, save, ...)
+    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey ||
+        e.shiftKey || e.altKey || link.hasAttribute('download')) return;
+
+    // Cross-origin links leave the site, so there is nothing to fade into
+    if (link.origin !== window.location.origin) return;
+
     e.preventDefault();
     window.navigateWithFade(href);
   });

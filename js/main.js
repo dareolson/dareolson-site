@@ -23,6 +23,12 @@ setTimeout(() => {
   });
 }, fadeDelay);
 
+// Back/forward cache restores the page frozen mid fade-out (body at
+// opacity:0), so the scripts above never run again. Bring it back.
+window.addEventListener('pageshow', (e) => {
+  if (e.persisted) document.body.classList.add('page-visible');
+});
+
 // ==============================================
 // NAVIGATE WITH FADE
 // Fades the page out, then navigates.

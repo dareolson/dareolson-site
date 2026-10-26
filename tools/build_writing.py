@@ -92,6 +92,11 @@ ORG_GT = {"@type": "Organization", "@id": ORG_ID, "name": "Grain and Thunder", "
           "founder": {"@id": PERSON_ID}, "sameAs": ["https://www.youtube.com/@GrainAndThunder"]}
 PUBLISHER = {"@type": "NewsMediaOrganization", "name": "OC Weekly", "url": "https://www.ocweekly.com"}
 BUILD_DATE = datetime.date.today().isoformat()
+
+
+def iso_ts(d):
+    """Date-only values trip a Rich Results warning; noon UTC keeps the same calendar day in US timezones."""
+    return d + "T12:00:00Z"
 PORTRAIT = "img/writing/derek-journalist.webp"
 
 
@@ -110,7 +115,7 @@ def seo_extras(url, title, desc, image, image_alt, article=None):
     x += '  <meta name="twitter:card" content="summary_large_image">\n  <meta name="twitter:title" content="%s">\n  <meta name="twitter:description" content="%s">\n  <meta name="twitter:image" content="%s">\n' % (esc(title), esc(desc), image)
     x += '  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">\n'
     if article:
-        x += '  <meta property="article:published_time" content="%s">\n  <meta property="article:modified_time" content="%s">\n' % (article["date"], BUILD_DATE)
+        x += '  <meta property="article:published_time" content="%s">\n  <meta property="article:modified_time" content="%s">\n' % (iso_ts(article["date"]), iso_ts(BUILD_DATE))
         x += '  <meta property="article:author" content="%s/pages/about.html">\n  <meta property="article:section" content="%s">\n' % (SITE, esc(article["section"]))
     return x
 
@@ -249,7 +254,7 @@ def story_page(s, older, newer):
     article = {
         "@type": "NewsArticle", "@id": url + "#article", "url": url, "mainEntityOfPage": {"@type": "WebPage", "@id": url},
         "headline": s["title"][:110], "name": s["title"], "description": desc, "inLanguage": "en-US", "isAccessibleForFree": True,
-        "datePublished": s["date"], "dateModified": BUILD_DATE, "wordCount": s["words"], "articleSection": section,
+        "datePublished": iso_ts(s["date"]), "dateModified": iso_ts(BUILD_DATE), "wordCount": s["words"], "articleSection": section,
         "author": dict(PERSON), "creator": {"@id": PERSON_ID}, "publisher": PUBLISHER, "image": imgs,
     }
     if s["archive"]:
